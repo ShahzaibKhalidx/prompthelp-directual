@@ -1,5 +1,82 @@
+// import React, { useState, useEffect, useContext, createContext } from "react";
+// import Directual from 'directual-api';
+
+// const api = new Directual({apiHost: '/'});
+
+// export const authContext = createContext();
+
+// export function ProvideAuth({ children }) {
+//   const auth = useProvideAuth();
+//   return <authContext.Provider value={auth}>{children}</authContext.Provider>;
+// }
+
+// export const useAuth = () => {
+//   return useContext(authContext);
+// };
+
+// // Provide hook that creates auth object and handles state
+// function useProvideAuth() {
+//   const [user, setUser] = useState(null);
+//   const [sessionID, setSessionID] = useState(null);
+//   const [role, setRole] = useState(null);
+
+//   const login = (username, password) => {
+//     return api.auth.login(username, password).then(res=>{
+//       setUser(res.username)
+//       setSessionID(res.sessionID)
+//       setRole(res.role)
+//       window.localStorage.setItem('sid', res.sessionID)
+//     })
+//   };
+
+//   const signout = (cb) => {
+//     return api.auth.logout('').then(res=>{
+//       setUser(null)
+//       setRole(null)
+//       setSessionID(null)
+//       window.localStorage.setItem('sid', null)
+//       cb()
+//     })
+//   };
+
+//   const isAutorised = () => {
+//     return !!user
+//   }
+
+//   const hasRole = (roleCheck) => {
+//     if(!roleCheck){
+//       return true
+//     }
+//     return role === roleCheck
+//   }
+
+//   useEffect(() => {
+//     let sid = window.localStorage.getItem('sid') || ''
+//     api.auth.isAuthorize(sid, (status, token)=>{
+//       if(status === true){
+//         setUser(token.username)
+//         setSessionID(token.token)
+//         setRole(token.role)
+//       }
+//     })
+//   }, []);
+
+//   return {
+//     user,
+//     sessionID,
+//     login,
+//     isAutorised,
+//     signout,
+//     hasRole
+//   };
+// }
+
+
+// NEW CODE
+
 import React, { useState, useEffect, useContext, createContext } from "react";
 import Directual from 'directual-api';
+import axios from 'axios';
 
 const api = new Directual({apiHost: '/'});
 
@@ -14,19 +91,39 @@ export const useAuth = () => {
   return useContext(authContext);
 };
 
+
 // Provide hook that creates auth object and handles state
 function useProvideAuth() {
   const [user, setUser] = useState(null);
   const [sessionID, setSessionID] = useState(null);
   const [role, setRole] = useState(null);
 
-  const login = (username, password) => {
-    return api.auth.login(username, password).then(res=>{
-      setUser(res.username)
-      setSessionID(res.sessionID)
-      setRole(res.role)
-      window.localStorage.setItem('sid', res.sessionID)
-    })
+  const login = async (username, password) => {
+    try {
+      // Make a direct HTTP request to the authentication API
+      const response = await axios.post(
+        'https://api.directual.com/good/api/v5/auth',
+        {
+          username: username,
+          password: password,
+        }
+      );
+      
+      // Check if the authentication response status is "ok"
+      if (response.data.status === 'ok') {
+        const userData = response.data.result;
+        setUser(userData.username);
+        setSessionID(userData.token);
+        setRole(userData.role);
+        window.localStorage.setItem('sid', userData.token);
+        return { success: true };
+      } else {
+        return { success: false, error: 'Authentication failed.' };
+      }
+    } catch (error) {
+      console.error('Login error:', error);
+      return { success: false, error: 'An error occurred while logging in.' };
+    }
   };
 
   const signout = (cb) => {

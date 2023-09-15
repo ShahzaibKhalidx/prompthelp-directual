@@ -99,7 +99,6 @@ function Table(props) {
                             <button className='bg-blue-300 text-blue-800 p-2 text-sm' disabled={(badRequest || (pageNum >= pageInfo.totalPage - 1)) && "disabled"} onClick={nextPage}>next</button>
                         </div>
                     }
-
                 </div>
             }
         </div>

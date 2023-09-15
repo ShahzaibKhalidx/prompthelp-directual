@@ -89,8 +89,6 @@ export default function Register() {
             // insert here your FIELD_SYSNAME
             setFormPayload({ ...formPayload, 'repeat_pass': md5(e.target.value) })
           }} />
-
-
           <button type="submit" className='bg-violet-100 text-violet-900 px-4 rounded hover:bg-violet-200'>Submit</button>
         </form>
       }
