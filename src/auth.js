@@ -99,16 +99,20 @@ function useProvideAuth() {
   const [role, setRole] = useState(null);
 
   const login = async (username, password) => {
+    const appId = "ff949b76-9513-459d-95b3-9dd741fb08e1"
     try {
       // Make a direct HTTP request to the authentication API
       const response = await axios.post(
-        'https://api.directual.com/good/api/v5/auth',
+        `https://api.directual.com/good/api/v5/auth?appID=${appId}`,
         {
+          provider: "rest",
           username: username,
           password: password,
-        }
-      );
-      
+        },
+
+        );
+        console.log(response)
+
       // Check if the authentication response status is "ok"
       if (response.data.status === 'ok') {
         const userData = response.data.result;
