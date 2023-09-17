@@ -96,9 +96,10 @@ function Prompts() {
     };
     const authContext = useAuth();
     return (
-        <div className='bg-white min-h-screen flex items-center justify-center'>
-            <div className="w-full md:w-2/3 bg-indigo-100 p-6 rounded-lg shadow-lg bg-darkcream text-gray-800">
-                <h1 className="text-4xl font-bold mb-4 text-violet-900 uppercase text-center p-4">Midjourney Prompt Helper</h1>
+        <div className='bg-zinc-100 min-h-screen flex items-center justify-center'>
+            <div className="w-full md:w-9/12 p-6 text-gray-800">
+                <h1 className="text-4xl font-bold text-grey-900 uppercase text-center">Midjourney Prompt Helper</h1>
+                <p className='text-center p-4 mb-4'>NEW: Save your prompts for later use. Give it a try below ⬇️</p>
                 <div className="mb-4">
                     {/* <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="prompt">
                         Enter your prompt:
@@ -106,12 +107,29 @@ function Prompts() {
                     <textarea
                         id="prompt"
                         placeholder="Start typing your idea..."
-                        className="w-full p-2 rounded shadow placeholder-slate-400 outline-0"
+                        className="w-full p-4 rounded shadow placeholder-slate-400 outline-0"
                         value={prompt}
                         onChange={handlePromptChange}
                     />
                 </div>
-                <div className="md:flex md:flex-wrap">
+                <div className="my-4">
+                    {/* <label className="block text-gray-700 text-sm font-bold mb-2">Generated Prompt:</label> */}
+                    <div className="bg-zinc-200 p-4 border rounded">/imagine prompt: {generatedPrompt}</div>
+                    {copySuccess && <p className="text-green-600 mt-2 text-center">Copied to clipboard!</p>}
+                </div>
+                {/* Buttons */}
+                <div className="m-4 flex justify-center">
+                    <button
+                        className="bg-blue-700 text-white hover:hover:bg-blue-900 rounded-2xl p-2 w-52"
+                        onClick={handleCopyToClipboard}> Copy Prompt </button>
+                    {authContext.isAutorised() && <li>
+                        <button
+                            className="bg-emerald-500 text-white hover:hover:bg-emerald-600 rounded-2xl p-2 w-52"
+                            onClick=''> Save to My Prompts
+                        </button>
+                    </li>}
+                </div>
+                <div className="md:flex md:flex-wrap bg-white p-6 rounded-lg shadow-lg">
                     {Object.keys(filtersData).map((filterName) => (
                         <div className="mb-4 w-full md:w-1/6 md:pr-2" key={filterName}>
                             <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor={filterName}
@@ -162,23 +180,7 @@ function Prompts() {
                         fontSize:"11px" }}
                     />
                 </div>
-                <div className="mb-4">
-                    <label className="block text-gray-700 text-sm font-bold mb-2">Generated Prompt:</label>
-                    <div className="bg-gray-100 p-2 border rounded">/imagine prompt: {generatedPrompt}</div>
-                    {copySuccess && <p className="text-green-600 mt-2 text-center">Copied to clipboard!</p>}
-                </div>
-                <div className="m-4 flex justify-center">
-                    <button
-                        className="bg-violet-100 text-violet-900 py-2 px-4 m-2 rounded hover:bg-violet-200"
-                        onClick={handleCopyToClipboard}> Copy Prompt </button>
-
-                    {authContext.isAutorised() && <li>
-                        <button
-                            className="bg-violet-900 text-violet-100 py-2 px-4 m-2 rounded hover:bg-violet-200 hover:text-violet-900"
-                            onClick=''> Save to My Prompts
-                        </button>
-                    </li>}
-                </div>
+                
             </div>
         </div>
     );

@@ -2,6 +2,7 @@ import React from 'react'
 import { Link, NavLink } from 'react-router-dom'
 import { LogInLogOutButton } from '../loginLogout/loginLogoutButton'
 import { useAuth } from '../../auth'
+import Logo from '../../assets/22.png'
 
 import './menu.css'
 
@@ -9,9 +10,9 @@ import './menu.css'
 export function MainMenu() {
   const authContext = useAuth();
   return (
-    <ul className="main-menu bg-indigo-100">
+    <ul className="main-menu bg-white p-4">
       <li>
-        <NavLink exact to="/">Prompts</NavLink>
+        <NavLink exact to="/"><img src={Logo} width={'100px'} className='ml-4'/></NavLink>
       </li>
       {/* <li>
         <NavLink exact to="/page2">Post data</NavLink>
@@ -38,10 +39,10 @@ export function MainMenu() {
       <li className="rihgt-top">
         <LogInLogOutButton />
       </li>
-      <li>
+      <li >
         {!authContext.isAutorised &&
-          <Link to="/register">
-            <button className='bg-violet-800 text-violet-100 hover:bg-violet-600'>Register</button>
+          <Link to="/register" >
+            <button className='bg-blue-700 text-white hover:hover:bg-blue-900 rounded-2xl p-2 w-full'>Sign Up Free</button>
           </Link>}
       </li>
     </ul>

@@ -69,13 +69,13 @@ export function LogInLogOutButton() {
       {auth.user ? (
         <React.Fragment>
           {!loading ? (
-            <button className='bg-violet-900 text-violet-100 hover:bg-violet-800' onClick={handleLogout}>Log out</button>
+            <button className='border-2 border-blue-600 bg-white p-2 w-32 text-blue-600 hover:hover:text-blue-900 rounded-2xl' onClick={handleLogout}>Log out</button>
           ) : (
             <Loader text="Logging out..." />
           )}
         </React.Fragment>
       ) : (
-        <Link className='bg-violet-100 text-violet-900 hover:bg-violet-200 rounded' to="/login">Log in</Link>
+        <Link className='border-2 border-blue-600 text-blue-600 hover:hover:text-blue-900 rounded-2xl' to="/login">Log in</Link>
       )}
     </React.Fragment>
   );

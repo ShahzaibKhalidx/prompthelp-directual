@@ -139,6 +139,35 @@ function useProvideAuth() {
       cb()
     })
   };
+  
+  // const signout = async (cb) => {
+  //   const appId = "ff949b76-9513-459d-95b3-9dd741fb08e1";
+  //   try {
+  //     // Make a direct HTTP request to the logout endpoint of your API
+  //     const response = await axios.post(
+  //       `https://api.directual.com/good/api/v5/auth/logout?appID=${appId}`,
+  //       {
+  //         // Include any necessary parameters for logout (if required by your API)
+  //       }
+  //     );
+  
+  //     // Check the response status or data to ensure a successful logout
+  //     if (response.data.status === 'ok') {
+  //       setUser(null);
+  //       setRole(null);
+  //       setSessionID(null);
+  //       window.localStorage.removeItem('sid'); // Use removeItem to clear the localStorage
+  //       cb();
+  //       return { success: true };
+  //     } else {
+  //       return { success: false, error: 'Logout failed.' };
+  //     }
+  //   } catch (error) {
+  //     console.error('Logout error:', error);
+  //     return { success: false, error: 'An error occurred while logging out.' };
+  //   }
+  // };
+  
 
   const isAutorised = () => {
     return !!user
