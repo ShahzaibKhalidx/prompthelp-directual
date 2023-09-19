@@ -42,7 +42,8 @@ export default function Register() {
     setShowForm(true) // Don't forget to include userID: auth.user, if needed
   }
   // POST-request
-  function Register() {
+  function postData(e) {
+    e.preventDefault()
     setLoading(true)
     setShowForm(false)
     api
@@ -68,11 +69,11 @@ export default function Register() {
   }
 
   return (
-    <div className="content max-w-xs m-auto">
+    <div className="content max-w-lg m-auto">
       <h1 className='text-2xl font-bold text-[#002D74]'>Register New Account</h1>
       {loading && <Loader />}
       {showForm &&
-        <form onSubmit={Register}>
+        <form onSubmit={postData}>
           <input type="text" value={formPayload.name} placeholder='Name' onChange={(e) => {
             // insert here your FIELD_SYSNAME
             setFormPayload({ ...formPayload, 'name': e.target.value })
@@ -89,7 +90,7 @@ export default function Register() {
             // insert here your FIELD_SYSNAME
             setFormPayload({ ...formPayload, 'repeat_pass': md5(e.target.value) })
           }} />
-          <button type="submit" className='bg-violet-100 text-violet-900 px-4 rounded hover:bg-violet-200'>Submit</button>
+          <button type="submit" className='text-white bg-blue-600 hover:hover:text-blue-900 rounded-2xl'>Submit</button>
         </form>
       }
 
@@ -97,7 +98,7 @@ export default function Register() {
       {response && response[0].isValid &&
         <div>
           <b>You have been Signed up</b>
-          <Link to="login"><button>Login then</button></Link>
+          <Link to="/login"><button>Login then</button></Link>
         </div>
       }
 

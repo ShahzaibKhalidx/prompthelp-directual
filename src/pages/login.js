@@ -149,7 +149,7 @@ export default function LoginPage() {
         />
         {error && <div className="error">{error}</div>}
         {!loading ? (
-          <button className="w-full bg-violet-800 hover:bg-pink-700 text-white font-bold py-2 px-4 mb-6 rounded">
+          <button className="border-2 border-blue-600 text-blue-600 hover:hover:text-blue-900 rounded-2xl">
             Log in</button>
         ) : (
           <Loader text="Logging in..." />
