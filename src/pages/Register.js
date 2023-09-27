@@ -95,17 +95,20 @@ export default function Register() {
       }
 
       {/* Everything is OK */}
-      {response && response[0].isValid &&
+      {console.log(response)}
+      {response && response[0].isvalid &&
         <div>
-          <b>You have been Signed up</b>
-          <Link to="/login"><button>Login then</button></Link>
+          <b className='text-xl text-grey-700'>You have been Signed up</b>
+          <Link to="/login"><button className='border-2 bg-white flex text-sm border-blue-600 text-blue-600 hover:hover:text-blue-900 rounded-2xl'>
+            Login then</button></Link>
         </div>
       }
 
-      {response && !response[0].isValid &&
+      {response && !response[0].isvalid &&
         <div>
           <b>Error signing up</b>
-          <p>{response[0].error}</p>
+          {/* <p>{response[0].error}</p> */}
+          <p className='block'>Registration failed. Please try again.</p>
         </div>
       }
 
@@ -121,7 +124,7 @@ export default function Register() {
 
       {/* Reset the form */}
       {!showForm && !loading &&
-        <button onClick={editForm}>
+        <button className='text-blue-600 border-0 text-sm flex' onClick={editForm}>
           Edit my data
         </button>}
 

@@ -62,7 +62,7 @@ export default function SavePrompt() {
 
   return (
     <div className="content">
-      <h1>Example of posting data</h1>
+      <h1>Post your Prompt to save</h1>
       {loading && <Loader />}
       {showForm &&
         <form onSubmit={SavePrompt}>

@@ -155,7 +155,7 @@ export default function LoginPage() {
           <Loader text="Logging in..." />
         )}
       </form>
-      <footer className='p-4'>
+      <footer className='p-2'>
         <Link to="/register" className="text-violet-800 hover:text-pink-700 text-sm float-left">Register</Link>
      </footer> 
     </div>
