@@ -1,13 +1,24 @@
-import React, { useState } from 'react';
+import React, { useState, Fragment } from 'react';
 import copy from 'clipboard-copy';
 import { useAuth } from '../auth'
 import { Tooltip } from 'react-tooltip';
+import { Dialog, Transition } from '@headlessui/react'
+import Lighting from '../components/modals/Lighting';
 
 function Prompts() {
     const [prompt, setPrompt] = useState('');
     const [selectedFilters, setSelectedFilters] = useState({});
     const [generatedPrompt, setGeneratedPrompt] = useState('');
     const [copySuccess, setCopySuccess] = useState(false);
+    let [isOpen, setIsOpen] = useState(true)
+
+    const closeModal = () => {
+        setIsOpen(false)
+    }
+
+    const openModal = () => {
+        setIsOpen(true)
+    }
 
     const filtersData = {
         Aspect: ['1:1', '5:4', '3:2', '7:4', '16:9', '2:1', '9:6', '1:2'],
@@ -48,6 +59,11 @@ function Prompts() {
         Weird: "Introduce quirky and offbeat qualities to your images, resulting in unique and unexpexted outcomes. Defualt is 0",
         Seed: "If you use the same seed number and prompt, you will get similar final images. Defualt is random.",
     };
+
+    // NEW Filter Modals
+    const filterModalOptions = ['Option 1', 'Option 2', 'Option 3', 'Option 4'];
+
+
 
 
     const handlePromptChange = (e) => {
@@ -133,7 +149,7 @@ function Prompts() {
                     {Object.keys(filtersData).map((filterName) => (
                         <div className="mb-4 w-full md:w-1/6 md:pr-2" key={filterName}>
                             <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor={filterName}
-                            data-tooltip-id="my-tooltip" data-tooltip-content={filterTooltips[filterName]}>
+                                data-tooltip-id="my-tooltip" data-tooltip-content={filterTooltips[filterName]}>
                                 {filterName}:
                             </label>
                             {typeof filtersData[filterName] === 'string' ? (
@@ -176,11 +192,87 @@ function Prompts() {
                     <Tooltip
                         id="my-tooltip"
                         events={['hover']}
-                        style={{ backgroundColor: "#d7d2e7ef", color: "#333", maxWidth:"180px",
-                        fontSize:"11px" }}
+                        style={{
+                            backgroundColor: "#d7d2e7ef", color: "#333", maxWidth: "180px",
+                            fontSize: "11px"
+                        }}
+                    />
+
+                    {/* Popup */}
+                    <div className="inset-0 flex items-center justify-center">
+                        <button
+                            type="button"
+                            onClick={openModal}
+                            className="rounded-md bg-black bg-opacity-20 px-4 py-2 text-sm font-medium text-white hover:bg-opacity-30 focus:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-opacity-75"
+                        >
+                            Lighting
+                        </button>
+                    </div>
+
+                    {/* <Transition appear show={isOpen} as={Fragment}>
+                        <Dialog as="div" className="relative z-10" onClose={closeModal}>
+                            <Transition.Child
+                                as={Fragment}
+                                enter="ease-out duration-300"
+                                enterFrom="opacity-0"
+                                enterTo="opacity-100"
+                                leave="ease-in duration-200"
+                                leaveFrom="opacity-100"
+                                leaveTo="opacity-0"
+                            >
+                                <div className="fixed inset-0 bg-black bg-opacity-25" />
+                            </Transition.Child>
+
+                            <div className="fixed inset-0 overflow-y-auto">
+                                <div className="flex min-h-full items-center justify-center p-4 text-center">
+                                    <Transition.Child
+                                        as={Fragment}
+                                        enter="ease-out duration-300"
+                                        enterFrom="opacity-0 scale-95"
+                                        enterTo="opacity-100 scale-100"
+                                        leave="ease-in duration-200"
+                                        leaveFrom="opacity-100 scale-100"
+                                        leaveTo="opacity-0 scale-95"
+                                    >
+                                        <Dialog.Panel className="w-full max-w-md transform overflow-hidden rounded-2xl bg-white p-6 text-left align-middle shadow-xl transition-all">
+                                            <Dialog.Title
+                                                as="h3"
+                                                className="text-lg font-medium leading-6 text-gray-900"
+                                            >
+                                                Payment successful
+                                            </Dialog.Title>
+                                            <div className="mt-2">
+                                                <p className="text-sm text-gray-500">
+                                                    Your payment has been successfully submitted. We’ve sent
+                                                    you an email with all of the details of your order.
+                                                </p>
+                                            </div>
+
+                                            <div className="mt-4">
+                                                <button
+                                                    type="button"
+                                                    className="inline-flex justify-center rounded-md border border-transparent bg-blue-100 px-4 py-2 text-sm font-medium text-blue-900 hover:bg-blue-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2"
+                                                    onClick={closeModal}
+                                                >
+                                                    Got it, thanks!
+                                                </button>
+                                            </div>
+                                        </Dialog.Panel>
+                                    </Transition.Child>
+                                </div>
+                            </div>
+                        </Dialog>
+                    </Transition> */}
+
+                    <Lighting
+                        isOpen={isOpen}
+                        closeModal={closeModal}
+                        title="Lighting"
+                        content="Select Any Modal"
+                        options={filterModalOptions}
                     />
                 </div>
-                
+
             </div>
         </div>
     );
