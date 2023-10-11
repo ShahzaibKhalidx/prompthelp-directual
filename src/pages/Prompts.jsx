@@ -11,6 +11,8 @@ function Prompts() {
     const [generatedPrompt, setGeneratedPrompt] = useState('');
     const [copySuccess, setCopySuccess] = useState(false);
     let [isOpen, setIsOpen] = useState(true)
+    const [selectedModalValues, setSelectedModalValues] = useState([]);
+
 
     const closeModal = () => {
         setIsOpen(false)
@@ -98,6 +100,9 @@ function Prompts() {
                 }
             }
         }
+        if (selectedModalValues.length > 0) {
+            generated += ` --lighting:: ${selectedModalValues.join(',')}`;
+        }
 
         setGeneratedPrompt(generated);
     };
@@ -145,7 +150,8 @@ function Prompts() {
                         </button>
                     </li>}
                 </div>
-                <div className="md:flex md:flex-wrap bg-white p-6 rounded-lg shadow-lg">
+                <div className='bg-white p-6 rounded-lg shadow-lg'>
+                <div className="md:flex md:flex-wrap">
                     {Object.keys(filtersData).map((filterName) => (
                         <div className="mb-4 w-full md:w-1/6 md:pr-2" key={filterName}>
                             <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor={filterName}
@@ -197,18 +203,40 @@ function Prompts() {
                             fontSize: "11px"
                         }}
                     />
-
+                    </div>
+                    <div className='flex items-center justify-center'>
                     {/* Popup */}
                     <div className="inset-0 flex items-center justify-center">
                         <button
                             type="button"
                             onClick={openModal}
-                            className="rounded-md bg-black bg-opacity-20 px-4 py-2 text-sm font-medium text-white hover:bg-opacity-30 focus:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-opacity-75"
+                            className="rounded-md bg-blue-100 px-4 py-2 text-sm font-medium text-blue hover:bg-opacity-30 focus:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-opacity-75"
                         >
                             Lighting
                         </button>
                     </div>
 
+                    <div className="inset-0 flex items-center justify-center">
+                        <button
+                            type="button"
+                            onClick={openModal}
+                            className="rounded-md bg-blue-100 px-4 py-2 text-sm font-medium text-blue hover:bg-opacity-30 focus:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-opacity-75"
+                        >
+                            Styles
+                        </button>
+                    </div>
+
+                    <div className="inset-0 flex items-center justify-center">
+                        <button
+                            type="button"
+                            onClick={openModal}
+                            className="rounded-md bg-blue-100 px-4 py-2 text-sm font-medium text-blue hover:bg-opacity-30 focus:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-opacity-75"
+                        >
+                            Camera
+                        </button>
+                    </div>
+                    </div>
+                </div>
                     {/* <Transition appear show={isOpen} as={Fragment}>
                         <Dialog as="div" className="relative z-10" onClose={closeModal}>
                             <Transition.Child
@@ -270,11 +298,11 @@ function Prompts() {
                         title="Lighting"
                         content="Select Any Modal"
                         options={filterModalOptions}
+                        setSelectedModalValues={setSelectedModalValues}
                     />
                 </div>
 
             </div>
-        </div>
     );
 }
 
