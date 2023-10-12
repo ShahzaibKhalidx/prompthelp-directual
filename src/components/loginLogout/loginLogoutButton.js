@@ -30,7 +30,7 @@
 //                 >
 //                     Log out
 //                 </button>
-                
+
 //                 ) :
 //                 ( <Loader text='Logging out...'/> )}
 
@@ -75,7 +75,20 @@ export function LogInLogOutButton() {
           )}
         </React.Fragment>
       ) : (
-        <Link className='border-2 border-blue-600 text-blue-600 hover:hover:text-blue-900 rounded-2xl' to="/login">Log in</Link>
+        <>
+          <Link
+            className="border-2 border-blue-600 text-blue-600 hover:hover:text-blue-900 rounded-2xl mx-4"
+            to="/register"
+          >
+           Register
+          </Link>
+          <Link
+            className="border-2 border-blue-600 text-blue-600 hover:hover:text-blue-900 rounded-2xl"
+            to="/login"
+          >
+            Log in
+          </Link>
+        </>
       )}
     </React.Fragment>
   );
