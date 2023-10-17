@@ -1,10 +1,34 @@
-import React, { useState, Fragment } from "react";
+import React, { useState, Fragment, createContext, useContext } from "react";
 import copy from "clipboard-copy";
 import { useAuth } from "../auth";
 import { Tooltip } from "react-tooltip";
 import { Dialog, Transition } from "@headlessui/react";
 import Lighting from "../components/modals/Lighting";
 import { Link } from "react-router-dom";
+import MyPrompts from "./MyPrompts";
+import { FaBeer, FaRegLightbulb, FaPhotoVideo, FaCamera } from "react-icons/fa";
+
+const GeneratedPromptsContext = createContext();
+
+export function useGeneratedPrompts() {
+  return useContext(GeneratedPromptsContext);
+}
+
+export function GeneratedPromptsProvider({ children }) {
+  const [generatedPrompts, setGeneratedPrompts] = useState([]);
+
+  const saveGeneratedPrompt = (prompt) => {
+    setGeneratedPrompts([...generatedPrompts, prompt]);
+  };
+
+  return (
+    <GeneratedPromptsContext.Provider
+      value={{ generatedPrompts, saveGeneratedPrompt }}
+    >
+      {children}
+    </GeneratedPromptsContext.Provider>
+  );
+}
 
 function Prompts() {
   const [prompt, setPrompt] = useState("");
@@ -70,7 +94,6 @@ function Prompts() {
 
   // NEW Filter Modals
   const filterModalOptions = ["Option 1", "Option 2", "Option 3", "Option 4"];
-
   const handlePromptChange = (e) => {
     const newText = e.target.value;
     setPrompt(newText);
@@ -121,14 +144,30 @@ function Prompts() {
     setGeneratedPrompt(generated);
   };
 
+  // copy to clipboard
   const handleCopyToClipboard = async () => {
     try {
       await copy("/imagine prompt: " + generatedPrompt);
       setCopySuccess(true);
+      console.log(generatedPrompt);
     } catch (error) {
       console.error("Failed to copy to clipboard:", error);
     }
   };
+
+  // Save Prompt to DB
+  const handleSavePrompt = async () => {
+    const summary = Object.keys(filtersData)
+      .map((key) => {
+        if (Array.isArray(filtersData[key])) {
+          return `${key}: ${filtersData[key].join(", ")}`;
+        } else {
+          return `${key}: ${filtersData[key]}`;
+        }
+      })
+      .join("\n");
+  };
+
   const authContext = useAuth();
   return (
     <div className="bg-zinc-100 min-h-screen flex items-center justify-center">
@@ -171,19 +210,14 @@ function Prompts() {
             {" "}
             Copy Prompt{" "}
           </button>
-          {authContext.isAutorised() || (
-            <li>
-              <Link to="../login">
-                <button
-                  className="bg-emerald-500 text-white hover:hover:bg-emerald-600 rounded-2xl p-2 w-52"
-                  //   onClick=''
-                >
-                  {" "}
-                  Save to My Prompts
-                </button>
-              </Link>
-            </li>
-          )}
+
+          <button
+            className="bg-green-700 text-white hover:hover:bg-blue-900 rounded-2xl p-2 w-52"
+            onClick={handleSavePrompt}
+          >
+            {" "}
+            Save to My Prompts{" "}
+          </button>
         </div>
         <div className="bg-white p-6 rounded-lg shadow-lg">
           <div className="md:flex md:flex-wrap">
@@ -257,12 +291,15 @@ function Prompts() {
           </div>
           <div className="flex items-center justify-center">
             {/* Popup */}
+
             <div className="inset-0 flex items-center justify-center">
               <button
                 type="button"
                 onClick={openModal}
-                className="rounded-md bg-blue-100 px-4 py-2 text-sm font-medium text-blue hover:bg-opacity-30 focus:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-opacity-75"
+                style={{ width: "110px" }}
+                className="flex items-center justify-center rounded-md bg-blue-100 py-2 text-sm font-medium text-blue hover:bg-opacity-30 focus:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-opacity-75"
               >
+                <FaRegLightbulb style={{ marginRight: "8px" }} />
                 Lighting
               </button>
             </div>
@@ -270,20 +307,20 @@ function Prompts() {
             <div className="inset-0 flex items-center justify-center">
               <button
                 type="button"
-                onClick={handleFilterChange}
-                className="rounded-md bg-blue-100 px-4 py-2 text-sm font-medium text-blue hover:bg-opacity-30 focus:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-opacity-75"
+                onClick={openModal}
+                className="flex items-center rounded-md bg-blue-100 px-4 py-2 text-sm font-medium text-blue hover:bg-opacity-30 focus:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-opacity-75"
               >
-                Styles
+                <FaPhotoVideo style={{ marginRight: "8px" }} /> Styles
               </button>
             </div>
 
             <div className="inset-0 flex items-center justify-center">
               <button
                 type="button"
-                onClick={handleFilterChange}
-                className="rounded-md bg-blue-100 px-4 py-2 text-sm font-medium text-blue hover:bg-opacity-30 focus:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-opacity-75"
+                onClick={openModal}
+                className="flex items-center rounded-md bg-blue-100 px-4 py-2 text-sm font-medium text-blue hover:bg-opacity-30 focus:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-opacity-75"
               >
-                Camera
+                <FaCamera style={{ marginRight: "8px" }} /> Camera
               </button>
             </div>
           </div>
