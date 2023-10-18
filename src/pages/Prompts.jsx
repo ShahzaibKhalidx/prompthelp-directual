@@ -32,8 +32,7 @@ export function GeneratedPromptsProvider({ children }) {
 
 function Prompts() {
   const [prompt, setPrompt] = useState("");
-  // const selectedFilters= [];
-  const [selectedFilters, setSelectedFilters] = useState([]);
+  const [selectedFilters, setSelectedFilters] = useState({});
   const [generatedPrompt, setGeneratedPrompt] = useState("");
   const [copySuccess, setCopySuccess] = useState(false);
   let [isOpen, setIsOpen] = useState(false);
@@ -115,11 +114,12 @@ function Prompts() {
       filterName === "Weird" ||
       filterName === "Seed"
 
-    );
-     const updateGeneratedPrompt = (newText, filters) => {
-      console.log("Selected Filters:", filters);
-      console.log("Prompt Value:", newText);
-    };
+    ) {
+      updateGeneratedPrompt(prompt, {
+        ...selectedFilters,
+        [filterName]: value,
+      });
+    }
   };
 
    // End print the generated prompt to the console
@@ -131,10 +131,6 @@ function Prompts() {
     const newText = e.target.value;
     setPrompt(newText);
     updateGeneratedPrompt(newText, selectedFilters);
-  };
-
-  const handlePrintValues = () => {
-    updateGeneratedPrompt(prompt, selectedFilters);
   };
 
 
