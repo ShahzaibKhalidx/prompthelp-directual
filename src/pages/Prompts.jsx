@@ -32,7 +32,8 @@ export function GeneratedPromptsProvider({ children }) {
 
 function Prompts() {
   const [prompt, setPrompt] = useState("");
-  const [selectedFilters, setSelectedFilters] = useState({});
+  // const selectedFilters= [];
+  const [selectedFilters, setSelectedFilters] = useState([]);
   const [generatedPrompt, setGeneratedPrompt] = useState("");
   const [copySuccess, setCopySuccess] = useState(false);
   let [isOpen, setIsOpen] = useState(false);
@@ -72,6 +73,7 @@ function Prompts() {
   };
 
   // Create an object to hold tooltip information for each filter
+
   const filterTooltips = {
     Aspect:
       "Change the Aspect Ratio (width-to-height ratio) of the generated image. Default is 1:1",
@@ -92,13 +94,7 @@ function Prompts() {
     Seed: "If you use the same seed number and prompt, you will get similar final images. Defualt is random.",
   };
 
-  // NEW Filter Modals
-  const filterModalOptions = ["Option 1", "Option 2", "Option 3", "Option 4"];
-  const handlePromptChange = (e) => {
-    const newText = e.target.value;
-    setPrompt(newText);
-    updateGeneratedPrompt(newText, selectedFilters);
-  };
+ // print the generated prompt to the console
 
   const handleFilterChange = (filterName, value) => {
     setSelectedFilters((prevFilters) => ({
@@ -110,14 +106,37 @@ function Prompts() {
       filterName === "Aspect" ||
       filterName === "Version" ||
       filterName === "Quality" ||
-      filterName === "Tile"
-    ) {
-      updateGeneratedPrompt(prompt, {
-        ...selectedFilters,
-        [filterName]: value,
-      });
-    }
+      filterName === "Tile" ||
+      filterName === "Exclude" ||
+      filterName === "Stylize" ||
+      filterName === "Chaos" ||
+      filterName === "Stopped" ||
+      filterName === "Repeat" ||
+      filterName === "Weird" ||
+      filterName === "Seed"
+
+    );
+     const updateGeneratedPrompt = (newText, filters) => {
+      console.log("Selected Filters:", filters);
+      console.log("Prompt Value:", newText);
+    };
   };
+
+   // End print the generated prompt to the console
+  
+  
+   // NEW Filter Modals
+  const filterModalOptions = ["Option 1", "Option 2", "Option 3", "Option 4"];
+  const handlePromptChange = (e) => {
+    const newText = e.target.value;
+    setPrompt(newText);
+    updateGeneratedPrompt(newText, selectedFilters);
+  };
+
+  const handlePrintValues = () => {
+    updateGeneratedPrompt(prompt, selectedFilters);
+  };
+
 
   const updateGeneratedPrompt = (text, filters) => {
     let generated = text;
@@ -192,9 +211,14 @@ function Prompts() {
         </div>
         <div className="my-4">
           {/* <label className='block text-gray-700 text-sm font-bold mb-2'>Generated Prompt:</label> */}
+         
+          {/* /imagine prompt: */}
+         
           <div className="bg-zinc-200 p-4 border rounded">
             /imagine prompt: {generatedPrompt}
           </div>
+          
+
           {copySuccess && (
             <p className="text-green-600 mt-2 text-center">
               Copied to clipboard!
