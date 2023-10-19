@@ -6,7 +6,14 @@ import { Dialog, Transition } from "@headlessui/react";
 import Lighting from "../components/modals/Lighting";
 import { Link } from "react-router-dom";
 import MyPrompts from "./MyPrompts";
-import { FaBeer, FaRegLightbulb, FaPhotoVideo, FaCamera } from "react-icons/fa";
+import {
+  FaRegLightbulb,
+  FaPhotoVideo,
+  FaCamera,
+  FaPaintBrush,
+  FaHome,
+  FaPalette,
+} from "react-icons/fa";
 
 const GeneratedPromptsContext = createContext();
 
@@ -37,6 +44,7 @@ function Prompts() {
   const [copySuccess, setCopySuccess] = useState(false);
   let [isOpen, setIsOpen] = useState(false);
   const [selectedModalValues, setSelectedModalValues] = useState([]);
+  const [selectedOption, setSelectedOption] = useState(""); // select
 
   const openModal = () => {
     setIsOpen(true);
@@ -93,7 +101,7 @@ function Prompts() {
     Seed: "If you use the same seed number and prompt, you will get similar final images. Defualt is random.",
   };
 
- // print the generated prompt to the console
+  // print the generated prompt to the console
 
   const handleFilterChange = (filterName, value) => {
     setSelectedFilters((prevFilters) => ({
@@ -113,7 +121,6 @@ function Prompts() {
       filterName === "Repeat" ||
       filterName === "Weird" ||
       filterName === "Seed"
-
     ) {
       updateGeneratedPrompt(prompt, {
         ...selectedFilters,
@@ -122,17 +129,17 @@ function Prompts() {
     }
   };
 
-   // End print the generated prompt to the console
-  
-  
-   // NEW Filter Modals
+  // End print the generated prompt to the console
+
+  // NEW Filter Modals
+  // print a option
   const filterModalOptions = ["Option 1", "Option 2", "Option 3", "Option 4"];
   const handlePromptChange = (e) => {
     const newText = e.target.value;
     setPrompt(newText);
+
     updateGeneratedPrompt(newText, selectedFilters);
   };
-
 
   const updateGeneratedPrompt = (text, filters) => {
     let generated = text;
@@ -154,6 +161,9 @@ function Prompts() {
     }
     if (selectedModalValues.length > 0) {
       generated += ` --lighting:: ${selectedModalValues.join(",")}`;
+    }
+    if (filterModalOptions.length > 0) {
+      generated += `:: ${filterModalOptions.join(",")}`;
     }
 
     setGeneratedPrompt(generated);
@@ -184,6 +194,13 @@ function Prompts() {
   };
 
   const authContext = useAuth();
+  const handleLightingOption = (data) => {
+    // Update selectedModalValues with data received from the Lighting modal
+    setSelectedModalValues(data);
+
+    // Update the generated prompt with selectedModalValues
+    updateGeneratedPrompt(prompt, selectedFilters);
+  };
   return (
     <div className="bg-zinc-100 min-h-screen flex items-center justify-center">
       <div className="w-full md:w-9/12 p-6 text-gray-800">
@@ -207,13 +224,12 @@ function Prompts() {
         </div>
         <div className="my-4">
           {/* <label className='block text-gray-700 text-sm font-bold mb-2'>Generated Prompt:</label> */}
-         
+
           {/* /imagine prompt: */}
-         
+
           <div className="bg-zinc-200 p-4 border rounded">
             /imagine prompt: {generatedPrompt}
           </div>
-          
 
           {copySuccess && (
             <p className="text-green-600 mt-2 text-center">
@@ -323,7 +339,6 @@ function Prompts() {
                 Lighting
               </button>
             </div>
-
             <div className="inset-0 flex items-center justify-center">
               <button
                 type="button"
@@ -343,72 +358,50 @@ function Prompts() {
                 <FaCamera style={{ marginRight: "8px" }} /> Camera
               </button>
             </div>
+            <div className="inset-0 flex items-center justify-center">
+              <button
+                type="button"
+                onClick={openModal}
+                className="flex items-center rounded-md bg-blue-100 px-4 py-2 text-sm font-medium text-blue hover:bg-opacity-30 focus:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-opacity-75"
+              >
+                <FaPaintBrush style={{ marginRight: "8px" }} />
+                Artists
+              </button>
+            </div>
+            <div className="inset-0 flex items-center justify-center">
+              <button
+                type="button"
+                onClick={openModal}
+                className="flex items-center rounded-md bg-blue-100 px-4 py-2 text-sm font-medium text-blue hover:bg-opacity-30 focus:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-opacity-75"
+              >
+                <FaPalette style={{ marginRight: "8px" }} /> Colors
+              </button>
+            </div>
+            <div className="inset-0 flex items-center justify-center">
+              <button
+                type="button"
+                onClick={openModal}
+                className="flex items-center rounded-md bg-blue-100 px-4 py-2 text-sm font-medium text-blue hover:bg-opacity-30 focus:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-opacity-75"
+              >
+                <FaHome style={{ marginRight: "8px" }} /> Materials
+              </button>
+            </div>
           </div>
         </div>
-        {/* <Transition appear show={isOpen} as={Fragment}>
-                        <Dialog as='div' className='relative z-10' onClose={closeModal}>
-                            <Transition.Child
-                                as={Fragment}
-                                enter='ease-out duration-300'
-                                enterFrom='opacity-0'
-                                enterTo='opacity-100'
-                                leave='ease-in duration-200'
-                                leaveFrom='opacity-100'
-                                leaveTo='opacity-0'
-                            >
-                                <div className='fixed inset-0 bg-black bg-opacity-25' />
-                            </Transition.Child>
 
-                            <div className='fixed inset-0 overflow-y-auto'>
-                                <div className='flex min-h-full items-center justify-center p-4 text-center'>
-                                    <Transition.Child
-                                        as={Fragment}
-                                        enter='ease-out duration-300'
-                                        enterFrom='opacity-0 scale-95'
-                                        enterTo='opacity-100 scale-100'
-                                        leave='ease-in duration-200'
-                                        leaveFrom='opacity-100 scale-100'
-                                        leaveTo='opacity-0 scale-95'
-                                    >
-                                        <Dialog.Panel className='w-full max-w-md transform overflow-hidden rounded-2xl bg-white p-6 text-left align-middle shadow-xl transition-all'>
-                                            <Dialog.Title
-                                                as='h3'
-                                                className='text-lg font-medium leading-6 text-gray-900'
-                                            >
-                                                Payment successful
-                                            </Dialog.Title>
-                                            <div className='mt-2'>
-                                                <p className='text-sm text-gray-500'>
-                                                    Your payment has been successfully submitted. We’ve sent
-                                                    you an email with all of the details of your order.
-                                                </p>
-                                            </div>
-
-                                            <div className='mt-4'>
-                                                <button
-                                                    type='button'
-                                                    className='inline-flex justify-center rounded-md border border-transparent bg-blue-100 px-4 py-2 text-sm font-medium text-blue-900 hover:bg-blue-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2'
-                                                    onClick={closeModal}
-                                                >
-                                                    Got it, thanks!
-                                                </button>
-                                            </div>
-                                        </Dialog.Panel>
-                                    </Transition.Child>
-                                </div>
-                            </div>
-                        </Dialog>
-                    </Transition> */}
+        {/* end this.props. */}
 
         {isOpen && (
-          <Lighting
-            isOpen={isOpen}
-            closeModal={closeModal}
-            title="Lighting"
-            content="Select Any Modal"
-            options={filterModalOptions}
-            setSelectedModalValues={setSelectedModalValues}
-          />
+          <div>
+            <Lighting
+              isOpen={isOpen}
+              closeModal={closeModal}
+              title="Lighting"
+              content="Select Any Modal"
+              options={filterModalOptions}
+              setSelectedModalValues={handleLightingOption}
+            />
+          </div>
         )}
       </div>
     </div>
