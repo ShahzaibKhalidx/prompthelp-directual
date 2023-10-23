@@ -134,6 +134,7 @@ function Prompts() {
   // NEW Filter Modals
   // print a option
   const filterModalOptions = ["Option 1", "Option 2", "Option 3", "Option 4"];
+  const images = [];
   const handlePromptChange = (e) => {
     const newText = e.target.value;
     setPrompt(newText);
@@ -141,7 +142,7 @@ function Prompts() {
     updateGeneratedPrompt(newText, selectedFilters);
   };
 
-  const updateGeneratedPrompt = (text, filters) => {
+  const updateGeneratedPrompt = (text, filters ) => {
     let generated = text;
 
     for (const filterName in filters) {
@@ -255,6 +256,10 @@ function Prompts() {
             Save to My Prompts{" "}
           </button>
         </div>
+
+
+// table
+
         <div className="bg-white p-6 rounded-lg shadow-lg">
           <div className="md:flex md:flex-wrap">
             {Object.keys(filtersData).map((filterName) => (
@@ -325,9 +330,11 @@ function Prompts() {
               }}
             />
           </div>
+          <div>
+            
           <div className="flex items-center justify-center">
-            {/* Popup */}
-
+            
+            
             <div className="inset-0 flex items-center justify-center">
               <button
                 type="button"
@@ -357,7 +364,7 @@ function Prompts() {
               >
                 <FaCamera style={{ marginRight: "8px" }} /> Camera
               </button>
-            </div>
+            </div><br />
             <div className="inset-0 flex items-center justify-center">
               <button
                 type="button"
@@ -386,6 +393,7 @@ function Prompts() {
                 <FaHome style={{ marginRight: "8px" }} /> Materials
               </button>
             </div>
+          </div>
           </div>
         </div>
 
