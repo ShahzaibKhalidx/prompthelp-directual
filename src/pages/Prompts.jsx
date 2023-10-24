@@ -149,7 +149,6 @@ function Prompts() {
     "Fluorescent",
     "Glowing",
     "Glowing Radioactively",
-    "Glowstick",
   ];
   const images = [];
   const handlePromptChange = (e) => {
