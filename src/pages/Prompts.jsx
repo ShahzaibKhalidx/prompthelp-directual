@@ -133,7 +133,24 @@ function Prompts() {
 
   // NEW Filter Modals
   // print a option
-  const filterModalOptions = ["Accent Lighting", "Backlight", "Blacklight", "Blinding Light", "Candlelight", "Concert Lighting","Crepuscular Rays", "Direct Sunlight", "Dusk", "Edison Bulb", "Electric Arc", "Fire", "Fluorescent", "Glowing", "Glowing Radioactively", "Glowstick"];
+  const filterModalOptions = [
+    "Accent Lighting",
+    "Backlight",
+    "Blacklight",
+    "Blinding Light",
+    "Candlelight",
+    "Concert Lighting",
+    "Crepuscular Rays",
+    "Direct Sunlight",
+    "Dusk",
+    "Edison Bulb",
+    "Electric Arc",
+    "Fire",
+    "Fluorescent",
+    "Glowing",
+    "Glowing Radioactively",
+    "Glowstick",
+  ];
   const images = [];
   const handlePromptChange = (e) => {
     const newText = e.target.value;
@@ -142,7 +159,7 @@ function Prompts() {
     updateGeneratedPrompt(newText, selectedFilters);
   };
 
-  const updateGeneratedPrompt = (text, filters ) => {
+  const updateGeneratedPrompt = (text, filters) => {
     let generated = text;
 
     for (const filterName in filters) {
@@ -328,71 +345,67 @@ function Prompts() {
             />
           </div>
           <div>
-            
-            
-          <div className="md:flex md:flex-wrap items-center justify-center">
-            
-          
-            <div className="inset-0 flex items-center justify-center">
-              <button
-                type="button"
-                onClick={openModal}
-                style={{ width: "110px" }}
-                className="flex items-center justify-center rounded-md bg-blue-100 py-2 text-sm font-medium text-blue hover:bg-opacity-30 focus:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-opacity-75"
-              >
-                <FaRegLightbulb style={{ marginRight: "8px" }} />
-                Lighting
-              </button>
-            </div>
-            <div className="inset-0 flex items-center justify-center">
-              <button
-                type="button"
-                onClick={openModal}
-                className="flex items-center rounded-md bg-blue-100 px-4 py-2 text-sm font-medium text-blue hover:bg-opacity-30 focus:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-opacity-75"
-              >
-                <FaPhotoVideo style={{ marginRight: "8px" }} /> Styles
-              </button>
-            </div>
+            <div className="md:flex md:flex-wrap items-center justify-center">
+              <div className="inset-0 flex items-center justify-center">
+                <button
+                  type="button"
+                  onClick={openModal}
+                  style={{ width: "110px" }}
+                  className="flex items-center justify-center rounded-md bg-blue-100 py-2 text-sm font-medium text-blue hover:bg-opacity-30 focus:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-opacity-75"
+                >
+                  <FaRegLightbulb style={{ marginRight: "8px" }} />
+                  Lighting
+                </button>
+              </div>
+              <div className="inset-0 flex items-center justify-center">
+                <button
+                  type="button"
+                  onClick={openModal}
+                  className="flex items-center rounded-md bg-blue-100 px-4 py-2 text-sm font-medium text-blue hover:bg-opacity-30 focus:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-opacity-75"
+                >
+                  <FaPhotoVideo style={{ marginRight: "8px" }} /> Styles
+                </button>
+              </div>
 
-            <div className="inset-0 flex items-center justify-center">
-              <button
-                type="button"
-                onClick={openModal}
-                className="flex items-center rounded-md bg-blue-100 px-4 py-2 text-sm font-medium text-blue hover:bg-opacity-30 focus:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-opacity-75"
-              >
-                <FaCamera style={{ marginRight: "8px" }} /> Camera
-              </button>
-            </div><br />
-            <div className="inset-0 flex items-center justify-center">
-              <button
-                type="button"
-                onClick={openModal}
-                className="flex items-center rounded-md bg-blue-100 px-4 py-2 text-sm font-medium text-blue hover:bg-opacity-30 focus:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-opacity-75"
-              >
-                <FaPaintBrush style={{ marginRight: "8px" }} />
-                Artists
-              </button>
+              <div className="inset-0 flex items-center justify-center">
+                <button
+                  type="button"
+                  onClick={openModal}
+                  className="flex items-center rounded-md bg-blue-100 px-4 py-2 text-sm font-medium text-blue hover:bg-opacity-30 focus:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-opacity-75"
+                >
+                  <FaCamera style={{ marginRight: "8px" }} /> Camera
+                </button>
+              </div>
+              <br />
+              <div className="inset-0 flex items-center justify-center">
+                <button
+                  type="button"
+                  onClick={openModal}
+                  className="flex items-center rounded-md bg-blue-100 px-4 py-2 text-sm font-medium text-blue hover:bg-opacity-30 focus:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-opacity-75"
+                >
+                  <FaPaintBrush style={{ marginRight: "8px" }} />
+                  Artists
+                </button>
+              </div>
+              <div className="inset-0 flex items-center justify-center">
+                <button
+                  type="button"
+                  onClick={openModal}
+                  className="flex items-center rounded-md bg-blue-100 px-4 py-2 text-sm font-medium text-blue hover:bg-opacity-30 focus:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-opacity-75"
+                >
+                  <FaPalette style={{ marginRight: "8px" }} /> Colors
+                </button>
+              </div>
+              <div className="inset-0 flex items-center justify-center">
+                <button
+                  type="button"
+                  onClick={openModal}
+                  className="flex items-center rounded-md bg-blue-100 px-4 py-2 text-sm font-medium text-blue hover:bg-opacity-30 focus:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-opacity-75"
+                >
+                  <FaHome style={{ marginRight: "8px" }} /> Materials
+                </button>
+              </div>
             </div>
-            <div className="inset-0 flex items-center justify-center">
-              <button
-                type="button"
-                onClick={openModal}
-                className="flex items-center rounded-md bg-blue-100 px-4 py-2 text-sm font-medium text-blue hover:bg-opacity-30 focus:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-opacity-75"
-              >
-                <FaPalette style={{ marginRight: "8px" }} /> Colors
-              </button>
-            </div>
-            <div className="inset-0 flex items-center justify-center">
-              <button
-                type="button"
-                onClick={openModal}
-                className="flex items-center rounded-md bg-blue-100 px-4 py-2 text-sm font-medium text-blue hover:bg-opacity-30 focus:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-opacity-75"
-              >
-                <FaHome style={{ marginRight: "8px" }} /> Materials
-              </button>
-            </div>
-            
-          </div>
           </div>
         </div>
 

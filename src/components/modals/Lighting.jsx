@@ -73,9 +73,9 @@ function Lighting({
   };
 
   return (
-    <Transition appear show={isOpen} as={Fragment} > 
-    {/* <div style={{overflow:"auto"}}> */}
-      <Dialog as="div" className="relative z-10" onClose={closeAndShowRanges} >
+    <Transition appaear show={isOpen} as={Fragment}>
+      {/* <div style={{overflow:"auto"}}> */}
+      <Dialog as="div" className="relative z-10" onClose={closeAndShowRanges}>
         <Transition.Child
           as={Fragment}
           enter="ease-out duration-300"
@@ -89,7 +89,7 @@ function Lighting({
         </Transition.Child>
 
         <div className="fixed inset-0 overflow-y-auto">
-           <div className="flex min-h-full items-center justify-center p-4">
+          <div className="flex min-h-full items-center justify-center p-4">
             <Transition.Child
               as={Fragment}
               enter="ease-out duration-300"
