@@ -332,9 +332,10 @@ function Prompts() {
           </div>
           <div>
             
-          <div className="flex items-center justify-center">
             
+          <div className="md:flex md:flex-wrap items-center justify-center">
             
+          
             <div className="inset-0 flex items-center justify-center">
               <button
                 type="button"
@@ -393,6 +394,7 @@ function Prompts() {
                 <FaHome style={{ marginRight: "8px" }} /> Materials
               </button>
             </div>
+            
           </div>
           </div>
         </div>
