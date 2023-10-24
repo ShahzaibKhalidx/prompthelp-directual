@@ -133,7 +133,7 @@ function Prompts() {
 
   // NEW Filter Modals
   // print a option
-  const filterModalOptions = ["Option 1", "Option 2", "Option 3", "Option 4"];
+  const filterModalOptions = ["Accent Lighting", "Backlight", "Blacklight", "Blinding Light", "Candlelight", "Concert Lighting","Crepuscular Rays", "Direct Sunlight", "Dusk", "Edison Bulb", "Electric Arc", "Fire", "Fluorescent", "Glowing", "Glowing Radioactively", "Glowstick"];
   const images = [];
   const handlePromptChange = (e) => {
     const newText = e.target.value;
@@ -256,9 +256,6 @@ function Prompts() {
             Save to My Prompts{" "}
           </button>
         </div>
-
-
-// table
 
         <div className="bg-white p-6 rounded-lg shadow-lg">
           <div className="md:flex md:flex-wrap">
