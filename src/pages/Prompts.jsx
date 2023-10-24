@@ -150,7 +150,7 @@ function Prompts() {
     "Glowing",
     "Glowing Radioactively",
   ];
-  const images = [];
+  // const images = [];
   const handlePromptChange = (e) => {
     const newText = e.target.value;
     setPrompt(newText);
