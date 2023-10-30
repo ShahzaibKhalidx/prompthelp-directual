@@ -30,8 +30,7 @@ export function GeneratedPromptsProvider({ children }) {
 
   return (
     <GeneratedPromptsContext.Provider
-      value={{ generatedPrompts, saveGeneratedPrompt }}
-    >
+      value={{ generatedPrompts, saveGeneratedPrompt }}>
       {children}
     </GeneratedPromptsContext.Provider>
   );
@@ -253,6 +252,7 @@ function Prompts() {
             {Object.keys(selectedFilters).map(
               (_) => `${_}:${selectedFilters[_]},`
             )}
+            {prompt}
           </div>
 
           {copySuccess && (
@@ -266,16 +266,14 @@ function Prompts() {
         <div className="m-4 flex justify-center">
           <button
             className="bg-blue-700 text-white hover:hover:bg-blue-900 rounded-2xl p-2 w-52"
-            onClick={handleCopyToClipboard}
-          >
+            onClick={handleCopyToClipboard}>
             {" "}
             Copy Prompt{" "}
           </button>
 
           <button
             className="bg-green-700 text-white hover:hover:bg-blue-900 rounded-2xl p-2 w-52"
-            onClick={handleSavePrompt}
-          >
+            onClick={handleSavePrompt}>
             {" "}
             Save to My Prompts{" "}
           </button>
@@ -289,8 +287,7 @@ function Prompts() {
                   className="block text-gray-700 text-sm font-bold mb-2"
                   htmlFor={filterName}
                   data-tooltip-id="my-tooltip"
-                  data-tooltip-content={filterTooltips[filterName]}
-                >
+                  data-tooltip-content={filterTooltips[filterName]}>
                   {filterName}:
                 </label>
                 {typeof filtersData[filterName] === "string" ? (
@@ -313,8 +310,7 @@ function Prompts() {
                     value={selectedFilters[filterName] || ""}
                     onChange={(e) =>
                       handleFilterChange(filterName, e.target.value)
-                    }
-                  >
+                    }>
                     <option value="">---</option>
                     {filtersData[filterName].map((option) => (
                       <option key={option} value={option}>
@@ -358,8 +354,7 @@ function Prompts() {
                   type="button"
                   onClick={openModal}
                   style={{ width: "110px" }}
-                  className="flex items-center justify-center rounded-md bg-blue-100 py-2 text-sm font-medium text-blue hover:bg-opacity-30 focus:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-opacity-75"
-                >
+                  className="flex items-center justify-center rounded-md bg-blue-100 py-2 text-sm font-medium text-blue hover:bg-opacity-30 focus:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-opacity-75">
                   <FaRegLightbulb style={{ marginRight: "8px" }} />
                   Lighting
                 </button>
@@ -368,8 +363,7 @@ function Prompts() {
                 <button
                   type="button"
                   onClick={openModal}
-                  className="flex items-center rounded-md bg-blue-100 px-4 py-2 text-sm font-medium text-blue hover:bg-opacity-30 focus:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-opacity-75"
-                >
+                  className="flex items-center rounded-md bg-blue-100 px-4 py-2 text-sm font-medium text-blue hover:bg-opacity-30 focus:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-opacity-75">
                   <FaPhotoVideo style={{ marginRight: "8px" }} /> Styles
                 </button>
               </div>
@@ -378,8 +372,7 @@ function Prompts() {
                 <button
                   type="button"
                   onClick={openModal}
-                  className="flex items-center rounded-md bg-blue-100 px-4 py-2 text-sm font-medium text-blue hover:bg-opacity-30 focus:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-opacity-75"
-                >
+                  className="flex items-center rounded-md bg-blue-100 px-4 py-2 text-sm font-medium text-blue hover:bg-opacity-30 focus:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-opacity-75">
                   <FaCamera style={{ marginRight: "8px" }} /> Camera
                 </button>
               </div>
@@ -388,8 +381,7 @@ function Prompts() {
                 <button
                   type="button"
                   onClick={openModal}
-                  className="flex items-center rounded-md bg-blue-100 px-4 py-2 text-sm font-medium text-blue hover:bg-opacity-30 focus:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-opacity-75"
-                >
+                  className="flex items-center rounded-md bg-blue-100 px-4 py-2 text-sm font-medium text-blue hover:bg-opacity-30 focus:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-opacity-75">
                   <FaPaintBrush style={{ marginRight: "8px" }} />
                   Artists
                 </button>
@@ -398,8 +390,7 @@ function Prompts() {
                 <button
                   type="button"
                   onClick={openModal}
-                  className="flex items-center rounded-md bg-blue-100 px-4 py-2 text-sm font-medium text-blue hover:bg-opacity-30 focus:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-opacity-75"
-                >
+                  className="flex items-center rounded-md bg-blue-100 px-4 py-2 text-sm font-medium text-blue hover:bg-opacity-30 focus:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-opacity-75">
                   <FaPalette style={{ marginRight: "8px" }} /> Colors
                 </button>
               </div>
@@ -407,8 +398,7 @@ function Prompts() {
                 <button
                   type="button"
                   onClick={openModal}
-                  className="flex items-center rounded-md bg-blue-100 px-4 py-2 text-sm font-medium text-blue hover:bg-opacity-30 focus:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-opacity-75"
-                >
+                  className="flex items-center rounded-md bg-blue-100 px-4 py-2 text-sm font-medium text-blue hover:bg-opacity-30 focus:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-opacity-75">
                   <FaHome style={{ marginRight: "8px" }} /> Materials
                 </button>
               </div>
