@@ -218,6 +218,7 @@ function Prompts() {
     // Update the generated prompt with selectedModalValues
     updateGeneratedPrompt(prompt, selectedFilters);
   };
+  console.log(selectedModalValues);
   return (
     <div className="bg-zinc-100 min-h-screen flex items-center justify-center">
       <div className="w-full md:w-9/12 p-6 text-gray-800">
@@ -245,7 +246,7 @@ function Prompts() {
           {/* /imagine prompt: */}
 
           <div className="bg-zinc-200 p-4 border rounded">
-            /imagine prompt: {generatedPrompt}
+            /imagine prompt: {Object.keys(selectedModalValues).map(_=>`${_}:${selectedModalValues[_]},`)}
           </div>
 
           {copySuccess && (
@@ -255,6 +256,7 @@ function Prompts() {
           )}
         </div>
         {/* Buttons */}
+        
         <div className="m-4 flex justify-center">
           <button
             className="bg-blue-700 text-white hover:hover:bg-blue-900 rounded-2xl p-2 w-52"

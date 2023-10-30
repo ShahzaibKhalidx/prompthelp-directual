@@ -1,6 +1,8 @@
 import React, { Fragment, useState } from "react";
 import { Transition, Dialog } from "@headlessui/react";
-import { Range, getTrackBackground } from "react-range"; // Import from react-range
+import { Range, getTrackBackground } from "react-range";
+import { GrClose } from 'react-icons/gr';
+// Import from react-range
 
 function Lighting({
   isOpen,
@@ -73,6 +75,7 @@ function Lighting({
   };
 
   return (
+    
     <Transition appaear show={isOpen} as={Fragment}>
       {/* <div style={{overflow:"auto"}}> */}
       <Dialog as="div" className="relative z-10" onClose={closeAndShowRanges}>
@@ -85,11 +88,11 @@ function Lighting({
           leaveFrom="opacity-100"
           leaveTo="opacity-0"
         >
-          <div className="fixed inset-0 bg-black bg-opacity-25" />
+          <div className="fixed inset-0 bg-black bg-opacity-70 " />
         </Transition.Child>
 
         <div className="fixed inset-0 overflow-y-auto">
-          <div className="flex min-h-full items-center justify-center p-4">
+          <div className="flex min-h-full items-center justify-center p-4 bg-black bg-opacity-20  ">
             <Transition.Child
               as={Fragment}
               enter="ease-out duration-300"
@@ -99,33 +102,47 @@ function Lighting({
               leaveFrom="opacity-100 scale-100"
               leaveTo="opacity-0 scale-95"
             >
+              
               <Dialog.Panel className="w-full max-w-md transform overflow-hidden rounded-2xl bg-white p-6 text-left align-middle shadow-xl transition-all">
+            
+              <button
+                  // Add the close button here
+                  onClick={closeModal}
+                  className="absolute top-2 right-4 p-1 bg-white  hover:bg-red-300"
+                >
+                  <GrClose />
+                </button>
+                
                 <Dialog.Title
                   as="h3"
-                  className="text-lg font-medium leading-6 text-gray-900"
+                  className="text-lg font-medium leading-6 text-gray-900 mb-4 mx-auto "
                 >
                   {title}
                 </Dialog.Title>
-                <div className="mt-4 grid grid-cols-1 md:grid-cols-3 gap-4">
+                <div className="mt-4 grid grid-cols-1 md:grid-cols-3 gap-4  ">
                   {options.map((option) => (
                     <div
                       key={option}
-                      className={`border p-4 cursor-pointer ${
-                        selectedOptions[option] ? "bg-blue-100" : "bg-white"
+                      className={`p-2 cursor-pointer border rounded  ${
+                        selectedOptions[option] ? "bg-blue-200" : "bg-white" 
                       }`}
                       onClick={() => toggleOption(option)}
+                      
                     >
                       {option}
                     </div>
                   ))}
                 </div>
                 <div className="mt-4">
+                  
+                </div>
+                <div className="mt-4">
                   <button
                     type="button"
-                    className="inline-flex justify-center rounded-md border border-transparent bg-blue-100 px-4 py-2 text-sm font-medium text-blue-900 hover:bg-blue-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2"
+                    className="inline-flex  justify-center rounded-md border border-transparent bg-blue-200 px-4 py-2 text-sm font-medium text-black hover:bg-green-500 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2"
                     onClick={closeAndShowRanges}
                   >
-                    Click
+                    Continue
                   </button>
                 </div>
                 {renderRangeSelectors()}
