@@ -250,9 +250,9 @@ function Prompts() {
             {Object.keys(selectedModalValues).map(
               (_) => `${_}:${selectedModalValues[_]},`
             )}
-            {/* {Object.keys(selectedFilters).map(
+            {Object.keys(selectedFilters).map(
               (_) => `${_}:${selectedFilters[_]},`
-            )} */}
+            )}
           </div>
 
           {copySuccess && (
