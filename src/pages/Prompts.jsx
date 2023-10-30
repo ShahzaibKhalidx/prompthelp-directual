@@ -44,7 +44,6 @@ function Prompts() {
   const [copySuccess, setCopySuccess] = useState(false);
   let [isOpen, setIsOpen] = useState(false);
   const [selectedModalValues, setSelectedModalValues] = useState([]);
-  const [selectedOption, setSelectedOption] = useState(""); // select
 
   const openModal = () => {
     setIsOpen(true);
@@ -219,6 +218,7 @@ function Prompts() {
     updateGeneratedPrompt(prompt, selectedFilters);
   };
   console.log(selectedModalValues);
+
   return (
     <div className="bg-zinc-100 min-h-screen flex items-center justify-center">
       <div className="w-full md:w-9/12 p-6 text-gray-800">
@@ -246,7 +246,13 @@ function Prompts() {
           {/* /imagine prompt: */}
 
           <div className="bg-zinc-200 p-4 border rounded">
-            /imagine prompt: {Object.keys(selectedModalValues).map(_=>`${_}:${selectedModalValues[_]},`)}
+            /imagine prompt:{" "}
+            {Object.keys(selectedModalValues).map(
+              (_) => `${_}:${selectedModalValues[_]},`
+            )}
+            {/* {Object.keys(selectedFilters).map(
+              (_) => `${_}:${selectedFilters[_]},`
+            )} */}
           </div>
 
           {copySuccess && (
@@ -256,7 +262,7 @@ function Prompts() {
           )}
         </div>
         {/* Buttons */}
-        
+
         <div className="m-4 flex justify-center">
           <button
             className="bg-blue-700 text-white hover:hover:bg-blue-900 rounded-2xl p-2 w-52"
