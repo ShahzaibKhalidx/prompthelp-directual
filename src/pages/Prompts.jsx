@@ -1,4 +1,10 @@
-import React, { useState, Fragment, createContext, useContext } from "react";
+import {React,
+  useState,
+  createContext,
+  useContext,
+  useRef,
+  useEffect,
+} from "react";
 import copy from "clipboard-copy";
 import { useAuth } from "../auth";
 import { Tooltip } from "react-tooltip";
@@ -43,6 +49,12 @@ function Prompts() {
   const [copySuccess, setCopySuccess] = useState(false);
   let [isOpen, setIsOpen] = useState(false);
   const [selectedModalValues, setSelectedModalValues] = useState([]);
+  const [isMounted, setIsMounted] = useState(false);
+  const divRef = useRef(null);
+
+  useEffect(() => {
+    setIsMounted(true);
+  }, []);
 
   const openModal = () => {
     setIsOpen(true);
@@ -64,7 +76,29 @@ function Prompts() {
     Repeat: 0,
     Weird: 0,
     Seed: 0,
-  };
+};
+
+// Convert a filter name to a CSS variable name 
+
+const transformedKeys = [''];
+
+for (const key in filtersData) {
+    if (Object.hasOwnProperty.call(filtersData, key)) {
+        transformedKeys.push(`--${key.toLowerCase()}`);
+    }
+}
+
+console.log(transformedKeys);// const transformedKeys = [''];
+
+for (const key in filtersData) {
+    if (Object.hasOwnProperty.call(filtersData, key)) {
+        transformedKeys.push(`--${key.toLowerCase()}`);
+    }
+}
+
+console.log(transformedKeys);
+
+
 
   // Create an object to hold dummy placeholders
   const filterPlaceholders = {
@@ -185,14 +219,14 @@ function Prompts() {
   };
 
   // copy to clipboard
-  const handleCopyToClipboard = async () => {
-    try {
-      await copy("/imagine prompt: " + generatedPrompt);
-      setCopySuccess(true);
-      console.log(generatedPrompt);
-    } catch (error) {
-      console.error("Failed to copy to clipboard:", error);
-    }
+  const handleCopyClick = () => {
+    const divContent = divRef.current.innerText;
+    const tempInput = document.createElement("textarea");
+    tempInput.value = divContent;
+    document.body.appendChild(tempInput);
+    tempInput.select();
+    document.execCommand("copy");
+    document.body.removeChild(tempInput);
   };
 
   // Save Prompt to DB
@@ -244,15 +278,22 @@ function Prompts() {
 
           {/* /imagine prompt: */}
 
-          <div className="bg-zinc-200 p-4 border rounded">
-            /imagine prompt:{" "}
-            {Object.keys(selectedModalValues).map(
-              (_) => `${_}:${selectedModalValues[_]},`
+          <div>
+            {isMounted && (
+              <div className="bg-zinc-200 p-4 border rounded" ref={divRef}>
+                /imagine prompt:
+                {Object.keys(selectedModalValues).map(
+                  (_) => `${_}:${selectedModalValues[_]},`
+                )}
+                {Object.keys(selectedFilters).map(
+                  (_) => `${_}:${selectedFilters[_]},`
+                )}
+                {prompt}
+
+                
+                
+              </div>
             )}
-            {Object.keys(selectedFilters).map(
-              (_) => `${_}:${selectedFilters[_]},`
-            )}
-            {prompt}
           </div>
 
           {copySuccess && (
@@ -266,7 +307,7 @@ function Prompts() {
         <div className="m-4 flex justify-center">
           <button
             className="bg-blue-700 text-white hover:hover:bg-blue-900 rounded-2xl p-2 w-52"
-            onClick={handleCopyToClipboard}>
+            onClick={handleCopyClick}>
             {" "}
             Copy Prompt{" "}
           </button>
@@ -278,6 +319,7 @@ function Prompts() {
             Save to My Prompts{" "}
           </button>
         </div>
+
 
         <div className="bg-white p-6 rounded-lg shadow-lg">
           <div className="md:flex md:flex-wrap">
