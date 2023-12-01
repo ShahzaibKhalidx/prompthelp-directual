@@ -20,6 +20,7 @@ import {
   FaHome,
   FaPalette,
 } from "react-icons/fa";
+import LightingOne from '../assets/01-lighting.jpg'
 
 const GeneratedPromptsContext = createContext();
 
@@ -166,21 +167,66 @@ console.log(transformedKeys);
   // NEW Filter Modals
   // print a option
   const filterModalOptions = [
-    "Accent Lighting",
-    "Backlight",
-    "Blacklight",
-    "Blinding Light",
-    "Candlelight",
-    "Concert Lighting",
-    "Crepuscular Rays",
-    "Direct Sunlight",
-    "Dusk",
-    "Edison Bulb",
-    "Electric Arc",
-    "Fire",
-    "Fluorescent",
-    "Glowing",
-    "Glowing Radioactively",
+    {
+      name: "Accent Lighting",
+      image: LightingOne
+    },
+    {
+      name: "Backlight",
+      image: LightingOne
+    },
+    {
+      name: "Blacklight",
+      image: LightingOne
+    },
+    {
+      name: "Blinding Light",
+      image: LightingOne
+    },
+    {
+      name: "Candlelight",
+      image: LightingOne
+    },
+    {
+      name: "Concert Lighting",
+      image: LightingOne
+    },
+    {
+      name: "Crepuscular Rays",
+      image: LightingOne
+    },
+    {
+      name: "Direct Sunlight",
+      image: LightingOne
+    },
+    {
+      name: "Dusk",
+      image: LightingOne
+    },
+    {
+      name: "Edison Bulb",
+      image: LightingOne
+    },
+    {
+      name: "Electric Arc",
+      image: LightingOne
+    },
+    {
+      name: "Fire",
+      image: LightingOne
+    },
+    {
+      name: "Fluorescent",
+      image: LightingOne
+    },
+    {
+      name: "Glowing",
+      image: LightingOne
+    },
+    {
+      name: "Glowing Radioactively",
+      image: LightingOne
+    },
   ];
   // const images = [];
   const handlePromptChange = (e) => {
@@ -212,7 +258,8 @@ console.log(transformedKeys);
       generated += ` --lighting:: ${selectedModalValues.join(",")}`;
     }
     if (filterModalOptions.length > 0) {
-      generated += `:: ${filterModalOptions.join(",")}`;
+      const names = filterModalOptions.map(option => option.name);
+      generated += `:: ${names.join(", ")}`;
     }
 
     setGeneratedPrompt(generated);
