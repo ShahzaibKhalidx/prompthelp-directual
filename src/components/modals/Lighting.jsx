@@ -2,6 +2,7 @@ import React, { Fragment, useState } from "react";
 import { Transition, Dialog } from "@headlessui/react";
 import { Range, getTrackBackground } from "react-range";
 import { GrClose } from 'react-icons/gr';
+import LightingOne from '../../assets/01-lighting.jpg'
 // Import from react-range
 
 function Lighting({
@@ -120,16 +121,17 @@ function Lighting({
                   {title}
                 </Dialog.Title>
                 <div className="mt-4 grid grid-cols-1 md:grid-cols-3 gap-4  ">
-                  {options.map((option) => (
+                  {options.map((option, index) => (
                     <div
-                      key={option}
+                      key={index}
                       className={`p-2 cursor-pointer border rounded  ${
-                        selectedOptions[option] ? "bg-blue-200" : "bg-white" 
+                        selectedOptions[option.name] ? "bg-blue-200" : "bg-white" 
                       }`}
-                      onClick={() => toggleOption(option)}
+                      onClick={() => toggleOption(option.name)}
                       
                     >
-                      {option}
+                    <img src={option?.image}/>
+                      {option?.name}
                     </div>
                   ))}
                 </div>
