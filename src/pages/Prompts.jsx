@@ -21,6 +21,33 @@ import {
   FaPalette,
 } from "react-icons/fa";
 import LightingOne from '../assets/01-lighting.jpg'
+import Lighting2 from '../assets/02-lighting.jpg'
+import Lighting3 from '../assets/03-lighting.jpg'
+import Lighting4 from '../assets/04-lighting.jpg'
+import Lighting5 from '../assets/05-lighting.jpg'
+import Lighting6 from '../assets/06-lighting.jpg'
+import Lighting7 from '../assets/07-lighting.jpg'
+import Lighting8 from '../assets/08-lighting.jpg'
+import Lighting9 from '../assets/09-lighting.jpg'
+import Lighting10 from '../assets/10-lighting.jpg'
+import Lighting11 from '../assets/11-lighting.jpg'
+import Lighting12 from '../assets/12-lighting.jpg'
+import Lighting13 from '../assets/13-lighting.jpg'
+import Lighting14 from '../assets/14-lighting.jpg'
+import Lighting15 from '../assets/15-lighting.jpg'
+import Lighting16 from '../assets/16-lighting.jpg'
+import Lighting17 from '../assets/17-lighting.jpg'
+import Lighting18 from '../assets/18-lighting.jpg'
+import Lighting19 from '../assets/19-lighting.jpg'
+import Lighting20 from '../assets/20-lighting.jpg'
+import Lighting21 from '../assets/21-lighting.jpg'
+import Lighting22 from '../assets/22-lighting.jpg'
+import Lighting23 from '../assets/23-lighting.jpg'
+import Lighting24 from '../assets/24-lighting.jpg'
+import Lighting25 from '../assets/25-lighting.jpg'
+import Lighting26 from '../assets/26-lighting.jpg'
+import Lighting27 from '../assets/27-lighting.jpg'
+
 
 const GeneratedPromptsContext = createContext();
 
@@ -173,60 +200,113 @@ console.log(transformedKeys);
     },
     {
       name: "Backlight",
-      image: LightingOne
+      image: Lighting2
     },
     {
       name: "Blacklight",
-      image: LightingOne
+      image: Lighting3
     },
     {
       name: "Blinding Light",
-      image: LightingOne
+      image: Lighting4
     },
     {
       name: "Candlelight",
-      image: LightingOne
+      image: Lighting5
     },
     {
       name: "Concert Lighting",
-      image: LightingOne
+      image: Lighting6
     },
     {
       name: "Crepuscular Rays",
-      image: LightingOne
+      image: Lighting7
     },
     {
       name: "Direct Sunlight",
-      image: LightingOne
+      image: Lighting8
     },
     {
       name: "Dusk",
-      image: LightingOne
+      image: Lighting9
     },
     {
       name: "Edison Bulb",
-      image: LightingOne
+      image: Lighting10
     },
     {
       name: "Electric Arc",
-      image: LightingOne
+      image: Lighting11
     },
     {
       name: "Fire",
-      image: LightingOne
+      image: Lighting12
     },
     {
       name: "Fluorescent",
-      image: LightingOne
+      image: Lighting13
     },
     {
       name: "Glowing",
-      image: LightingOne
+      image: Lighting14
     },
     {
       name: "Glowing Radioactively",
-      image: LightingOne
+      image: Lighting15
     },
+    {
+      name: "Glowstick",
+      image: Lighting16
+    },
+    {
+      name: "Lava Glow",
+      image: Lighting17
+    },
+    {
+      names: "Moonlight",
+      image: Lighting18
+    },
+    {
+      name: "Natural Lighting",
+      image: Lighting19
+    },
+    {
+      name: "Neon Lamp",
+      image: Lighting20
+    },
+    {
+      name: "Nightclub Lighting",
+      image: Lighting21
+    },
+    {
+      name: "Nuclear Waste Glow",
+      image: Lighting22
+    },
+    {
+      name: "Quantum Dot Display",
+      image: Lighting23
+    },
+    {
+      name: "Spotlight",
+      image: Lighting24
+    },
+    {
+      name: "Strobe",
+      image: Lighting25
+    },
+    {
+      name: "Sunlight",
+      image: Lighting26
+    },
+    {
+      name: "Ultraviolet",
+      image: Lighting27
+    }
+
+
+
+
+
   ];
   // const images = [];
   const handlePromptChange = (e) => {
