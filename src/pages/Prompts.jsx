@@ -54,6 +54,73 @@ import Lighting25 from "../assets/25-lighting.jpg";
 import Lighting26 from "../assets/26-lighting.jpg";
 import Lighting27 from "../assets/27-lighting.jpg";
 
+// Style Images
+import Style1 from "../assets/Style/Style1.jpg";
+import Style2 from "../assets/Style/Style2.jpg";
+import Style3 from "../assets/Style/Style3.jpg";
+import Style4 from "../assets/Style/Style4.jpg";
+import Style5 from "../assets/Style/Style5.jpg";
+import Style6 from "../assets/Style/Style6.jpg";
+import Style7 from "../assets/Style/Style7.jpg";
+import Style8 from "../assets/Style/Style8.jpg";
+import Style9 from "../assets/Style/Style9.jpg";
+import Style10 from "../assets/Style/Style10.jpg";
+import Style11 from "../assets/Style/Style11.jpg";
+import Style12 from "../assets/Style/Style12.jpg";
+import Style13 from "../assets/Style/Style13.jpg";
+import Style14 from "../assets/Style/Style14.jpg";
+import Style15 from "../assets/Style/Style15.jpg";
+import Style16 from "../assets/Style/Style16.jpg";
+import Style17 from "../assets/Style/Style17.jpg";
+import Style18 from "../assets/Style/Style18.jpg";
+import Style19 from "../assets/Style/Style19.jpg";
+import Style20 from "../assets/Style/Style20.jpg";
+import Style21 from "../assets/Style/Style21.jpg";
+import Style22 from "../assets/Style/Style22.jpg";
+import Style23 from "../assets/Style/Style23.jpg";
+import Style24 from "../assets/Style/Style24.jpg";
+import Style25 from "../assets/Style/Style25.jpg";
+import Style26 from "../assets/Style/Style26.jpg";
+import Style27 from "../assets/Style/Style27.jpg";
+import Style28 from "../assets/Style/Style28.jpg";
+import Style29 from "../assets/Style/Style29.jpg";
+import Style30 from "../assets/Style/Style30.jpg";
+import Style31 from "../assets/Style/Style31.jpg";
+import Style32 from "../assets/Style/Style32.jpg";
+import Style33 from "../assets/Style/Style33.jpg";
+import Style34 from "../assets/Style/Style34.jpg";
+import Style35 from "../assets/Style/Style35.jpg";
+import Style36 from "../assets/Style/Style36.jpg";
+import Style37 from "../assets/Style/Style37.jpg";
+import Style38 from "../assets/Style/Style38.jpg";
+import Style39 from "../assets/Style/Style39.jpg";
+import Style40 from "../assets/Style/Style40.jpg";
+import Style41 from "../assets/Style/Style41.jpg";
+import Style42 from "../assets/Style/Style42.jpg";
+import Style43 from "../assets/Style/Style43.jpg";
+import Style44 from "../assets/Style/Style44.jpg";
+import Style45 from "../assets/Style/Style45.jpg";
+import Style46 from "../assets/Style/Style46.jpg";
+import Style47 from "../assets/Style/Style47.jpg";
+import Style48 from "../assets/Style/Style48.jpg";
+import Style49 from "../assets/Style/Style49.jpg";
+import Style50 from "../assets/Style/Style50.jpg";
+import Style51 from "../assets/Style/Style51.jpg";
+import Style52 from "../assets/Style/Style52.jpg";
+import Style53 from "../assets/Style/Style53.jpg";
+import Style54 from "../assets/Style/Style54.jpg";
+import Style55 from "../assets/Style/Style55.jpg";
+import Style56 from "../assets/Style/Style56.jpg";
+import Style57 from "../assets/Style/Style57.jpg";
+import Style58 from "../assets/Style/Style58.jpg";
+import Style59 from "../assets/Style/Style59.jpg";
+import Style60 from "../assets/Style/Style60.jpg";
+import Style61 from "../assets/Style/Style61.jpg";
+import Style62 from "../assets/Style/Style62.jpg";
+import Style63 from "../assets/Style/Style63.jpg";
+import Style64 from "../assets/Style/Style64.jpg";
+import Style65 from "../assets/Style/Style65.jpg";
+
 const GeneratedPromptsContext = createContext();
 
 export function useGeneratedPrompts() {
@@ -376,25 +443,106 @@ function Prompts() {
 
   const filterModalStyle = [
     {
-      name: "Accent Lighting",
-      image: LightingOne,
+      name: "16-bit",
+      image: Style1,
     },
     {
-      name: "Backlight",
-      image: Lighting2,
+      name: "1800s",
+      image: Style2,
     },
     {
-      name: "Blinding Light",
-      image: Lighting4,
+      name: "1980s",
+      image: Style3,
     },
     {
-      name: "Candlelight",
-      image: Lighting5,
+      name: "4-bit",
+      image: Style4,
     },
     {
-      name: "Concert Lighting",
-      image: Lighting6,
+      name: "8-bit",
+      image: Style5,
     },
+    {
+      names: "Amber",
+      image: Style6,
+    },
+    {
+      names: "Anatomical Drawing",
+      image: Style7,
+    },
+    {
+      names: "Ancient",
+      image: Style8,
+    },
+    {
+      names: "Anime",
+      image: Style9,
+    },
+    {
+      names: "Antimatter",
+      image: Style10,
+    },
+    {
+      names: "Arabic",
+      image: Style11,
+    },
+    { names: "Blocky", image: Style12 },
+    { names: "Blueprint Drawing", image: Style13 },
+    { names: "Blueprint Drawing", image: Style14 },
+
+    //
+    { names: "Carbon Fiber", image: Style15 },
+    { names: "Caribbean", image: Style16 },
+    { names: "Cartoon", image: Style17 },
+    { names: "Carved Lacquer", image: Style18 },
+    { names: "Celestial", image: Style19 },
+    { names: "Cellulose", image: Style20 },
+    { names: "Charcoal Style", image: Style21 },
+    { names: "Chromatic", image: Style22 },
+    { names: "Comicbook Drawing", image: Style23 },
+    { names: "Computer Chip", image: Style24 },
+    { names: "Concept Art", image: Style25 },
+    { names: "Coral", image: Style26 },
+    { names: "Cyberpunk", image: Style27 },
+    { names: "Dangerous", image: Style28 },
+    { names: "Dark Matter", image: Style29 },
+    { names: "Da Vinci", image: Style30 },
+    { names: "Da Vinci Drawing", image: Style31 },
+    { names: "Deep Sea", image: Style32 },
+    { names: "Diabolic", image: Style33 },
+    { names: "Diffraction Grading", image: Style34 },
+    { names: "Dna", image: Style35 },
+    { names: "Dots", image: Style36 },
+    { names: "Dripping Paint", image: Style37 },
+    { names: "Dune", image: Style38 },
+    { names: "Electronic Circuitry", image: Style39 },
+    { names: "Etching", image: Style40 },
+    { names: "Extraterrestrial", image: Style41 },
+    { names: "Fiber Optic", image: Style42 },
+    { names: "Fibonacci", image: Style43 },
+    { names: "Floral", image: Style44 },
+    { names: "Flower Of Life", image: Style45 },
+    { names: "Fossil", image: Style46 },
+    { names: "Fractal", image: Style47 },
+    { names: "Futuristic", image: Style48 },
+    { names: "Galactic", image: Style49 },
+    { names: "Gasoline", image: Style50 },
+    { names: "Glass", image: Style51 },
+    { names: "Glass Blowing", image: Style52 },
+    { names: "Glitchart", image: Style53 },
+    { names: "Gouache", image: Style54 },
+    { names: "Helix", image: Style55 },
+    { names: "Hell", image: Style55 },
+    { names: "Higgs Boson", image: Style56 },
+    { names: "Horror", image: Style57 },
+    { names: "Ice Age", image: Style58 },
+    { names: "Icy", image: Style59 },
+    { names: "Jurassic", image: Style60 },
+    { names: "Kaleidoscope", image: Style61 },
+    { names: "Knitted", image: Style62 },
+    { names: "Latex", image: Style63 },
+    { names: "Lightspeed", image: Style64 },
+    { names: "Liquid", image: Style65 },
   ];
 
   // Artists Modal
