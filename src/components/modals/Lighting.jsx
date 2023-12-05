@@ -1,8 +1,7 @@
 import React, { Fragment, useState } from "react";
 import { Transition, Dialog } from "@headlessui/react";
 import { Range, getTrackBackground } from "react-range";
-import { GrClose } from 'react-icons/gr';
-import LightingOne from '../../assets/01-lighting.jpg'
+import { GrClose } from "react-icons/gr";
 // Import from react-range
 
 function Lighting({
@@ -76,7 +75,6 @@ function Lighting({
   };
 
   return (
-    
     <Transition appaear show={isOpen} as={Fragment}>
       {/* <div style={{overflow:"auto"}}> */}
       <Dialog as="div" className="relative z-10" onClose={closeAndShowRanges}>
@@ -87,8 +85,7 @@ function Lighting({
           enterTo="opacity-100"
           leave="ease-in duration-200"
           leaveFrom="opacity-100"
-          leaveTo="opacity-0"
-        >
+          leaveTo="opacity-0">
           <div className="fixed inset-0 bg-black bg-opacity-70 " />
         </Transition.Child>
 
@@ -101,54 +98,50 @@ function Lighting({
               enterTo="opacity-100 scale-100"
               leave="ease-in duration-200"
               leaveFrom="opacity-100 scale-100"
-              leaveTo="opacity-0 scale-95"
-            >
-              
-              <Dialog.Panel className="w-full max-w-md transform overflow-hidden rounded-2xl bg-white p-6 text-left align-middle shadow-xl transition-all">
-            
-              <button
-                  // Add the close button here
+              leaveTo="opacity-0 scale-95">
+              <Dialog.Panel className="w-full max-w-3xl transform overflow-hidden rounded-2xl bg-white p-6 text-left align-middle shadow-xl transition-all">
+                {/* close button */}
+                <button
                   onClick={closeModal}
-                  className="absolute top-2 right-4 p-1 bg-white  hover:bg-red-300"
-                >
+                  className="absolute top-2 right-4 p-1 bg-white hover:bg-red-300">
                   <GrClose />
                 </button>
-                
+                {/* title */}
                 <Dialog.Title
                   as="h3"
-                  className="text-lg font-medium leading-6 text-gray-900 mb-4 mx-auto "
-                >
+                  className="text-xl font-medium leading-6 text-gray-900 mb-4 mx-auto">
                   {title}
                 </Dialog.Title>
-                <div className="mt-4 grid grid-cols-1 md:grid-cols-3 gap-4  ">
-                  {options.map((option, index) => (
-                    <div
-                      key={index}
-                      className={`p-2 cursor-pointer border rounded  ${
-                        selectedOptions[option.name] ? "bg-blue-200" : "bg-white" 
-                      }`}
-                      onClick={() => toggleOption(option.name)}
-                      
-                    >
-                    <img src={option?.image}/>
-                      {option?.name}
-                    </div>
-                  ))}
+                {/* Scrollable Content Area */}
+                <div className="overflow-y-auto max-h-[400px]">
+                  {/* Content */}
+                  <div className="mt-4 grid grid-cols-1 md:grid-cols-4 gap-4">
+                    {options.map((option, index) => (
+                      <div
+                        key={index}
+                        className={`p-2 cursor-pointer border rounded ${
+                          selectedOptions[option.name]
+                            ? "bg-blue-200"
+                            : "bg-white"
+                        }`}
+                        onClick={() => toggleOption(option.name)}>
+                        <img src={option?.image} alt={option?.name} />
+                        {option?.name}
+                      </div>
+                    ))}
+                  </div>
                 </div>
-                <div className="mt-4">
-                  
-                </div>
-                <div className="mt-4">
+                {/* Sticky Continue Button */}
+                <div className="sticky bottom-0 p-4 bg-white">
                   <button
                     type="button"
-                    className="inline-flex  justify-center rounded-md border border-transparent bg-blue-200 px-4 py-2 text-sm font-medium text-black hover:bg-green-500 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2"
-                    onClick={closeAndShowRanges}
-                  >
+                    className="inline-flex justify-center rounded-md border border-transparent bg-blue-200 px-4 py-2 text-sm font-medium text-black hover:bg-green-500 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2"
+                    onClick={closeAndShowRanges}>
                     Continue
                   </button>
                 </div>
                 {renderRangeSelectors()}
-                <RangeBar /> {/* Add the RangeBar component here */}
+                <RangeBar /> {/* RangeBar component */}
               </Dialog.Panel>
             </Transition.Child>
           </div>
