@@ -6,13 +6,16 @@ import {
   useRef,
   useEffect,
 } from "react";
-import copy from "clipboard-copy";
 import { useAuth } from "../auth";
 import { Tooltip } from "react-tooltip";
-import { Dialog, Transition } from "@headlessui/react";
+
 import Lighting from "../components/modals/Lighting";
-import { Link } from "react-router-dom";
-import MyPrompts from "./MyPrompts";
+import Camera from "../components/modals/Camera";
+import Styles from "../components/modals/Styles";
+import Artists from "../components/modals/Artists";
+import Colors from "../components/modals/Colors";
+import Materials from "../components/modals/Materials";
+
 import {
   FaRegLightbulb,
   FaPhotoVideo,
@@ -21,6 +24,8 @@ import {
   FaHome,
   FaPalette,
 } from "react-icons/fa";
+
+// lighting images
 import LightingOne from "../assets/01-lighting.jpg";
 import Lighting2 from "../assets/02-lighting.jpg";
 import Lighting3 from "../assets/03-lighting.jpg";
@@ -75,21 +80,61 @@ function Prompts() {
   const [selectedFilters, setSelectedFilters] = useState({});
   const [generatedPrompt, setGeneratedPrompt] = useState("");
   const [copySuccess, setCopySuccess] = useState(false);
-  let [isOpen, setIsOpen] = useState(false);
   const [selectedModalValues, setSelectedModalValues] = useState([]);
   const [isMounted, setIsMounted] = useState(false);
   const divRef = useRef(null);
+
+  // buttons modal
+  let [islighting, setlighting] = useState(false);
+  const [isCameraOpen, setCameraOpen] = useState(false);
+  const [isStylesOpen, setStylesOpen] = useState(false);
+  const [isArtistsOpen, setArtistsOpen] = useState(false);
+  const [isColorsOpen, setColorsOpen] = useState(false);
+  const [isMaterialsOpen, setMaterialsOpen] = useState(false);
 
   useEffect(() => {
     setIsMounted(true);
   }, []);
 
   const openModal = () => {
-    setIsOpen(true);
+    setlighting(true);
+  };
+
+  const openCameraModal = () => {
+    setCameraOpen(true);
+  };
+
+  const openStylesModal = () => {
+    setStylesOpen(true);
+  };
+  const openArtistsModal = () => {
+    setArtistsOpen(true);
+  };
+  const openColorsModal = () => {
+    setColorsOpen(true);
+  };
+  const openMaterialsModal = () => {
+    setMaterialsOpen(true);
   };
 
   const closeModal = () => {
-    setIsOpen(false);
+    setlighting(false);
+  };
+
+  const closeCameraModal = () => {
+    setCameraOpen(false);
+  };
+  const closeStylesModal = () => {
+    setStylesOpen(false);
+  };
+  const closeArtistsModal = () => {
+    setArtistsOpen(false);
+  };
+  const closeColorsModal = () => {
+    setColorsOpen(false);
+  };
+  const closeMaterialsModal = () => {
+    setMaterialsOpen(false);
   };
 
   const filtersData = {
@@ -187,7 +232,7 @@ function Prompts() {
     }
   };
 
-  // End print the generated prompt to the console
+  // Modals Start
 
   // Lighting Modal
 
@@ -301,6 +346,130 @@ function Prompts() {
       image: Lighting27,
     },
   ];
+
+  // Camera Modal
+
+  const filterModalCameraOptions = [
+    {
+      name: "Accent Lighting",
+      image: LightingOne,
+    },
+    {
+      name: "Backlight",
+      image: Lighting2,
+    },
+    {
+      name: "Blinding Light",
+      image: Lighting4,
+    },
+    {
+      name: "Candlelight",
+      image: Lighting5,
+    },
+    {
+      name: "Concert Lighting",
+      image: Lighting6,
+    },
+  ];
+
+  // Styles Modal
+
+  const filterModalStyle = [
+    {
+      name: "Accent Lighting",
+      image: LightingOne,
+    },
+    {
+      name: "Backlight",
+      image: Lighting2,
+    },
+    {
+      name: "Blinding Light",
+      image: Lighting4,
+    },
+    {
+      name: "Candlelight",
+      image: Lighting5,
+    },
+    {
+      name: "Concert Lighting",
+      image: Lighting6,
+    },
+  ];
+
+  // Artists Modal
+  const filterModalArtists = [
+    {
+      name: "Accent Lighting",
+      image: LightingOne,
+    },
+    {
+      name: "Backlight",
+      image: Lighting2,
+    },
+    {
+      name: "Blinding Light",
+      image: Lighting4,
+    },
+    {
+      name: "Candlelight",
+      image: Lighting5,
+    },
+    {
+      name: "Concert Lighting",
+      image: Lighting6,
+    },
+  ];
+
+  // Colors Modal
+  const filterModalColors = [
+    {
+      name: "Accent Lighting",
+      image: LightingOne,
+    },
+    {
+      name: "Backlight",
+      image: Lighting2,
+    },
+    {
+      name: "Blinding Light",
+      image: Lighting4,
+    },
+    {
+      name: "Candlelight",
+      image: Lighting5,
+    },
+    {
+      name: "Concert Lighting",
+      image: Lighting6,
+    },
+  ];
+
+  // Materials Modal
+  const filterModalMaterials = [
+    {
+      name: "Accent Lighting",
+      image: LightingOne,
+    },
+    {
+      name: "Backlight",
+      image: Lighting2,
+    },
+    {
+      name: "Blinding Light",
+      image: Lighting4,
+    },
+    {
+      name: "Candlelight",
+      image: Lighting5,
+    },
+    {
+      name: "Concert Lighting",
+      image: Lighting6,
+    },
+  ];
+  // Modals End
+
   // const images = [];
   const handlePromptChange = (e) => {
     const newText = e.target.value;
@@ -334,7 +503,26 @@ function Prompts() {
       const names = filterModalOptions.map((option) => option.name);
       generated += `:: ${names.join(", ")}`;
     }
-
+    if (filterModalCameraOptions.length > 0) {
+      const names = filterModalCameraOptions.map((option) => option.name);
+      generated += `:: ${names.join(", ")}`;
+    }
+    if (filterModalStyle.length > 0) {
+      const names = filterModalStyle.map((option) => option.name);
+      generated += `:: ${names.join(", ")}`;
+    }
+    if (filterModalArtists.length > 0) {
+      const names = filterModalArtists.map((option) => option.name);
+      generated += `:: ${names.join(", ")}`;
+    }
+    if (filterModalColors.length > 0) {
+      const names = filterModalColors.map((option) => option.name);
+      generated += `:: ${names.join(", ")}`;
+    }
+    if (filterModalMaterials.length > 0) {
+      const names = filterModalMaterials.map((option) => option.name);
+      generated += `:: ${names.join(", ")}`;
+    }
     setGeneratedPrompt(generated);
   };
 
@@ -401,14 +589,13 @@ function Prompts() {
           <div>
             {isMounted && (
               <div className="bg-zinc-200 p-4 border rounded" ref={divRef}>
-                /imagine prompt:
+                /imagine prompt: {prompt}::
                 {Object.keys(selectedModalValues).map(
-                  (_) => `${_}:${selectedModalValues[_]},`
+                  (_) => `${_}:${selectedModalValues[_]} `
                 )}
                 {Object.keys(selectedFilters).map(
-                  (_) => `${_}:${selectedFilters[_]},`
+                  (_) => `${_}:${selectedFilters[_]} `
                 )}
-                {prompt}
               </div>
             )}
           </div>
@@ -523,7 +710,7 @@ function Prompts() {
               <div className="inset-0 flex items-center justify-center">
                 <button
                   type="button"
-                  onClick={openModal}
+                  onClick={openStylesModal}
                   className="flex items-center rounded-md bg-blue-100 px-4 py-2 text-sm font-medium text-blue hover:bg-opacity-30 focus:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-opacity-75">
                   <FaPhotoVideo style={{ marginRight: "8px" }} /> Styles
                 </button>
@@ -532,16 +719,16 @@ function Prompts() {
               <div className="inset-0 flex items-center justify-center">
                 <button
                   type="button"
-                  onClick={openModal}
+                  onClick={openCameraModal}
                   className="flex items-center rounded-md bg-blue-100 px-4 py-2 text-sm font-medium text-blue hover:bg-opacity-30 focus:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-opacity-75">
-                  <FaCamera style={{ marginRight: "8px" }} /> Camera
+                  <FaCamera /> Camera
                 </button>
               </div>
               <br />
               <div className="inset-0 flex items-center justify-center">
                 <button
                   type="button"
-                  onClick={openModal}
+                  onClick={openArtistsModal}
                   className="flex items-center rounded-md bg-blue-100 px-4 py-2 text-sm font-medium text-blue hover:bg-opacity-30 focus:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-opacity-75">
                   <FaPaintBrush style={{ marginRight: "8px" }} />
                   Artists
@@ -550,7 +737,7 @@ function Prompts() {
               <div className="inset-0 flex items-center justify-center">
                 <button
                   type="button"
-                  onClick={openModal}
+                  onClick={openColorsModal}
                   className="flex items-center rounded-md bg-blue-100 px-4 py-2 text-sm font-medium text-blue hover:bg-opacity-30 focus:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-opacity-75">
                   <FaPalette style={{ marginRight: "8px" }} /> Colors
                 </button>
@@ -558,7 +745,7 @@ function Prompts() {
               <div className="inset-0 flex items-center justify-center">
                 <button
                   type="button"
-                  onClick={openModal}
+                  onClick={openMaterialsModal}
                   className="flex items-center rounded-md bg-blue-100 px-4 py-2 text-sm font-medium text-blue hover:bg-opacity-30 focus:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-opacity-75">
                   <FaHome style={{ marginRight: "8px" }} /> Materials
                 </button>
@@ -569,14 +756,74 @@ function Prompts() {
 
         {/* end this.props. */}
 
-        {isOpen && (
+        {islighting && (
           <div>
             <Lighting
-              isOpen={isOpen}
+              isOpen={islighting}
               closeModal={closeModal}
               title="Lighting"
               content="Select Any Modal"
               options={filterModalOptions}
+              setSelectedModalValues={handleLightingOption}
+            />
+          </div>
+        )}
+
+        {isCameraOpen && (
+          <Camera
+            isCameraOpen={isCameraOpen}
+            closeCameraModal={closeCameraModal}
+            title="Camera"
+            content="Select Any Modal"
+            options={filterModalCameraOptions}
+            setSelectedModalValues={handleLightingOption}
+          />
+        )}
+        {isStylesOpen && (
+          <div>
+            <Styles
+              isStylesOpen={isStylesOpen}
+              closeStylesModal={closeStylesModal}
+              title="Styles"
+              content="Select Any Modal"
+              options={filterModalStyle}
+              setSelectedModalValues={handleLightingOption}
+            />
+          </div>
+        )}
+
+        {isArtistsOpen && (
+          <div>
+            <Artists
+              isArtistsOpen={isArtistsOpen}
+              closeArtistsModal={closeArtistsModal}
+              title="Artists"
+              content="Select Any Modal"
+              options={filterModalArtists}
+              setSelectedModalValues={handleLightingOption}
+            />
+          </div>
+        )}
+        {isColorsOpen && (
+          <div>
+            <Colors
+              isColorsOpen={isColorsOpen}
+              closeColorsModal={closeColorsModal}
+              title="Colors"
+              content="Select Any Modal"
+              options={filterModalColors}
+              setSelectedModalValues={handleLightingOption}
+            />
+          </div>
+        )}
+        {isMaterialsOpen && (
+          <div>
+            <Materials
+              isMaterialsOpen={isMaterialsOpen}
+              closeMaterialsModal={closeMaterialsModal}
+              title="Materials"
+              content="Select Any Modal"
+              options={filterModalMaterials}
               setSelectedModalValues={handleLightingOption}
             />
           </div>
