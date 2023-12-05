@@ -2,6 +2,7 @@ import React, { Fragment, useState } from "react";
 import { Transition, Dialog } from "@headlessui/react";
 import { GrClose } from "react-icons/gr";
 
+
 function Styles({
     openStylesModal,
     closeStylesModal,
