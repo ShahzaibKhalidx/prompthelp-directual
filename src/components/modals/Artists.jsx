@@ -1,13 +1,10 @@
 import React, { Fragment, useState } from "react";
 import { Transition, Dialog } from "@headlessui/react";
 import { GrClose } from "react-icons/gr";
-// Import from react-range
 
-
-
-function Camera({
-  openCameraModal,
-  closeCameraModal,
+function Artists({
+  openArtistsModal,
+    closeArtistsModal,
   title,
   options,
   setSelectedModalValues,
@@ -15,10 +12,6 @@ function Camera({
   const [selectedOptions, setSelectedOptions] = useState({});
   const [rangeSelection, setRangeSelection] = useState(null);
   const [rangeValues, setRangeValues] = useState({}); // Object to hold range values
-
-
-
-  
 
   const toggleOption = (option) => {
     setSelectedOptions((prevSelectedOptions) => {
@@ -68,7 +61,7 @@ function Camera({
   // };
   const closeAndShowRanges = () => {
     setSelectedModalValues({ ...selectedOptions, ...rangeValues }); // Combine options and range values
-    closeCameraModal();
+    closeArtistsModal();
   };
   // Define the RangeBar component
   const RangeBar = () => {
@@ -78,7 +71,6 @@ function Camera({
 
     const [values, setValues] = useState([5]);
   };
-
   return (
     <Transition appaear show={true} as={Fragment}>
       {/* <div style={{overflow:"auto"}}> */}
@@ -107,7 +99,7 @@ function Camera({
               <Dialog.Panel className="w-full max-w-3xl transform overflow-hidden rounded-2xl bg-white p-6 text-left align-middle shadow-xl transition-all">
                 {/* close button */}
                 <button
-                  onClick={closeCameraModal}
+                  onClick={closeArtistsModal}
                   className="absolute top-2 right-4 p-1 bg-white hover:bg-red-300">
                   <GrClose />
                 </button>
@@ -157,4 +149,4 @@ function Camera({
   );
 }
 
-export default Camera;
+export default Artists;
