@@ -121,6 +121,130 @@ import Style63 from "../assets/Style/Style63.jpg";
 import Style64 from "../assets/Style/Style64.jpg";
 import Style65 from "../assets/Style/Style65.jpg";
 
+// Camera Images
+
+import Camera1 from "../assets/Camera/camera-1.jpg";
+import Camera2 from "../assets/Camera/camera-2.jpg";
+import Camera3 from "../assets/Camera/camera-3.jpg";
+import Camera4 from "../assets/Camera/camera-4.jpg";
+import Camera5 from "../assets/Camera/camera-5.jpg";
+import Camera6 from "../assets/Camera/camera-6.jpg";
+import Camera7 from "../assets/Camera/camera-7.jpg";
+import Camera8 from "../assets/Camera/camera-8.jpg";
+import Camera9 from "../assets/Camera/camera-9.jpg";
+import Camera10 from "../assets/Camera/camera-10.jpg";
+import Camera11 from "../assets/Camera/camera-11.jpg";
+import Camera12 from "../assets/Camera/camera-12.jpg";
+import Camera13 from "../assets/Camera/camera-13.jpg";
+import Camera14 from "../assets/Camera/camera-14.jpg";
+import Camera15 from "../assets/Camera/camera-15.jpg";
+
+// Artists Images
+import Artists1 from "../assets/Artists/Artists-1.jpg";
+import Artists2 from "../assets/Artists/Artists-2.jpg";
+import Artists3 from "../assets/Artists/Artists-3.jpg";
+import Artists4 from "../assets/Artists/Artists-4.jpg";
+import Artists5 from "../assets/Artists/Artists-5.jpg";
+import Artists6 from "../assets/Artists/Artists-6.jpg";
+import Artists7 from "../assets/Artists/Artists-7.jpg";
+import Artists8 from "../assets/Artists/Artists-8.jpg";
+import Artists9 from "../assets/Artists/Artists-9.jpg";
+import Artists10 from "../assets/Artists/Artists-10.jpg";
+import Artists11 from "../assets/Artists/Artists-11.jpg";
+import Artists12 from "../assets/Artists/Artists-12.jpg";
+import Artists13 from "../assets/Artists/Artists-13.jpg";
+import Artists14 from "../assets/Artists/Artists-14.jpg";
+import Artists15 from "../assets/Artists/Artists-15.jpg";
+import Artists16 from "../assets/Artists/Artists-16.jpg";
+import Artists17 from "../assets/Artists/Artists-17.jpg";
+import Artists18 from "../assets/Artists/Artists-18.jpg";
+import Artists19 from "../assets/Artists/Artists-19.jpg";
+import Artists20 from "../assets/Artists/Artists-20.jpg";
+import Artists21 from "../assets/Artists/Artists-21.jpg";
+import Artists22 from "../assets/Artists/Artists-22.jpg";
+import Artists23 from "../assets/Artists/Artists-23.jpg";
+import Artists24 from "../assets/Artists/Artists-24.jpg";
+import Artists25 from "../assets/Artists/Artists-25.jpg";
+import Artists26 from "../assets/Artists/Artists-26.jpg";
+import Artists27 from "../assets/Artists/Artists-27.jpg";
+import Artists28 from "../assets/Artists/Artists-28.jpg";
+import Artists29 from "../assets/Artists/Artists-29.jpg";
+import Artists30 from "../assets/Artists/Artists-30.jpg";
+import Artists31 from "../assets/Artists/Artists-31.jpg";
+import Artists32 from "../assets/Artists/Artists-32.jpg";
+import Artists33 from "../assets/Artists/Artists-33.jpg";
+import Artists34 from "../assets/Artists/Artists-34.jpg";
+import Artists35 from "../assets/Artists/Artists-35.jpg";
+// import Artists36 from "../assets/Artists/Artists-36.jpg";
+import Artists37 from "../assets/Artists/Artists-37.jpg";
+import Artists38 from "../assets/Artists/Artists-38.jpg";
+import Artists39 from "../assets/Artists/Artists-39.jpg";
+import Artists40 from "../assets/Artists/Artists-40.jpg";
+import Artists41 from "../assets/Artists/Artists-41.jpg";
+import Artists42 from "../assets/Artists/Artists-42.jpg";
+import Artists43 from "../assets/Artists/Artists-43.jpg";
+import Artists44 from "../assets/Artists/Artists-44.jpg";
+
+// Colors Images
+import Colors1 from "../assets/Colors/Colors-1.jpg";
+import Colors2 from "../assets/Colors/Colors-2.jpg";
+import Colors3 from "../assets/Colors/Colors-3.jpg";
+import Colors4 from "../assets/Colors/Colors-4.jpg";
+import Colors5 from "../assets/Colors/Colors-5.jpg";
+import Colors6 from "../assets/Colors/Colors-6.jpg";
+import Colors7 from "../assets/Colors/Colors-7.jpg";
+import Colors8 from "../assets/Colors/Colors-8.jpg";
+import Colors9 from "../assets/Colors/Colors-9.jpg";
+import Colors10 from "../assets/Colors/Colors-10.jpg";
+import Colors11 from "../assets/Colors/Colors-11.jpg";
+import Colors12 from "../assets/Colors/Colors-12.jpg";
+import Colors13 from "../assets/Colors/Colors-13.jpg";
+import Colors14 from "../assets/Colors/Colors-14.jpg";
+import Colors15 from "../assets/Colors/Colors-15.jpg";
+import Colors16 from "../assets/Colors/Colors-16.jpg";
+import Colors17 from "../assets/Colors/Colors-17.jpg";
+import Colors18 from "../assets/Colors/Colors-18.jpg";
+import Colors19 from "../assets/Colors/Colors-19.jpg";
+import Colors20 from "../assets/Colors/Colors-20.jpg";
+import Colors21 from "../assets/Colors/Colors-21.jpg";
+import Colors22 from "../assets/Colors/Colors-22.jpg";
+import Colors23 from "../assets/Colors/Colors-23.jpg";
+import Colors24 from "../assets/Colors/Colors-24.jpg";
+import Colors25 from "../assets/Colors/Colors-25.jpg";
+import Colors26 from "../assets/Colors/Colors-26.jpg";
+import Colors27 from "../assets/Colors/Colors-27.jpg";
+import Colors28 from "../assets/Colors/Colors-28.jpg";
+import Colors29 from "../assets/Colors/Colors-29.jpg";
+import Colors30 from "../assets/Colors/Colors-30.jpg";
+import Colors31 from "../assets/Colors/Colors-31.jpg";
+import Colors32 from "../assets/Colors/Colors-32.jpg";
+import Colors33 from "../assets/Colors/Colors-33.jpg";
+import Colors34 from "../assets/Colors/Colors-34.jpg";
+import Colors35 from "../assets/Colors/Colors-35.jpg";
+import Colors36 from "../assets/Colors/Colors-36.jpg";
+import Colors37 from "../assets/Colors/Colors-37.jpg";
+
+// Materials Images
+import Materials1 from "../assets/Materials/Materials-1.jpg";
+import Materials2 from "../assets/Materials/Materials-2.jpg";
+import Materials3 from "../assets/Materials/Materials-3.jpg";
+import Materials4 from "../assets/Materials/Materials-4.jpg";
+import Materials5 from "../assets/Materials/Materials-5.jpg";
+import Materials6 from "../assets/Materials/Materials-6.jpg";
+import Materials7 from "../assets/Materials/Materials-7.jpg";
+import Materials8 from "../assets/Materials/Materials-8.jpg";
+import Materials9 from "../assets/Materials/Materials-9.jpg";
+import Materials10 from "../assets/Materials/Materials-10.jpg";
+import Materials11 from "../assets/Materials/Materials-11.jpg";
+import Materials12 from "../assets/Materials/Materials-12.jpg";
+import Materials13 from "../assets/Materials/Materials-13.jpg";
+import Materials14 from "../assets/Materials/Materials-14.jpg";
+import Materials15 from "../assets/Materials/Materials-15.jpg";
+import Materials16 from "../assets/Materials/Materials-16.jpg";
+import Materials17 from "../assets/Materials/Materials-17.jpg";
+import Materials18 from "../assets/Materials/Materials-18.jpg";
+import Materials19 from "../assets/Materials/Materials-19.jpg";
+
 const GeneratedPromptsContext = createContext();
 
 export function useGeneratedPrompts() {
@@ -418,24 +542,64 @@ function Prompts() {
 
   const filterModalCameraOptions = [
     {
-      name: "Accent Lighting",
-      image: LightingOne,
+      name: "360 Panorama",
+      image: Camera1,
     },
     {
-      name: "Backlight",
-      image: Lighting2,
+      name: "DSLR",
+      image: Camera2,
     },
     {
-      name: "Blinding Light",
-      image: Lighting4,
+      name: "Electron Microscope",
+      image: Camera3,
     },
     {
-      name: "Candlelight",
-      image: Lighting5,
+      name: "Macro Lens",
+      image: Camera4,
     },
     {
-      name: "Concert Lighting",
-      image: Lighting6,
+      name: "Magnification",
+      image: Camera5,
+    },
+    {
+      name: "Microscopy",
+      image: Camera6,
+    },
+    {
+      name: "Miniature Faking",
+      image: Camera7,
+    },
+    {
+      name: "Panorama",
+      image: Camera8,
+    },
+    {
+      name: "Pinhole Lens",
+      image: Camera9,
+    },
+    {
+      name: "Satellite Imagery",
+      image: Camera10,
+    },
+    {
+      name: "Super Resolution Microscopy",
+      image: Camera11,
+    },
+    {
+      name: "Telephoto Lens",
+      image: Camera12,
+    },
+    {
+      name: "Telescope Lens",
+      image: Camera13,
+    },
+    {
+      name: "Ultra Wide Angle Lens",
+      image: Camera14,
+    },
+    {
+      name: "Wide Angle Lens",
+      image: Camera15,
     },
   ];
 
@@ -463,158 +627,216 @@ function Prompts() {
       image: Style5,
     },
     {
-      names: "Amber",
+      name: "Amber",
       image: Style6,
     },
     {
-      names: "Anatomical Drawing",
+      name: "Anatomical Drawing",
       image: Style7,
     },
     {
-      names: "Ancient",
+      name: "Ancient",
       image: Style8,
     },
     {
-      names: "Anime",
+      name: "Anime",
       image: Style9,
     },
     {
-      names: "Antimatter",
+      name: "Antimatter",
       image: Style10,
     },
     {
-      names: "Arabic",
+      name: "Arabic",
       image: Style11,
     },
-    { names: "Blocky", image: Style12 },
-    { names: "Blueprint Drawing", image: Style13 },
-    { names: "Blueprint Drawing", image: Style14 },
+    { name: "Black Hole", image: Style12 },
+    { name: "Blocky", image: Style13 },
+    { name: "Blueprint Drawing", image: Style14 },
 
     //
-    { names: "Carbon Fiber", image: Style15 },
-    { names: "Caribbean", image: Style16 },
-    { names: "Cartoon", image: Style17 },
-    { names: "Carved Lacquer", image: Style18 },
-    { names: "Celestial", image: Style19 },
-    { names: "Cellulose", image: Style20 },
-    { names: "Charcoal Style", image: Style21 },
-    { names: "Chromatic", image: Style22 },
-    { names: "Comicbook Drawing", image: Style23 },
-    { names: "Computer Chip", image: Style24 },
-    { names: "Concept Art", image: Style25 },
-    { names: "Coral", image: Style26 },
-    { names: "Cyberpunk", image: Style27 },
-    { names: "Dangerous", image: Style28 },
-    { names: "Dark Matter", image: Style29 },
-    { names: "Da Vinci", image: Style30 },
-    { names: "Da Vinci Drawing", image: Style31 },
-    { names: "Deep Sea", image: Style32 },
-    { names: "Diabolic", image: Style33 },
-    { names: "Diffraction Grading", image: Style34 },
-    { names: "Dna", image: Style35 },
-    { names: "Dots", image: Style36 },
-    { names: "Dripping Paint", image: Style37 },
-    { names: "Dune", image: Style38 },
-    { names: "Electronic Circuitry", image: Style39 },
-    { names: "Etching", image: Style40 },
-    { names: "Extraterrestrial", image: Style41 },
-    { names: "Fiber Optic", image: Style42 },
-    { names: "Fibonacci", image: Style43 },
-    { names: "Floral", image: Style44 },
-    { names: "Flower Of Life", image: Style45 },
-    { names: "Fossil", image: Style46 },
-    { names: "Fractal", image: Style47 },
-    { names: "Futuristic", image: Style48 },
-    { names: "Galactic", image: Style49 },
-    { names: "Gasoline", image: Style50 },
-    { names: "Glass", image: Style51 },
-    { names: "Glass Blowing", image: Style52 },
-    { names: "Glitchart", image: Style53 },
-    { names: "Gouache", image: Style54 },
-    { names: "Helix", image: Style55 },
-    { names: "Hell", image: Style55 },
-    { names: "Higgs Boson", image: Style56 },
-    { names: "Horror", image: Style57 },
-    { names: "Ice Age", image: Style58 },
-    { names: "Icy", image: Style59 },
-    { names: "Jurassic", image: Style60 },
-    { names: "Kaleidoscope", image: Style61 },
-    { names: "Knitted", image: Style62 },
-    { names: "Latex", image: Style63 },
-    { names: "Lightspeed", image: Style64 },
-    { names: "Liquid", image: Style65 },
+    { name: "Carbon Fiber", image: Style15 },
+    { name: "Caribbean", image: Style16 },
+    { name: "Cartoon", image: Style17 },
+    { name: "Carved Lacquer", image: Style18 },
+    { name: "Celestial", image: Style19 },
+    { name: "Cellulose", image: Style20 },
+    { name: "Charcoal Style", image: Style21 },
+    { name: "Chromatic", image: Style22 },
+    { name: "Comicbook Drawing", image: Style23 },
+    { name: "Computer Chip", image: Style24 },
+    { name: "Concept Art", image: Style25 },
+    { name: "Coral", image: Style26 },
+    { name: "Cyberpunk", image: Style27 },
+    { name: "Dangerous", image: Style28 },
+    { name: "Dark Matter", image: Style29 },
+    { name: "Da Vinci", image: Style30 },
+    { name: "Da Vinci Drawing", image: Style31 },
+    { name: "Deep Sea", image: Style32 },
+    { name: "Diabolic", image: Style33 },
+    { name: "Diffraction Grading", image: Style34 },
+    { name: "Dna", image: Style35 },
+    { name: "Dots", image: Style36 },
+    { name: "Dripping Paint", image: Style37 },
+    { name: "Dune", image: Style38 },
+    { name: "Electronic Circuitry", image: Style39 },
+    { name: "Etching", image: Style40 },
+    { name: "Extraterrestrial", image: Style41 },
+    { name: "Fiber Optic", image: Style42 },
+    { name: "Fibonacci", image: Style43 },
+    { name: "Floral", image: Style44 },
+    { name: "Flower Of Life", image: Style45 },
+    { name: "Fossil", image: Style46 },
+    { name: "Fractal", image: Style47 },
+    { name: "Futuristic", image: Style48 },
+    { name: "Galactic", image: Style49 },
+    { name: "Gasoline", image: Style50 },
+    { name: "Glass", image: Style51 },
+    { name: "Glass Blowing", image: Style52 },
+    { name: "Glitchart", image: Style53 },
+    { name: "Gouache", image: Style54 },
+    { name: "Helix", image: Style55 },
+    { name: "Hell", image: Style55 },
+    { name: "Higgs Boson", image: Style56 },
+    { name: "Horror", image: Style57 },
+    { name: "Ice Age", image: Style58 },
+    { name: "Icy", image: Style59 },
+    { name: "Jurassic", image: Style60 },
+    { name: "Kaleidoscope", image: Style61 },
+    { name: "Knitted", image: Style62 },
+    { name: "Latex", image: Style63 },
+    { name: "Lightspeed", image: Style64 },
+    { name: "Liquid", image: Style65 },
   ];
 
   // Artists Modal
   const filterModalArtists = [
     {
-      name: "Accent Lighting",
-      image: LightingOne,
+      name: "Alphonse Mucha",
+      image: Artists1,
     },
     {
-      name: "Backlight",
-      image: Lighting2,
+      name: "Andy Warhol",
+      image: Artists2,
     },
     {
-      name: "Blinding Light",
-      image: Lighting4,
+      name: "Art By Yoko Ono",
+      image: Artists3,
     },
     {
-      name: "Candlelight",
-      image: Lighting5,
+      name: "Banksy",
+      image: Artists4,
     },
     {
-      name: "Concert Lighting",
-      image: Lighting6,
+      name: "By Francisco De Goya",
+      image: Artists5,
     },
+    { name: "Caravaggio", image: Artists6 },
+    //
+    { name: "Claude Monet", image: Artists7 },
+    { name: "David Hockney", image: Artists8 },
+    { name: "Diego Rivera", image: Artists9 },
+    //
+    { name: "Edgar Degas", image: Artists10 },
+    { name: "Eugene Delacroix", image: Artists11 },
+    { name: "Frida Kahlo", image: Artists12 },
+    { name: "Garald Brom", image: Artists13 },
+    { name: "Gustav Klimt", image: Artists14 },
+    { name: "Henri Matisse", image: Artists15 },
+    { name: "Jack Kirby", image: Artists16 },
+    { name: "Jackson Pollock", image: Artists17 },
+    { name: "Jean Michel Basquiat", image: Artists18 },
+    { name: "JMW Turner", image: Artists19 },
+    { name: "Leonardo Da Vinci", image: Artists20 },
+    { name: "Marc Chagall", image: Artists21 },
+    { name: "Marcel Duchamp", image: Artists22 },
+    { name: "Mark Rothko", image: Artists23 },
+    { name: "Michelangelo", image: Artists24 },
+    { name: "Monet", image: Artists25 },
+    { name: "Paul Cezanne", image: Artists26 },
+    { name: "Paul Gauguin", image: Artists27 },
+    { name: "Paul Klee", image: Artists28 },
+    { name: "Picasso", image: Artists29 },
+    { name: "Pierre Auguste Renoir", image: Artists30 },
+    { name: "Piet Mondrian", image: Artists31 },
+    { name: "Rembrandt", image: Artists32 },
+    { name: "Rene Magritte", image: Artists33 },
+    { name: "Roy Lichtenstein", image: Artists34 },
+    { name: "Salvador Dali", image: Artists35 },
+    // {name: "Edward Hopper", image: Artists36 },
+    { name: "Sandro Botticelli", image: Artists37 },
+    { name: "Takashi Murakami", image: Artists38 },
+    { name: "Van Gogh", image: Artists39 },
+    { name: "Wassily Handinsky", image: Artists40 },
+    { name: "Willem De Koonig", image: Artists41 },
+    { name: "Yayoi Kusama", image: Artists42 },
+    { name: "Yoji Shinkawa", image: Artists43 },
+    { name: "Yoji Shinkawa", image: Artists44 },
   ];
 
   // Colors Modal
   const filterModalColors = [
-    {
-      name: "Accent Lighting",
-      image: LightingOne,
-    },
-    {
-      name: "Backlight",
-      image: Lighting2,
-    },
-    {
-      name: "Blinding Light",
-      image: Lighting4,
-    },
-    {
-      name: "Candlelight",
-      image: Lighting5,
-    },
-    {
-      name: "Concert Lighting",
-      image: Lighting6,
-    },
+    { name: "Baby Blue Color", image: Colors1 },
+    { name: "Baby Pink Color", image: Colors2 },
+    { name: "Beige", image: Colors3 },
+    { name: "Blue", image: Colors4 },
+    { name: "Brown Color", image: Colors5 },
+    { name: "Citrus", image: Colors6 },
+    { name: "Coquelicot Color", image: Colors7 },
+    { name: "Cyan", image: Colors8 },
+    { name: "CYMK", image: Colors9 },
+    { name: "Grayscale Color", image: Colors10 },
+    { name: "Green", image: Colors11 },
+    { name: "Hot Pink Color", image: Colors12 },
+    { name: "Indigo", image: Colors13 },
+    { name: "Lavender", image: Colors14 },
+    { name: "Magenta", image: Colors15 },
+    { name: "Matte Black Color", image: Colors16 },
+    { name: "Mint Color", image: Colors17 },
+    { name: "Navy Blue", image: Colors18 },
+    { name: "Neon Blue Color", image: Colors19 },
+    { name: "Neon Orange Color", image: Colors21 },
+    { name: "Neon Yellow Color", image: Colors22 },
+    { name: "Neon Red Color", image: Colors23 },
+    { name: "Orange", image: Colors24 },
+
+    //
+    { name: "Pink", image: Colors25 },
+    { name: "Red", image: Colors26 },
+    { name: "RGB", image: Colors27 },
+    { name: "Silver Color", image: Colors28 },
+    { name: "Teal", image: Colors29 },
+    { name: "Turquoise", image: Colors30 },
+    { name: "Vermillion", image: Colors31 },
+    { name: "Violet", image: Colors32 },
+    { name: "White", image: Colors33 },
+    { name: "Yellow", image: Colors34 },
+    { name: "White", image: Colors35 },
+    { name: "Yellow", image: Colors36 },
+    { name: "Zinc", image: Colors37 },
   ];
 
   // Materials Modal
   const filterModalMaterials = [
-    {
-      name: "Accent Lighting",
-      image: LightingOne,
-    },
-    {
-      name: "Backlight",
-      image: Lighting2,
-    },
-    {
-      name: "Blinding Light",
-      image: Lighting4,
-    },
-    {
-      name: "Candlelight",
-      image: Lighting5,
-    },
-    {
-      name: "Concert Lighting",
-      image: Lighting6,
-    },
+    { name: "Aluminum", image: Materials1 },
+    { name: "Brick", image: Materials2 },
+    { name: "Bronze", image: Materials3 },
+    { name: "Cardboard", image: Materials4 },
+    { name: "Ceramic", image: Materials5 },
+    { name: "Cotton", image: Materials6 },
+    { name: "Fabric", image: Materials7 },
+    { name: "Emerald", image: Materials8 },
+    { name: "Fabric", image: Materials9 },
+    { name: "Foil", image: Materials10 },
+    { name: "Gold", image: Materials11 },
+    { name: "Leather", image: Materials12 },
+    { name: "Nickel", image: Materials13 },
+    { name: "Nylon", image: Materials14 },
+    { name: "Paper", image: Materials15 },
+    { name: "Plastic", image: Materials16 },
+    { name: "Quartz", image: Materials17 },
+    { name: "Sharink Wrap", image: Materials18 },
+    { name: "Skin", image: Materials19 },
   ];
   // Modals End
 
