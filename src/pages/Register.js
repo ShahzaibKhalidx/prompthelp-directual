@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEfect, useState } from 'react'
 import Directual from 'directual-api';
 import { useAuth } from '../auth'
 import { Loader } from '../components/loader/loader';
@@ -8,7 +8,7 @@ import { Link } from 'react-router-dom';
 // Example of posting data to Directual
 
 // Connect to Directual api
-const api = new Directual({ apiHost: '/' })
+const api = new Directual({ apiHost: 'https://api.directual.com/good/api/v5/data/request_reg/register?appID=ff949b76-9513-459d-95b3-9dd741fb08e1&sessionID=876082' })
 
 export default function Register() {
 
