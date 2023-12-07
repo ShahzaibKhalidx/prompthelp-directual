@@ -377,22 +377,22 @@ function Prompts() {
 
   const filterTooltips = {
     Aspect:
-      "Change the Aspect Ratio (width-to-height ratio) of the generated image. Default is 1:1",
-    Version: "Specify the Midjourney model to use. Default is 5.2",
+      "Change the Aspect Ratio (width-to-height ratio) of the generated image. Default is 1:1 ?",
+    Version: "Specify the Midjourney model to use. Default is 5.2 ?",
     Quality:
-      "Decide how much time is spent generating an image (higher number, higher quality). Defualt is 1",
-    Tile: "Generate images that can be used as repeating tiles to create seamless patterns for fabrics, wallpapers and textures.",
-    Exclude: "Tell the Midjourney Bot what not to include in your image",
+      "Decide how much time is spent generating an image (higher number, higher quality). Defualt is 1 ?",
+    Tile: "Generate images that can be used as repeating tiles to create seamless patterns for fabrics, wallpapers and textures. ?",
+    Exclude: "Tell the Midjourney Bot what not to include in your image ?",
     Stylize:
-      "Low values will closely match the prompt but are less artistic. High value will be very artictic but less connected to the prompt. Default is 100",
+      "Low values will closely match the prompt but are less artistic. High value will be very artictic but less connected to the prompt. Default is 100 ?",
     Chaos:
-      "Influence how how varied your image grid will be. Higher chaos means more unusual and unexpected results. Default is 0",
+      "Influence how how varied your image grid will be. Higher chaos means more unusual and unexpected results. Default is 0 ?",
     Stopped:
-      "Create Blurrier, less detailed results by stopping your job partway through. Default is 100",
-    Repeat: "Run your prompt multiple times",
+      "Create Blurrier, less detailed results by stopping your job partway through. Default is 100 ?",
+    Repeat: "Run your prompt multiple times ?",
     Weird:
-      "Introduce quirky and offbeat qualities to your images, resulting in unique and unexpexted outcomes. Defualt is 0",
-    Seed: "If you use the same seed number and prompt, you will get similar final images. Defualt is random.",
+      "Introduce quirky and offbeat qualities to your images, resulting in unique and unexpexted outcomes. Defualt is 0 ?",
+    Seed: "If you use the same seed number and prompt, you will get similar final images. Defualt is random. ?",
   };
 
   // print the generated prompt to the console
@@ -1091,10 +1091,10 @@ function Prompts() {
                   type="button"
                   onClick={openCameraModal}
                   className="flex items-center rounded-md bg-blue-100 px-4 py-2 text-sm font-medium text-blue hover:bg-opacity-30 focus:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-opacity-75">
-                  <FaCamera /> Camera
+                  <FaCamera style={{ marginRight: "8px" }} /> Camera
                 </button>
               </div>
-              <br />
+              
               <div className="inset-0 flex items-center justify-center mb-4 md:mb-0">
                 <button
                   type="button"
