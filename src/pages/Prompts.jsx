@@ -1063,8 +1063,8 @@ function Prompts() {
             />
           </div>
           <div>
-            <div className="md:flex md:flex-wrap items-center justify-center">
-              <div className="inset-0 flex items-center justify-center">
+            <div className="flex flex-wrap justify-center gap-4 p-4">
+              <div className="inset-0 flex items-center justify-center mb-4 md:mb-0">
                 <button
                   type="button"
                   onClick={openModal}
@@ -1077,7 +1077,7 @@ function Prompts() {
 
               {/* Style Button */}
 
-              <div className="inset-0 flex items-center justify-center">
+              <div className="inset-0 flex items-center justify-center mb-4 md:mb-0">
                 <button
                   type="button"
                   onClick={openStylesModal}
@@ -1086,7 +1086,7 @@ function Prompts() {
                 </button>
               </div>
 
-              <div className="inset-0 flex items-center justify-center">
+              <div className="inset-0 flex items-center justify-center mb-4 md:mb-0">
                 <button
                   type="button"
                   onClick={openCameraModal}
@@ -1095,7 +1095,7 @@ function Prompts() {
                 </button>
               </div>
               <br />
-              <div className="inset-0 flex items-center justify-center">
+              <div className="inset-0 flex items-center justify-center mb-4 md:mb-0">
                 <button
                   type="button"
                   onClick={openArtistsModal}
@@ -1104,7 +1104,7 @@ function Prompts() {
                   Artists
                 </button>
               </div>
-              <div className="inset-0 flex items-center justify-center">
+              <div className="inset-0 flex items-center justify-center mb-4 md:mb-0">
                 <button
                   type="button"
                   onClick={openColorsModal}
@@ -1112,7 +1112,7 @@ function Prompts() {
                   <FaPalette style={{ marginRight: "8px" }} /> Colors
                 </button>
               </div>
-              <div className="inset-0 flex items-center justify-center">
+              <div className="inset-0 flex items-center justify-center mb-4 md:mb-0">
                 <button
                   type="button"
                   onClick={openMaterialsModal}
