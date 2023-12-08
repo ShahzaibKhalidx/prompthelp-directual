@@ -205,7 +205,7 @@ import Colors16 from "../assets/Colors/Colors-16.jpg";
 import Colors17 from "../assets/Colors/Colors-17.jpg";
 import Colors18 from "../assets/Colors/Colors-18.jpg";
 import Colors19 from "../assets/Colors/Colors-19.jpg";
-import Colors20 from "../assets/Colors/Colors-20.jpg";
+// import Colors20 from "../assets/Colors/Colors-20.jpg";
 import Colors21 from "../assets/Colors/Colors-21.jpg";
 import Colors22 from "../assets/Colors/Colors-22.jpg";
 import Colors23 from "../assets/Colors/Colors-23.jpg";
@@ -907,8 +907,8 @@ function Prompts() {
     document.body.removeChild(tempInput);
   };
 
-  // Save Prompt to DB
   const handleSavePrompt = async () => {
+    // Generate the summary as before
     const summary = Object.keys(filtersData)
       .map((key) => {
         if (Array.isArray(filtersData[key])) {
@@ -918,7 +918,36 @@ function Prompts() {
         }
       })
       .join("\n");
+  
+    // Set up the API endpoint and headers (replace with your actual endpoint and API key)
+    const apiEndpoint = 'https://api.directual.com/good/api/v5/data/save_prompt/postPrompt?appID=ff949b76-9513-459d-95b3-9dd741fb08e1&sessionID=876081';
+    const apiKey = 'ff949b76-9513-459d-95b3-9dd741fb08e1'; // Replace with your actual API key
+  
+    try {
+      const response = await fetch(apiEndpoint, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'api-key': apiKey,
+        },
+        body: JSON.stringify({ save_prompt: summary }), // Adjust 'fieldInDirectual' to match your Directual data structure
+      });
+  
+      if (!response.ok) {
+        throw new Error('Network response was not ok');
+      }
+  
+      // Handle the response, e.g., display a success message
+      console.log('Prompt saved successfully');
+    } catch (error) {
+      // Handle errors, e.g., display an error message
+      console.error('Error saving prompt:', error);
+    }
   };
+  
+
+
+  // 
 
   const authContext = useAuth();
   const handleLightingOption = (data) => {
@@ -1094,7 +1123,7 @@ function Prompts() {
                   <FaCamera style={{ marginRight: "8px" }} /> Camera
                 </button>
               </div>
-              
+
               <div className="inset-0 flex items-center justify-center mb-4 md:mb-0">
                 <button
                   type="button"
