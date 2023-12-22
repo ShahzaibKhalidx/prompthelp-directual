@@ -106,7 +106,7 @@ export default function SavePrompt() {
   };
 
   return (
-    <Layout className="h-100">
+    <Layout className="h-150">
       {/* <Sider width={200} className="site-layout-background bg-secondary ">
         <Button type="primary" className="my-2 ms-2 bg-cyan-700" onClick={createDocument}>
           + Document
@@ -121,7 +121,7 @@ export default function SavePrompt() {
         ))}
       </Sider> */}
 
-      <Sider width={200} className="site-layout-background bg-secondary">
+      <Sider width={200}  className="site-layout-background bg-secondary overflow-auto  sm:h-40"  style={{ height: '80vh' }}>
         <Button
           type="primary"
           className="my-2 ms-2 bg-cyan-700"
@@ -153,7 +153,7 @@ export default function SavePrompt() {
       </Sider>
 
       <Layout>
-        <Content className="w-100 h-100">
+        <Content className="w-100 h-100 sm: w-50 h-52">
           <div className="content">
             {/* <h1>Post your Prompt to save</h1> */}
             {loading && <Loader />}
