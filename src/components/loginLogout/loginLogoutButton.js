@@ -73,6 +73,7 @@ export function LogInLogOutButton() {
           ) : (
             <Loader text="Logging out..." />
           )}
+           {/* <Note /> */}
         </React.Fragment>
       ) : (
         <>
