@@ -153,13 +153,15 @@ export default function SavePrompt() {
       </Sider>
 
       <Layout>
-        <Content className="w-100 h-100 sm: w-50 h-52">
+        <Content className="w-100 h-100 overflow-auto sm: w-50 h-100" >
           <div className="content">
             {/* <h1>Post your Prompt to save</h1> */}
             {loading && <Loader />}
             {showForm && (
               <form onSubmit={SavePrompt}>
                 <Input.TextArea
+                  className="form-control"
+                style={{ height: '60vh' }}
                   rows={10}
                   value={textpadData}
                   onChange={(e) => setTextpadData(e.target.value)}
