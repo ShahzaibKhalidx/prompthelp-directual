@@ -22,6 +22,7 @@ export default function SavePrompt() {
   const [showForm, setShowForm] = useState(true); // Show/hide the form
   const [formPayload, setFormPayload] = useState({ user_id: auth.user }); // Data to send
   const [textpadVisible, setTextpadVisible] = useState(false); // Textpad visibility
+
   // Document
   const [documents, setDocuments] = useState([]); // Stores all documents
   const [currentDocId, setCurrentDocId] = useState(null); // ID of the currently selected document
@@ -37,9 +38,80 @@ export default function SavePrompt() {
     setTextpadVisible(false);
   };
 
+  // // POST-request
+  // const SavePrompt = (e) => {
+  //   e.preventDefault();
+  //   setStatus('loading');
+  //   setLoading(true);
+  //   setShowForm(false);
+
+  //   const api = new Directual({
+  //     apiHost:
+  //       "https://api.directual.com/good/api/v5/data/save_prompt/postPrompt?appID=9c302275-48ba-47d0-9022-e21cae0a4370&sessionID=876081",
+  //   });
+  //   api
+  //     .structure(dataStructure)
+  //    .setData(endpoint, formPayload, { sessionID: auth.sessionID })
+  //     .then((response) => {
+  //       console.log(response);
+  //       setResponse(response.result);
+  //       setStatus(response.status);
+  //       setLoading(false);
+  //     })
+  //     .catch((e) => {
+  //       setLoading(false);
+  //       console.log(e.response);
+  //       setBadRequest({
+  //         httpCode: e.response.status,
+  //         msg: e.response.data.msg,
+  //       });
+  //     });
+  // };
+
+  // // POST-request
+  // const SavePrompt = (e) => {
+  //   e.preventDefault();
+  //   setStatus("loading");
+  //   setLoading(true);
+  //   setShowForm(false);
+
+  //   const api = new Directual({
+  //     apiHost:
+  //       "https://api.directual.com/good/api/v5/data/save_prompt/postPrompt?appID=9c302275-48ba-47d0-9022-e21cae0a4370&sessionID=876081",
+  //   });
+
+  //   api
+  //     .structure(dataStructure)
+  //     .setData(endpoint, formPayload, { sessionID: auth.sessionID })
+  //     .then((response) => {
+  //       console.log(response);
+  //       setResponse(response.result);
+  //       setStatus("success"); // Updated here
+  //       setLoading(false);
+  //     })
+  //     .catch((e) => {
+  //       console.error(e.response);
+  //       setLoading(false);
+  //       setStatus("error"); // Updated here
+  //       if (e.response) {
+  //         // Check if response exists
+  //         setBadRequest({
+  //           httpCode: e.response.status,
+  //           msg: e.response.data.msg,
+  //         });
+  //       } else {
+  //         setBadRequest({
+  //           httpCode: "Network Error",
+  //           msg: "Unable to reach the server",
+  //         });
+  //       }
+  //     });
+  // };
+
   // POST-request
-  const SavePrompt = (e) => {
+  const SavePrompt = async (e) => {
     e.preventDefault();
+    setStatus("loading");
     setLoading(true);
     setShowForm(false);
 
@@ -47,23 +119,47 @@ export default function SavePrompt() {
       apiHost:
         "https://api.directual.com/good/api/v5/data/save_prompt/postPrompt?appID=9c302275-48ba-47d0-9022-e21cae0a4370&sessionID=876081",
     });
-    api
-      .structure(dataStructure)
-      .setData(endpoint, formPayload, { sessionID: auth.sessionID })
-      .then((response) => {
-        setResponse(response.result);
-        setStatus(response.status);
-        setLoading(false);
-      })
-      .catch((e) => {
-        setLoading(false);
-        console.log(e.response);
+
+    try {
+      const response = await api
+        .structure(dataStructure)
+        .setData(endpoint, formPayload, { sessionID: auth.sessionID });
+
+      console.log("API response:", response);
+      setResponse(response.result);
+      setStatus("success");
+    } catch (error) {
+      console.error("API request failed:", error);
+      setStatus("error");
+
+      if (error.response) {
+        // The request was made and the server responded with a status code
+        // that falls out of the range of 2xx
+        console.error("Error response:", error.response);
         setBadRequest({
-          httpCode: e.response.status,
-          msg: e.response.data.msg,
+          httpCode: error.response.status,
+          msg: error.response.data.msg,
         });
-      });
+      } else if (error.request) {
+        // The request was made but no response was received
+        console.error("Error request:", error.request);
+        setBadRequest({
+          httpCode: "Network Error",
+          msg: "No response received from the server",
+        });
+      } else {
+        // Something happened in setting up the request that triggered an Error
+        console.error("Error message:", error.message);
+        setBadRequest({
+          httpCode: "Request Error",
+          msg: error.message,
+        });
+      }
+    } finally {
+      setLoading(false);
+    }
   };
+
   // Create a new document
   const createDocument = () => {
     const newDocument = {
@@ -97,35 +193,18 @@ export default function SavePrompt() {
     setDocuments(updatedDocuments);
   };
 
-  // Function to rename a document
-  const renameDocument = (docId, newTitle) => {
-    const updatedDocuments = documents.map((doc) =>
-      doc.id === docId ? { ...doc, title: newTitle } : doc
-    );
-    setDocuments(updatedDocuments);
-  };
-
   return (
     <Layout className="h-150">
-      {/* <Sider width={200} className="site-layout-background bg-secondary ">
-        <Button type="primary" className="my-2 ms-2 bg-cyan-700" onClick={createDocument}>
-          + Document
-        </Button>
-        {documents.map((doc) => (
-          <div
-            key={doc.id}
-            className="bg-sky-300"
-            onClick={() => selectDocument(doc.id)}>
-            Document {doc.id}
-          </div>
-        ))}
-      </Sider> */}
-
-      <Sider width={200}  className="site-layout-background bg-secondary overflow-auto  sm:h-40"  style={{ height: '80vh' }}>
+      <Sider
+        width={200}
+        className="site-layout-background bg-secondary overflow-auto  sm:h-40"
+        style={{ height: "80vh" }}
+      >
         <Button
           type="primary"
           className="my-2 ms-2 bg-cyan-700"
-          onClick={createDocument}>
+          onClick={createDocument}
+        >
           + Document
         </Button>
         {documents.map((doc) => (
@@ -136,44 +215,35 @@ export default function SavePrompt() {
                 xmlns="http://www.w3.org/2000/svg"
                 height="16"
                 width="14"
-                viewBox="0 0 448 512">
+                viewBox="0 0 448 512"
+              >
                 <path d="M135.2 17.7L128 32H32C14.3 32 0 46.3 0 64S14.3 96 32 96H416c17.7 0 32-14.3 32-32s-14.3-32-32-32H320l-7.2-14.3C307.4 6.8 296.3 0 284.2 0H163.8c-12.1 0-23.2 6.8-28.6 17.7zM416 128H32L53.2 467c1.6 25.3 22.6 45 47.9 45H346.9c25.3 0 46.3-19.7 47.9-45L416 128z" />
               </svg>
             </Button>
-
-            {/* Rename  */}
-            {/* <Button onClick={() => {
-        const newTitle = prompt("Enter new title:");
-        if (newTitle) {
-          renameDocument(doc.id, newTitle);
-        }
-      }}>Rename</Button> */}
           </div>
         ))}
       </Sider>
 
       <Layout>
-        <Content className="w-100 h-100 overflow-auto sm: w-50 h-100" >
+        <Content className="w-100 h-100 overflow-auto sm: w-50 h-100">
           <div className="content">
-            {/* <h1>Post your Prompt to save</h1> */}
             {loading && <Loader />}
             {showForm && (
-              <form onSubmit={SavePrompt}>
+              <form>
                 <Input.TextArea
                   className="form-control"
-                style={{ height: '60vh' }}
+                  style={{ height: "60vh" }}
                   rows={10}
                   value={textpadData}
                   onChange={(e) => setTextpadData(e.target.value)}
                   placeholder="Write something..."
                 />
-                {/* <input type="date" onChange={(e) => {
-                  setFormPayload({ ...formPayload, 'Dated': e.target.value })
-                }} /> */}
+
                 <Button
                   type="primary"
                   className="my-2 bg-cyan-700"
-                  onClick={saveDocument}>
+                  onClick={SavePrompt}
+                >
                   Save
                 </Button>
               </form>
@@ -191,7 +261,9 @@ export default function SavePrompt() {
                 )}
               </div>
             )}
-            {badRequest && (
+
+            {/* Bad Request S */}
+            {/* {badRequest && ( 
               <div className="error">
                 <b>{badRequest.httpCode} error</b>
                 {badRequest.httpCode === "400" && (
@@ -204,7 +276,7 @@ export default function SavePrompt() {
                   <code>{badRequest.msg}</code>
                 </p>
               </div>
-            )}
+            )}*/}
             {!showForm && !loading && (
               <button onClick={resetForm}>Submit again</button>
             )}
@@ -214,7 +286,8 @@ export default function SavePrompt() {
               <textarea
                 className="form-control"
                 placeholder="Write something..."
-                rows="10"></textarea>
+                rows="10"
+              ></textarea>
             </div>
           )}
         </Content>
