@@ -2,7 +2,8 @@ import React, { useState } from "react";
 import Directual from "directual-api";
 import { useAuth } from "../auth";
 import { Loader } from "../components/loader/loader";
-import { Layout, Button, Input } from "antd";
+import { Layout, Button, Menu, Dropdown, Input } from "antd";
+import { DownCircleOutlined } from "@ant-design/icons";
 
 const { Content, Sider } = Layout;
 
@@ -27,6 +28,47 @@ export default function SavePrompt() {
   const [documents, setDocuments] = useState([]); // Stores all documents
   const [currentDocId, setCurrentDocId] = useState(null); // ID of the currently selected document
   const [textpadData, setTextpadData] = useState(""); // Data in the textpad
+
+  // Dropdown menu
+  const [selectedOption, setSelectedOption] = useState(null);
+
+  const handleMenuClick = (e) => {
+    setSelectedOption(e.key);
+    console.log(`Selected Option: ${e.key}`);
+  };
+
+  const performActionBasedOnSelection = () => {
+    switch (selectedOption) {
+      case "chatgpt":
+        // Logic for ChatGPT Option 1
+        console.log("Performing ChatGPT Option 1 Action");
+        break;
+      case "midjourney":
+        // Logic for Midjourney Option 1
+        console.log("Performing Midjourney Option 1 Action");
+        break;
+      default:
+        console.log("No option selected or action defined for this option");
+    }
+  };
+
+  const onDocumentButtonClick = () => {
+    console.log("Document button clicked with option: ", selectedOption);
+    performActionBasedOnSelection();
+  };
+
+  const dropdownMenu = (
+    <Menu onClick={handleMenuClick}>
+      <Menu.ItemGroup title="ChatGPT Options">
+        <Menu.Item key="chatgpt-option1">ChatGPT</Menu.Item>
+    
+      </Menu.ItemGroup>
+      <Menu.ItemGroup title="Midjourney Options">
+        <Menu.Item key="midjourney-option1">Midjourney</Menu.Item>
+       
+      </Menu.ItemGroup>
+    </Menu>
+  );
 
   // Reset the form
   const resetForm = () => {
@@ -207,6 +249,18 @@ export default function SavePrompt() {
         >
           + Document
         </Button>
+
+        {/* DroupDown */}
+        <Dropdown overlay={dropdownMenu}>
+          <Button
+           type="primary"
+           className="my-2 ms-2 rounded-lg lg:my-2 lg:ms-2"
+           onClick={createDocument}>
+         <DownCircleOutlined
+         className="" />
+          </Button>
+        </Dropdown>
+
         {documents.map((doc) => (
           <div key={doc.id} className="bg-cyan-700 d-flex align-items-center">
             <div onClick={() => selectDocument(doc.id)}>Document {doc.id}</div>
