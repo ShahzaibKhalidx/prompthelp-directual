@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import Directual from "directual-api";
 import { useAuth } from "../auth";
 import { Loader } from "../components/loader/loader";
-import { Layout, Button, Input, Modal, message } from "antd";
+import { Layout, Button, Input, Modal, message, Radio } from "antd";
 import {
   FileTextTwoTone,
   DeleteTwoTone,
@@ -50,6 +50,10 @@ export default function SavePrompt() {
   const [editingFolderId, setEditingFolderId] = useState(null);
   const [editingDocId, setEditingDocId] = useState(null);
 
+  // Add new state for folder selection modal visibility
+  const [isFolderSelectionVisible, setIsFolderSelectionVisible] =
+    useState(false);
+
   // Function to copy text from the textpad
   const copyText = () => {
     navigator.clipboard.writeText(textpadData).then(
@@ -71,16 +75,25 @@ export default function SavePrompt() {
   const handleCreateFolder = () => {
     setFolders([
       ...folders,
-      { id: Date.now(), name: newFolderName, documents: [] },
+      { id: Date.now(), name: newFolderName, documents: [], isOpen: false },
     ]);
     setIsFolderModalVisible(false);
     setNewFolderName("");
+  };
+
+  const toggleFolder = (folderId) => {
+    setFolders(
+      folders.map((folder) =>
+        folder.id === folderId ? { ...folder, isOpen: !folder.isOpen } : folder
+      )
+    );
   };
 
   // Function to show the modal for new document creation
   const showNewDocModal = (folderId) => {
     setSelectedFolderId(folderId);
     setIsNewDocModalVisible(true);
+    setIsFolderSelectionVisible(true);
   };
 
   // Function to handle new document creation
@@ -93,6 +106,7 @@ export default function SavePrompt() {
           : folder
       )
     );
+    setIsNewDocModalVisible(false);
     setIsNewDocModalVisible(false);
     setNewDocTitle("");
   };
@@ -185,22 +199,6 @@ export default function SavePrompt() {
     }
   };
 
-  const onDocumentButtonClick = () => {
-    console.log("Document button clicked with option: ", selectedOption);
-    performActionBasedOnSelection();
-  };
-
-  // const dropdownMenu = (
-  //   <Menu onClick={handleMenuClick}>
-  //     <Menu.ItemGroup title="ChatGPT Options">
-  //       <Menu.Item key="chatgpt-option1">ChatGPT</Menu.Item>
-  //     </Menu.ItemGroup>
-  //     <Menu.ItemGroup title="Midjourney Options">
-  //       <Menu.Item key="midjourney-option1">Midjourney</Menu.Item>
-  //     </Menu.ItemGroup>
-  //   </Menu>
-  // );
-
   // Reset the form
   const resetForm = () => {
     setResponse();
@@ -274,28 +272,6 @@ export default function SavePrompt() {
     setTextpadData("");
   };
 
-  // // Save the current document
-  // const saveDocument = () => {
-  //   const updatedDocuments = documents.map((doc) =>
-  //     doc.id === currentDocId ? { ...doc, content: textpadData } : doc
-  //   );
-  //   setDocuments(updatedDocuments);
-  //   createDocument(); // Optionally create a new document after saving
-  // };
-
-  // // Select a document to view or edit
-  // const selectDocument = (docId) => {
-  //   const selectedDoc = documents.find((doc) => doc.id === docId);
-  //   setCurrentDocId(docId);
-  //   setTextpadData(selectedDoc ? selectedDoc.content : "");
-  // };
-
-  // Function to delete a document
-  // const deleteDocument = (docId) => {
-  //   const updatedDocuments = documents.filter((doc) => doc.id !== docId);
-  //   setDocuments(updatedDocuments);
-  // };
-
   const deleteFolder = (folderId) => {
     const updatedFolders = folders.filter((folder) => folder.id !== folderId);
     setFolders(updatedFolders);
@@ -317,7 +293,7 @@ export default function SavePrompt() {
   return (
     <Layout className="h-150">
       <Sider
-        width={300}
+        width={350}
         className="Sider shadow-lg overflow-auto sm:h-10 w-10"
         style={{
           height: "80vh",
@@ -325,18 +301,50 @@ export default function SavePrompt() {
           marginLeft: "10vh",
           marginTop: "2vh",
           marginBottom: "2vh",
-          borderRadius: "10px"
+          borderRadius: "10px",
         }}
       >
-        {/* Folder button */}
-        <Button
-          type="primary"
-          className="ml-5 mb-5 "
-          onClick={showNewFolderModal}
-        >
-          <FolderAddTwoTone />
-          New Folder
-        </Button>
+        <div className="flex overflow-auto">
+          {/* Folder button */}
+          <Button
+            className="ml-5 mb-5 mt-5 flex items-center rounded-xl bg-indigo-100 text-blue-800 border-0 hover:bg-gray-300 hover:text-white"
+            onClick={showNewFolderModal}
+          >
+            <FolderAddTwoTone className="mr-2 text-white" />
+            New Folder
+          </Button>
+
+          {/* New Document button */}
+
+          <Button
+            className="ml-5 mb-5 mt-5 flex items-center rounded-xl bg-indigo-100 text-blue-800 border-0 hover:bg-gray-300 hover:text-white"
+            onClick={() => showNewDocModal()}
+          >
+            <FileTextTwoTone className="mr-2 text-white" /> New Prompt
+          </Button>
+        </div>
+
+        {/* Modal for folder selection */}
+        <Modal
+  title="Select Folder for New Document"
+  visible={isFolderSelectionVisible}
+  onOk={() => {
+    setIsNewDocModalVisible(true); // Assuming this opens a new document modal
+    setIsFolderSelectionVisible(false); // This will close the folder selection modal
+  }}
+  onCancel={() => setIsFolderSelectionVisible(false)}
+>
+  {folders.map((folder) => (
+    <Radio.Group
+      onChange={(e) => setSelectedFolderId(e.target.value)}
+      value={selectedFolderId}
+      key={folder.id}
+    >
+      <Radio value={folder.id}>{folder.name}</Radio>
+    </Radio.Group>
+  ))}
+</Modal>
+
 
         {/* Modal for new folder creation */}
         <Modal
@@ -398,7 +406,7 @@ export default function SavePrompt() {
         {folders.map((folder) => (
           <div key={folder.id} className=" shadow-2xl m-4">
             <div className="bg-blue-600 rounded-xl flex items-center justify-between p-2">
-            <b className="text-white">{folder.name}</b>
+              <b className="text-white">{folder.name}</b>
 
               <Button
                 className="border-0"
@@ -428,7 +436,9 @@ export default function SavePrompt() {
                   <path d="M135.2 17.7L128 32H32C14.3 32 0 46.3 0 64S14.3 96 32 96H416c17.7 0 32-14.3 32-32s-14.3-32-32-32H320l-7.2-14.3C307.4 6.8 296.3 0 284.2 0H163.8c-12.1 0-23.2 6.8-28.6 17.7zM416 128H32L53.2 467c1.6 25.3 22.6 45 47.9 45H346.9c25.3 0 46.3-19.7 47.9-45L416 128z" />
                 </svg>
               </Button>
-              <Button
+
+              {/* folder show a creted Document Button */}
+              {/* <Button
                 type="primary"
                 className="border-0"
                 onClick={() => showNewDocModal(folder.id)}
@@ -441,7 +451,7 @@ export default function SavePrompt() {
                 >
                   <path d="M0 64C0 28.7 28.7 0 64 0H224V128c0 17.7 14.3 32 32 32H384V448c0 35.3-28.7 64-64 64H64c-35.3 0-64-28.7-64-64V64zm384 64H256V0L384 128z" />
                 </svg>
-              </Button>
+              </Button> */}
             </div>
 
             {/* Document */}
@@ -485,43 +495,6 @@ export default function SavePrompt() {
             ))}
           </div>
         ))}
-
-        {/* Document Button */}
-        {/* <Button
-          type="primary"
-          className="my-2 ms-2 bg-cyan-700"
-          onClick={createDocument}
-        >
-          + Document
-        </Button> */}
-
-        {/* DroupDown */}
-        {/* <Dropdown overlay={dropdownMenu}>
-          <Button
-            type="primary"
-            className="my-2 ms-2 rounded-lg lg:my-2 lg:ms-2"
-            onClick={createDocument}
-          >
-            <DownCircleOutlined className="" />
-          </Button>
-        </Dropdown> */}
-
-        {/* add this a delet button */}
-        {/* {documents.map((doc) => (
-          <div key={doc.id} className="bg-cyan-700 d-flex align-items-center">
-            <div onClick={() => selectDocument(doc.id)}>Document {doc.id}</div>
-            <Button className="border-0" onClick={() => deleteDocument(doc.id)}>
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                height="16"
-                width="14"
-                viewBox="0 0 448 512"
-              >
-                <path d="M135.2 17.7L128 32H32C14.3 32 0 46.3 0 64S14.3 96 32 96H416c17.7 0 32-14.3 32-32s-14.3-32-32-32H320l-7.2-14.3C307.4 6.8 296.3 0 284.2 0H163.8c-12.1 0-23.2 6.8-28.6 17.7zM416 128H32L53.2 467c1.6 25.3 22.6 45 47.9 45H346.9c25.3 0 46.3-19.7 47.9-45L416 128z" />
-              </svg>
-            </Button>
-          </div>
-        ))} */}
       </Sider>
 
       <Layout>
