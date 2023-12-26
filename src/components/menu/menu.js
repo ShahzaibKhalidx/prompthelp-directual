@@ -22,9 +22,7 @@ export function MainMenu() {
       </li> */}
 
       {/* JSX visible for authorised users only */}
-      {authContext.isAutorised() && <li>
-        <NavLink exact to="/myprompts">My Prompts</NavLink>
-      </li>}
+      
       {authContext.isAutorised() && <li>
         <NavLink exact to="/saveprompt">Save to Prompts</NavLink>
       </li>}
