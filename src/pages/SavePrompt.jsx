@@ -60,13 +60,18 @@ export default function SavePrompt() {
   const copyText = () => {
     navigator.clipboard.writeText(textpadData).then(
       () => {
-        message.success("Text copied to clipboard", 3);
+        message.success("Prompt copied to clipboard", 3);
       },
       (err) => {
         console.error("Could not copy text: ", err);
         message.error("Failed to copy text", 3);
       }
     );
+  };
+
+  // Function to display document count text
+  const documentCountText = (numDocuments) => {
+    return numDocuments === 1 ? `${numDocuments} ` : `${numDocuments} `;
   };
 
   // Function to show the modal for new folder creation
@@ -407,7 +412,11 @@ export default function SavePrompt() {
         {folders.map((folder) => (
           <div key={folder.id} className=" shadow-2xl m-4">
             <div className="bg-blue-600 rounded-xl p-2 ">
-              <b className="text-white">{folder.name}</b>
+              <b className="text-white">
+                {" "}
+                <FolderAddTwoTone /> {folder.name} (
+                {documentCountText(folder.documents.length)})
+              </b>
               <div className="flex items-end justify-end ">
                 <Button
                   className="border-0"
