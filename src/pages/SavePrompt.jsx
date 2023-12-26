@@ -80,76 +80,6 @@ export default function SavePrompt() {
     setTextpadVisible(false);
   };
 
-  // // POST-request
-  // const SavePrompt = (e) => {
-  //   e.preventDefault();
-  //   setStatus('loading');
-  //   setLoading(true);
-  //   setShowForm(false);
-
-  //   const api = new Directual({
-  //     apiHost:
-  //       "https://api.directual.com/good/api/v5/data/save_prompt/postPrompt?appID=9c302275-48ba-47d0-9022-e21cae0a4370&sessionID=876081",
-  //   });
-  //   api
-  //     .structure(dataStructure)
-  //    .setData(endpoint, formPayload, { sessionID: auth.sessionID })
-  //     .then((response) => {
-  //       console.log(response);
-  //       setResponse(response.result);
-  //       setStatus(response.status);
-  //       setLoading(false);
-  //     })
-  //     .catch((e) => {
-  //       setLoading(false);
-  //       console.log(e.response);
-  //       setBadRequest({
-  //         httpCode: e.response.status,
-  //         msg: e.response.data.msg,
-  //       });
-  //     });
-  // };
-
-  // // POST-request
-  // const SavePrompt = (e) => {
-  //   e.preventDefault();
-  //   setStatus("loading");
-  //   setLoading(true);
-  //   setShowForm(false);
-
-  //   const api = new Directual({
-  //     apiHost:
-  //       "https://api.directual.com/good/api/v5/data/save_prompt/postPrompt?appID=9c302275-48ba-47d0-9022-e21cae0a4370&sessionID=876081",
-  //   });
-
-  //   api
-  //     .structure(dataStructure)
-  //     .setData(endpoint, formPayload, { sessionID: auth.sessionID })
-  //     .then((response) => {
-  //       console.log(response);
-  //       setResponse(response.result);
-  //       setStatus("success"); // Updated here
-  //       setLoading(false);
-  //     })
-  //     .catch((e) => {
-  //       console.error(e.response);
-  //       setLoading(false);
-  //       setStatus("error"); // Updated here
-  //       if (e.response) {
-  //         // Check if response exists
-  //         setBadRequest({
-  //           httpCode: e.response.status,
-  //           msg: e.response.data.msg,
-  //         });
-  //       } else {
-  //         setBadRequest({
-  //           httpCode: "Network Error",
-  //           msg: "Unable to reach the server",
-  //         });
-  //       }
-  //     });
-  // };
-
   // POST-request
   const SavePrompt = async (e) => {
     e.preventDefault();
@@ -330,10 +260,11 @@ export default function SavePrompt() {
                   <code>{badRequest.msg}</code>
                 </p>
               </div>
-            )}*/}
-            {!showForm && !loading && (
+            )} */}
+            {/* Submit Button */}
+            {/* {!showForm && !loading && (
               <button onClick={resetForm}>Submit again</button>
-            )}
+            )} */}
           </div>
           {textpadVisible && (
             <div className="textpad">
