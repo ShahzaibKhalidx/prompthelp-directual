@@ -318,8 +318,15 @@ export default function SavePrompt() {
     <Layout className="h-150">
       <Sider
         width={300}
-        className="site-layout-background bg-secondary overflow-auto  sm:h-40"
-        style={{ height: "80vh" }}
+        className="Sider shadow-lg overflow-auto sm:h-10 w-10"
+        style={{
+          height: "80vh",
+          backgroundColor: "#ffffff",
+          marginLeft: "10vh",
+          marginTop: "2vh",
+          marginBottom: "2vh",
+          borderRadius: "10px"
+        }}
       >
         {/* Folder button */}
         <Button
@@ -389,9 +396,9 @@ export default function SavePrompt() {
 
         {/* Display folders and documents */}
         {folders.map((folder) => (
-          <div key={folder.id} className="folder-item m-4">
-            <div className="bg-cyan-700 flex items-center p-2">
-              <b>{folder.name}</b>
+          <div key={folder.id} className=" shadow-2xl m-4">
+            <div className="bg-blue-600 rounded-xl flex items-center justify-between p-2">
+            <b className="text-white">{folder.name}</b>
 
               <Button
                 className="border-0"
@@ -424,7 +431,6 @@ export default function SavePrompt() {
               <Button
                 type="primary"
                 className="border-0"
-                
                 onClick={() => showNewDocModal(folder.id)}
               >
                 <svg
@@ -432,7 +438,6 @@ export default function SavePrompt() {
                   height="16"
                   width="12"
                   viewBox="0 0 384 512"
-                  
                 >
                   <path d="M0 64C0 28.7 28.7 0 64 0H224V128c0 17.7 14.3 32 32 32H384V448c0 35.3-28.7 64-64 64H64c-35.3 0-64-28.7-64-64V64zm384 64H256V0L384 128z" />
                 </svg>
@@ -441,10 +446,7 @@ export default function SavePrompt() {
 
             {/* Document */}
             {folder.documents.map((doc) => (
-              <div
-                key={doc.id}
-                className="bg-slate-50 flex items-center p-2"
-              >
+              <div key={doc.id} className="bg-slate-50 flex items-center p-2">
                 <div
                   style={{ cursor: "pointer" }}
                   onClick={() => selectDocument(doc.id)}
@@ -481,7 +483,6 @@ export default function SavePrompt() {
                 </Button>
               </div>
             ))}
-
           </div>
         ))}
 
@@ -530,12 +531,13 @@ export default function SavePrompt() {
             {showForm && (
               <form>
                 <Input.TextArea
-                  className="form-control"
+                  className="form-control shadow-xl border-0 mt-10 "
                   style={{ height: "60vh" }}
                   rows={10}
                   value={textpadData}
                   onChange={(e) => setTextpadData(e.target.value)}
                   placeholder="Write something..."
+                  size="large"
                 />
 
                 <div className="flex justify-center mt-4">
