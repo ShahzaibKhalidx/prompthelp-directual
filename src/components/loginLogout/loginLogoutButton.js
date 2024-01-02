@@ -40,14 +40,14 @@ export function LogInLogOutButton() {
         <> 
           <Link
             style={{ backgroundColor: "#12BF80", color: "white" }}
-            className="button shadow-md "
+            className="button shadow-md hover:shadow-2xl"
             to="/register"
           >
             Register
           </Link>
           <Link
             style={{ backgroundColor: "white", color: "#12BF80" }}
-            className="button shadow-md "
+            className="button shadow-md hover:shadow-2xl"
             to="/login"
           >
             Log in

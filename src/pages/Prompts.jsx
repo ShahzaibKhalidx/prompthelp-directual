@@ -8,6 +8,8 @@ import {
 } from "react";
 import { useAuth } from "../auth";
 import { Tooltip } from "react-tooltip";
+import Background from "../components/img/bg.png";
+import "../App.css";
 
 import Lighting from "../components/modals/Lighting";
 import Camera from "../components/modals/Camera";
@@ -260,7 +262,8 @@ export function GeneratedPromptsProvider({ children }) {
 
   return (
     <GeneratedPromptsContext.Provider
-      value={{ generatedPrompts, saveGeneratedPrompt }}>
+      value={{ generatedPrompts, saveGeneratedPrompt }}
+    >
       {children}
     </GeneratedPromptsContext.Provider>
   );
@@ -918,36 +921,35 @@ function Prompts() {
         }
       })
       .join("\n");
-  
+
     // Set up the API endpoint and headers (replace with your actual endpoint and API key)
-    const apiEndpoint = 'https://api.directual.com/good/api/v5/data/save_prompt/postPrompt?appID=ff949b76-9513-459d-95b3-9dd741fb08e1&sessionID=876081';
-    const apiKey = 'ff949b76-9513-459d-95b3-9dd741fb08e1'; // Replace with your actual API key
-  
+    const apiEndpoint =
+      "https://api.directual.com/good/api/v5/data/save_prompt/postPrompt?appID=ff949b76-9513-459d-95b3-9dd741fb08e1&sessionID=876081";
+    const apiKey = "ff949b76-9513-459d-95b3-9dd741fb08e1"; // Replace with your actual API key
+
     try {
       const response = await fetch(apiEndpoint, {
-        method: 'POST',
+        method: "POST",
         headers: {
-          'Content-Type': 'application/json',
-          'api-key': apiKey,
+          "Content-Type": "application/json",
+          "api-key": apiKey,
         },
         body: JSON.stringify({ save_prompt: summary }), // Adjust 'fieldInDirectual' to match your Directual data structure
       });
-  
+
       if (!response.ok) {
-        throw new Error('Network response was not ok');
+        throw new Error("Network response was not ok");
       }
-  
+
       // Handle the response, e.g., display a success message
-      console.log('Prompt saved successfully');
+      console.log("Prompt saved successfully");
     } catch (error) {
       // Handle errors, e.g., display an error message
-      console.error('Error saving prompt:', error);
+      console.error("Error saving prompt:", error);
     }
   };
-  
 
-
-  // 
+  //
 
   const authContext = useAuth();
   const handleLightingOption = (data) => {
@@ -960,273 +962,294 @@ function Prompts() {
   console.log(selectedModalValues);
 
   return (
-    <div className="bg-zinc-100 min-h-screen flex items-center justify-center">
-      <div className="w-full md:w-9/12 p-6 text-gray-800">
-        <h1 className="text-4xl font-bold text-grey-900 uppercase text-center">
-          Midjourney Prompt Helper
-        </h1>
-        <p className="text-center p-4 mb-4">
-          NEW: Save your prompts for later use. Give it a try below ⬇️
-        </p>
-        <div className="mb-4">
-          {/* <label className='block text-gray-700 text-sm font-bold mb-2' htmlFor='prompt'>
+    <div
+      style={{
+        backgroundImage: `url(${Background})`,
+        backdropFilter: "blur(100%)",
+      }}
+    >
+      <div className=" min-h-screen flex items-center justify-center">
+        <div className="w-full md:w-9/12 p-6 text-gray-800">
+          <h1 className="Midjourney uppercase text-center">
+            Midjourney Prompt Helper
+          </h1>
+          <p className="Save-your-prompt text-center p-4 mb-4">
+            Save your prompt for later use. Give it a try blow
+          </p>
+          <div className="mb-4">
+            {/* <label className='block text-gray-700 text-sm font-bold mb-2' htmlFor='prompt'>
                         Enter your prompt:
                     </label> */}
-          <textarea
-            id="prompt"
-            placeholder="Start typing your idea..."
-            className="w-full p-4 rounded shadow placeholder-slate-400 outline-0"
-            value={prompt}
-            onChange={handlePromptChange}
-          />
-        </div>
-        <div className="my-4">
-          {/* <label className='block text-gray-700 text-sm font-bold mb-2'>Generated Prompt:</label> */}
-
-          {/* /imagine prompt: */}
-
-          <div>
-            {isMounted && (
-              <div className="bg-zinc-200 p-4 border rounded" ref={divRef}>
-                /imagine prompt: {prompt}::
-                {Object.keys(selectedModalValues).map(
-                  (_) => `${_}:${selectedModalValues[_]} `
-                )}
-                {Object.keys(selectedFilters).map(
-                  (_) => `${_}:${selectedFilters[_]} `
-                )}
-              </div>
-            )}
-          </div>
-
-          {copySuccess && (
-            <p className="text-green-600 mt-2 text-center">
-              Copied to clipboard!
-            </p>
-          )}
-        </div>
-        {/* Buttons */}
-
-        <div className="m-4 flex justify-center">
-          <button
-            className="bg-blue-700 text-white hover:hover:bg-blue-900 rounded-2xl p-2 w-52"
-            onClick={handleCopyClick}>
-            {" "}
-            Copy Prompt{" "}
-          </button>
-
-          <button
-            className="bg-green-700 text-white hover:hover:bg-blue-900 rounded-2xl p-2 w-52"
-            onClick={handleSavePrompt}>
-            {" "}
-            Save to My Prompts{" "}
-          </button>
-        </div>
-
-        <div className="bg-white p-6 rounded-lg shadow-lg">
-          <div className="md:flex md:flex-wrap">
-            {Object.keys(filtersData).map((filterName) => (
-              <div className="mb-4 w-full md:w-1/6 md:pr-2" key={filterName}>
-                <label
-                  className="block text-gray-700 text-sm font-bold mb-2"
-                  htmlFor={filterName}
-                  data-tooltip-id="my-tooltip"
-                  data-tooltip-content={filterTooltips[filterName]}>
-                  {filterName}:
-                </label>
-                {typeof filtersData[filterName] === "string" ? (
-                  <input
-                    type="text"
-                    id={filterName}
-                    className="w-full p-2 border rounded outline-0"
-                    value={selectedFilters[filterName] || ""}
-                    onChange={(e) =>
-                      handleFilterChange(filterName, e.target.value)
-                    }
-                    placeholder={
-                      filterPlaceholders[filterName] || filtersData[filterName]
-                    }
-                  />
-                ) : Array.isArray(filtersData[filterName]) ? (
-                  <select
-                    id={filterName}
-                    className="w-full p-2 border rounded outline-0"
-                    value={selectedFilters[filterName] || ""}
-                    onChange={(e) =>
-                      handleFilterChange(filterName, e.target.value)
-                    }>
-                    <option value="">---</option>
-                    {filtersData[filterName].map((option) => (
-                      <option key={option} value={option}>
-                        {option}
-                      </option>
-                    ))}
-                  </select>
-                ) : (
-                  <input
-                    type="number"
-                    id={filterName}
-                    className="w-full p-2 border rounded outline-0"
-                    value={selectedFilters[filterName] || ""}
-                    onChange={(e) =>
-                      handleFilterChange(filterName, e.target.value)
-                    }
-                    min="0"
-                    max="50"
-                    placeholder={
-                      filterPlaceholders[filterName] || filtersData[filterName]
-                    }
-                  />
-                )}
-              </div>
-            ))}
-            <Tooltip
-              id="my-tooltip"
-              events={["hover"]}
-              style={{
-                backgroundColor: "#d7d2e7ef",
-                color: "#333",
-                maxWidth: "180px",
-                fontSize: "11px",
-              }}
+            <textarea
+              id="prompt"
+              placeholder="Start typing your idea..."
+              className="text-pad w-full p-8  shadow-md placeholder-slate-400 outline-0 hover:shadow-xl"
+              value={prompt}
+              onChange={handlePromptChange}
             />
           </div>
-          <div>
-            <div className="flex flex-wrap justify-center gap-4 p-4">
-              <div className="inset-0 flex items-center justify-center mb-4 md:mb-0">
-                <button
-                  type="button"
-                  onClick={openModal}
-                  style={{ width: "110px" }}
-                  className="flex items-center justify-center rounded-md bg-blue-100 py-2 text-sm font-medium text-blue hover:bg-opacity-30 focus:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-opacity-75">
-                  <FaRegLightbulb style={{ marginRight: "8px" }} />
-                  Lighting
-                </button>
-              </div>
+          <div className="my-4">
+            {/* <label className='block text-gray-700 text-sm font-bold mb-2'>Generated Prompt:</label> */}
 
-              {/* Style Button */}
+            {/* /imagine prompt: */}
 
-              <div className="inset-0 flex items-center justify-center mb-4 md:mb-0">
-                <button
-                  type="button"
-                  onClick={openStylesModal}
-                  className="flex items-center rounded-md bg-blue-100 px-4 py-2 text-sm font-medium text-blue hover:bg-opacity-30 focus:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-opacity-75">
-                  <FaPhotoVideo style={{ marginRight: "8px" }} /> Styles
-                </button>
-              </div>
+            <div>
+              {isMounted && (
+                <div className="promot w-full p-8 shadow-md hover:shadow-xl" ref={divRef}>
+                  /imagine prompt: {prompt}::
+                  {Object.keys(selectedModalValues).map(
+                    (_) => `${_}:${selectedModalValues[_]} `
+                  )}
+                  {Object.keys(selectedFilters).map(
+                    (_) => `${_}:${selectedFilters[_]} `
+                  )}
+                </div>
+              )}
+            </div>
 
-              <div className="inset-0 flex items-center justify-center mb-4 md:mb-0">
-                <button
-                  type="button"
-                  onClick={openCameraModal}
-                  className="flex items-center rounded-md bg-blue-100 px-4 py-2 text-sm font-medium text-blue hover:bg-opacity-30 focus:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-opacity-75">
-                  <FaCamera style={{ marginRight: "8px" }} /> Camera
-                </button>
-              </div>
+            {copySuccess && (
+              <p className="text-green-600 mt-2 text-center ">
+                Copied to clipboard!
+              </p>
+            )}
+          </div>
+          {/* Buttons */}
 
-              <div className="inset-0 flex items-center justify-center mb-4 md:mb-0">
-                <button
-                  type="button"
-                  onClick={openArtistsModal}
-                  className="flex items-center rounded-md bg-blue-100 px-4 py-2 text-sm font-medium text-blue hover:bg-opacity-30 focus:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-opacity-75">
-                  <FaPaintBrush style={{ marginRight: "8px" }} />
-                  Artists
-                </button>
-              </div>
-              <div className="inset-0 flex items-center justify-center mb-4 md:mb-0">
-                <button
-                  type="button"
-                  onClick={openColorsModal}
-                  className="flex items-center rounded-md bg-blue-100 px-4 py-2 text-sm font-medium text-blue hover:bg-opacity-30 focus:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-opacity-75">
-                  <FaPalette style={{ marginRight: "8px" }} /> Colors
-                </button>
-              </div>
-              <div className="inset-0 flex items-center justify-center mb-4 md:mb-0">
-                <button
-                  type="button"
-                  onClick={openMaterialsModal}
-                  className="flex items-center rounded-md bg-blue-100 px-4 py-2 text-sm font-medium text-blue hover:bg-opacity-30 focus:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-opacity-75">
-                  <FaHome style={{ marginRight: "8px" }} /> Materials
-                </button>
+          <div className="m-4 gap-10 flex justify-center">
+            <button
+            style={{ backgroundColor: "#12BF80", color: "white" }}
+              className="button-copy shadow-md hover:shadow-xl "
+              onClick={handleCopyClick}
+            >
+              {" "}
+              Copy Prompt{" "}
+            </button>
+
+            <button
+             style={{ backgroundColor: "white", color: "#7e7e7e" }}
+              className="button-copy shadow-md hover:shadow-xl "
+              onClick={handleSavePrompt}
+            >
+              {" "}
+              Save to My Prompts{" "}
+            </button>
+          </div>
+
+          <div className="bg-white p-6 rounded-lg shadow-lg">
+            <div className="md:flex md:flex-wrap">
+              {Object.keys(filtersData).map((filterName) => (
+                <div className="mb-4 w-full md:w-1/6 md:pr-2" key={filterName}>
+                  <label
+                    className="block text-gray-700 text-sm font-bold mb-2"
+                    htmlFor={filterName}
+                    data-tooltip-id="my-tooltip"
+                    data-tooltip-content={filterTooltips[filterName]}
+                  >
+                    {filterName}:
+                  </label>
+                  {typeof filtersData[filterName] === "string" ? (
+                    <input
+                      type="text"
+                      id={filterName}
+                      className="w-full p-2 border rounded outline-0"
+                      value={selectedFilters[filterName] || ""}
+                      onChange={(e) =>
+                        handleFilterChange(filterName, e.target.value)
+                      }
+                      placeholder={
+                        filterPlaceholders[filterName] ||
+                        filtersData[filterName]
+                      }
+                    />
+                  ) : Array.isArray(filtersData[filterName]) ? (
+                    <select
+                      id={filterName}
+                      className="w-full p-2 border rounded outline-0"
+                      value={selectedFilters[filterName] || ""}
+                      onChange={(e) =>
+                        handleFilterChange(filterName, e.target.value)
+                      }
+                    >
+                      <option value="">---</option>
+                      {filtersData[filterName].map((option) => (
+                        <option key={option} value={option}>
+                          {option}
+                        </option>
+                      ))}
+                    </select>
+                  ) : (
+                    <input
+                      type="number"
+                      id={filterName}
+                      className="w-full p-2 border rounded outline-0"
+                      value={selectedFilters[filterName] || ""}
+                      onChange={(e) =>
+                        handleFilterChange(filterName, e.target.value)
+                      }
+                      min="0"
+                      max="50"
+                      placeholder={
+                        filterPlaceholders[filterName] ||
+                        filtersData[filterName]
+                      }
+                    />
+                  )}
+                </div>
+              ))}
+              <Tooltip
+                id="my-tooltip"
+                events={["hover"]}
+                style={{
+                  backgroundColor: "#d7d2e7ef",
+                  color: "#333",
+                  maxWidth: "180px",
+                  fontSize: "11px",
+                }}
+              />
+            </div>
+            <div>
+              <div className="flex flex-wrap justify-center gap-4 p-4">
+                <div className="inset-0 flex items-center justify-center mb-4 md:mb-0">
+                  <button
+                    type="button"
+                    onClick={openModal}
+                    style={{ width: "110px" }}
+                    className="flex items-center justify-center rounded-md bg-blue-100 py-2 text-sm font-medium text-blue hover:bg-opacity-30 focus:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-opacity-75"
+                  >
+                    <FaRegLightbulb style={{ marginRight: "8px" }} />
+                    Lighting
+                  </button>
+                </div>
+
+                {/* Style Button */}
+
+                <div className="inset-0 flex items-center justify-center mb-4 md:mb-0">
+                  <button
+                    type="button"
+                    onClick={openStylesModal}
+                    className="flex items-center rounded-md bg-blue-100 px-4 py-2 text-sm font-medium text-blue hover:bg-opacity-30 focus:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-opacity-75"
+                  >
+                    <FaPhotoVideo style={{ marginRight: "8px" }} /> Styles
+                  </button>
+                </div>
+
+                <div className="inset-0 flex items-center justify-center mb-4 md:mb-0">
+                  <button
+                    type="button"
+                    onClick={openCameraModal}
+                    className="flex items-center rounded-md bg-blue-100 px-4 py-2 text-sm font-medium text-blue hover:bg-opacity-30 focus:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-opacity-75"
+                  >
+                    <FaCamera style={{ marginRight: "8px" }} /> Camera
+                  </button>
+                </div>
+
+                <div className="inset-0 flex items-center justify-center mb-4 md:mb-0">
+                  <button
+                    type="button"
+                    onClick={openArtistsModal}
+                    className="flex items-center rounded-md bg-blue-100 px-4 py-2 text-sm font-medium text-blue hover:bg-opacity-30 focus:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-opacity-75"
+                  >
+                    <FaPaintBrush style={{ marginRight: "8px" }} />
+                    Artists
+                  </button>
+                </div>
+                <div className="inset-0 flex items-center justify-center mb-4 md:mb-0">
+                  <button
+                    type="button"
+                    onClick={openColorsModal}
+                    className="flex items-center rounded-md bg-blue-100 px-4 py-2 text-sm font-medium text-blue hover:bg-opacity-30 focus:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-opacity-75"
+                  >
+                    <FaPalette style={{ marginRight: "8px" }} /> Colors
+                  </button>
+                </div>
+                <div className="inset-0 flex items-center justify-center mb-4 md:mb-0">
+                  <button
+                    type="button"
+                    onClick={openMaterialsModal}
+                    className="flex items-center rounded-md bg-blue-100 px-4 py-2 text-sm font-medium text-blue hover:bg-opacity-30 focus:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-opacity-75"
+                  >
+                    <FaHome style={{ marginRight: "8px" }} /> Materials
+                  </button>
+                </div>
               </div>
             </div>
           </div>
+
+          {/* end this.props. */}
+
+          {islighting && (
+            <div>
+              <Lighting
+                isOpen={islighting}
+                closeModal={closeModal}
+                title="Lighting"
+                content="Select Any Modal"
+                options={filterModalOptions}
+                setSelectedModalValues={handleLightingOption}
+              />
+            </div>
+          )}
+
+          {isCameraOpen && (
+            <Camera
+              isCameraOpen={isCameraOpen}
+              closeCameraModal={closeCameraModal}
+              title="Camera"
+              content="Select Any Modal"
+              options={filterModalCameraOptions}
+              setSelectedModalValues={handleLightingOption}
+            />
+          )}
+          {isStylesOpen && (
+            <div>
+              <Styles
+                isStylesOpen={isStylesOpen}
+                closeStylesModal={closeStylesModal}
+                title="Styles"
+                content="Select Any Modal"
+                options={filterModalStyle}
+                setSelectedModalValues={handleLightingOption}
+              />
+            </div>
+          )}
+
+          {isArtistsOpen && (
+            <div>
+              <Artists
+                isArtistsOpen={isArtistsOpen}
+                closeArtistsModal={closeArtistsModal}
+                title="Artists"
+                content="Select Any Modal"
+                options={filterModalArtists}
+                setSelectedModalValues={handleLightingOption}
+              />
+            </div>
+          )}
+          {isColorsOpen && (
+            <div>
+              <Colors
+                isColorsOpen={isColorsOpen}
+                closeColorsModal={closeColorsModal}
+                title="Colors"
+                content="Select Any Modal"
+                options={filterModalColors}
+                setSelectedModalValues={handleLightingOption}
+              />
+            </div>
+          )}
+          {isMaterialsOpen && (
+            <div>
+              <Materials
+                isMaterialsOpen={isMaterialsOpen}
+                closeMaterialsModal={closeMaterialsModal}
+                title="Materials"
+                content="Select Any Modal"
+                options={filterModalMaterials}
+                setSelectedModalValues={handleLightingOption}
+              />
+            </div>
+          )}
         </div>
-
-        {/* end this.props. */}
-
-        {islighting && (
-          <div>
-            <Lighting
-              isOpen={islighting}
-              closeModal={closeModal}
-              title="Lighting"
-              content="Select Any Modal"
-              options={filterModalOptions}
-              setSelectedModalValues={handleLightingOption}
-            />
-          </div>
-        )}
-
-        {isCameraOpen && (
-          <Camera
-            isCameraOpen={isCameraOpen}
-            closeCameraModal={closeCameraModal}
-            title="Camera"
-            content="Select Any Modal"
-            options={filterModalCameraOptions}
-            setSelectedModalValues={handleLightingOption}
-          />
-        )}
-        {isStylesOpen && (
-          <div>
-            <Styles
-              isStylesOpen={isStylesOpen}
-              closeStylesModal={closeStylesModal}
-              title="Styles"
-              content="Select Any Modal"
-              options={filterModalStyle}
-              setSelectedModalValues={handleLightingOption}
-            />
-          </div>
-        )}
-
-        {isArtistsOpen && (
-          <div>
-            <Artists
-              isArtistsOpen={isArtistsOpen}
-              closeArtistsModal={closeArtistsModal}
-              title="Artists"
-              content="Select Any Modal"
-              options={filterModalArtists}
-              setSelectedModalValues={handleLightingOption}
-            />
-          </div>
-        )}
-        {isColorsOpen && (
-          <div>
-            <Colors
-              isColorsOpen={isColorsOpen}
-              closeColorsModal={closeColorsModal}
-              title="Colors"
-              content="Select Any Modal"
-              options={filterModalColors}
-              setSelectedModalValues={handleLightingOption}
-            />
-          </div>
-        )}
-        {isMaterialsOpen && (
-          <div>
-            <Materials
-              isMaterialsOpen={isMaterialsOpen}
-              closeMaterialsModal={closeMaterialsModal}
-              title="Materials"
-              content="Select Any Modal"
-              options={filterModalMaterials}
-              setSelectedModalValues={handleLightingOption}
-            />
-          </div>
-        )}
       </div>
     </div>
   );

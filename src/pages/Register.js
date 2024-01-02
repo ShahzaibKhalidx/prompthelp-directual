@@ -81,7 +81,7 @@ export default function Register() {
 
   return (
     <div className="register" style={{ backgroundImage: `url(${Background})` }}>
-      <div className="register-form  shadow-xl  content max-w-lg m-auto ">
+      <div className="register-form  shadow-md  content max-w-lg m-auto hover:shadow-2xl ">
         <div className="register-form-1">
           <h1
             style={{ fontFamily: "Poppins", fontSize: "36px" }}
@@ -104,7 +104,7 @@ export default function Register() {
           {showForm && (
             <form onSubmit={postData}>
               <input
-                className="register-input"
+                className="register-input hover:shadow-md"
                 type="text"
                 value={formPayload.name}
                 placeholder="Name"
@@ -118,7 +118,7 @@ export default function Register() {
                 value={formPayload.email}
                 placeholder="Email"
                 onChange={handleEmailChange}
-                className={!emailValid ? "border-red-500" : "register-input"}
+                className={!emailValid ? "border-red-500" : "register-input hover:shadow-md"}
               />
               {!emailValid && (
                 <p className="text-red-500">This email is incorrect.</p>
@@ -127,7 +127,7 @@ export default function Register() {
               <input
                 type="password"
                 placeholder="Password"
-                className="register-input"
+                className="register-input hover:shadow-md"
                 onChange={(e) =>
                   setFormPayload({
                     ...formPayload,
@@ -138,7 +138,7 @@ export default function Register() {
 
               <input
                 type="password"
-                className="register-input"
+                className="register-input hover:shadow-md"
                 placeholder="Re-enter Password"
                 onChange={(e) =>
                   setFormPayload({
@@ -151,7 +151,7 @@ export default function Register() {
               <button
                 type="submit"
                 style={{ backgroundColor: "#12BF80", color: "white" }}
-                className="button-register shadow-md "
+                className="button-register shadow-md hover:shadow-xl "
               >
                 Submit
               </button>
