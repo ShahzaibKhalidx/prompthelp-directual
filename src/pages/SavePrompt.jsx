@@ -5,9 +5,6 @@ import { Loader } from "../components/loader/loader";
 import { Layout, Button, Input, Modal, message, Radio } from "antd";
 import {
   FileTextTwoTone,
-  DeleteTwoTone,
-  EditTwoTone,
-  FolderOpenTwoTone,
   FolderAddTwoTone,
   CopyTwoTone,
   SaveTwoTone,
@@ -583,9 +580,9 @@ export default function SavePrompt() {
               </div>
             )} */}
             {/* Submit Button */}
-            {/* {!showForm && !loading && (
+        {/* {!showForm && !loading && (
               <button onClick={resetForm}>Submit again</button>
-            )} */}
+            )}  */}
           </div>
           {textpadVisible && (
             <div className="textpad">

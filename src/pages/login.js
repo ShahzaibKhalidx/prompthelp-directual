@@ -1,73 +1,88 @@
-  import React, { useState, useEffect } from 'react';
-  import { useAuth } from '../auth';
-  import { useNavigate, useLocation } from 'react-router-dom';
-  import { Loader } from '../components/loader/loader';
-  import { Link } from 'react-router-dom'
-  import Data from '../components/Notepad/Data.js';
-  
+import React, { useState, useEffect } from "react";
+import { useAuth } from "../auth";
+import { useNavigate, useLocation } from "react-router-dom";
+import { Loader } from "../components/loader/loader";
+import { Link } from "react-router-dom";
+import Data from "../components/Notepad/Data.js";
+import "../components/menu/menu.css";
+import Background from "../components/img/bg.png";
+export default function LoginPage() {
+  const navigate = useNavigate();
+  const location = useLocation();
 
-  export default function LoginPage() {
-    const navigate = useNavigate();
-    const location = useLocation();
+  const [username, setUsername] = useState("");
+  const [password, setPassword] = useState("");
+  const [loading, setLoading] = useState(false);
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [error, setError] = useState("");
 
-    const [username, setUsername] = useState('');
-    const [password, setPassword] = useState('');
-    const [loading, setLoading] = useState(false);
-    const [isLoggedIn, setIsLoggedIn] = useState(false);
-    const [error, setError] = useState('');
+  const auth = useAuth();
 
-    const auth = useAuth();
+  useEffect(() => {
+    if (auth.isAutorised()) {
+      navigate("/Data");
+    }
+  }, [auth, navigate]);
 
-    useEffect(() => {
-      if (auth.isAutorised()) { 
-        navigate('/Data');
+  const login = async (e) => {
+    e.preventDefault();
+    setLoading(true);
+
+    try {
+      // Call the login function from the auth context
+      const authResult = await auth.login(username, password);
+
+      // await auth.login(username, password);
+      if (authResult.success) {
+        navigate("/Data");
+      } else {
+        setError(authResult.error);
       }
-    }, [auth, navigate]);
+    } catch (e) {
+      setError("Your login or password is incorrect");
+    } finally {
+      setLoading(false);
+    }
+  };
 
-    const login = async (e) => {
-      e.preventDefault();
-      setLoading(true);
+  // if (isLoggedIn) {
+  //   return <div>Logged in</div>;
+  // }
 
-      try {
-
-        // Call the login function from the auth context
-        const authResult = await auth.login(username, password);
-
-        // await auth.login(username, password);
-        if (authResult.success) {
-          navigate('/Data');
-        } else {
-          setError(authResult.error);
-        }
-      } catch (e) {
-        setError('Your login or password is incorrect');
-      } finally {
-        setLoading(false);
-      }
-    };
-
-    // if (isLoggedIn) {
-    //   return <div>Logged in</div>;
-    // }
-
-    return (
-      <div className="content form w-full max-w-xs m-auto bg-indigo-100 rounded p-5 mt-5">
+  return (
+    <div className="register" style={{ backgroundImage: `url(${Background})` }}>
+      <div className="login-form  shadow-xl  content max-w-lg m-auto ">
+      <div className="login-form-1">
         <form onSubmit={login}>
-          {(location.state?.from.pathname == "/myprompts") ? <h2>Register, to save prompts</h2>:
-          <h2 class="text-2xl font-bold text-[#002D74]">Login</h2>
-          }
-        
+       
+          <h1
+            style={{ fontFamily: "Poppins", fontSize: "36px" }}
+            className="text-2xl  font-bold text-[#030E32]"
+          >
+            Log in to your Account
+          </h1>
+
+          <h5
+            style={{
+              fontFamily: "Poppins",
+              fontSize: "15px",
+              letterSpacing: "0.15px",
+            }}
+            className="text-[#7E7E7E]"
+          >
+            Enter your email to receive your reset password link.
+          </h5>
           {/* <p>You must log in to view the page <b>{location.state?.from.pathname || '/'}</b></p> */}
           <input
-          className="w-full p-2 mb-6 text-indigo-700 border-b-2 border-indigo-500 outline-none focus:bg-gray-300"
+            className="register-input"
             type="text"
-            placeholder="login"
+            placeholder="Email"
             onChange={(e) => {
               setUsername(e.target.value);
             }}
           />
           <input
-          className="w-full p-2 mb-6 text-indigo-700 border-b-2 border-indigo-500 outline-none focus:bg-gray-300"
+            className="register-input mt-4"
             type="password"
             placeholder="password"
             onChange={(e) => {
@@ -76,15 +91,28 @@
           />
           {error && <div className="error">{error}</div>}
           {!loading ? (
-            <button className="border-2 border-blue-600 text-blue-600 hover:hover:text-blue-900 rounded-2xl">
-              Log in</button>
+            <button  style={{ backgroundColor: "#12BF80", color: "white" }}
+            className="button-login shadow-md "
+          >
+              Log in
+            </button>
           ) : (
             <Loader text="Logging in..." />
           )}
+           <Link
+            to="/register"
+           
+          >
+          <button  style={{ backgroundColor: "white", color: "#7E7E7E" }}
+            className="button-login shadow-md "> Register</button>
+           
+          </Link>
         </form>
-        <footer className='p-2'>
-          <Link to="/register" className="text-violet-800 hover:text-pink-700 text-sm float-left">Register</Link>
-      </footer> 
+         
+        
       </div>
-    );
-  }
+      
+    </div>
+    </div>
+  );
+}
