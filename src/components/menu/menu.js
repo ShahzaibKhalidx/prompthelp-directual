@@ -12,17 +12,9 @@ export function MainMenu() {
     <ul className="main-menu bg-white p-4">
       <li>
         <NavLink exact to="/">
-          <img src={Logo} width={"198px"} height={"98px"} className="ml-4" />
+          <img src={Logo} width={"198px"} height={"98px"} className="ml-10 " />
         </NavLink>
       </li>
-      {/* <li>
-        <NavLink exact to="/page2">Post data</NavLink>
-      </li>
-      <li>
-        <NavLink exact to="/page3">Hidden content</NavLink>
-      </li> */}
-
-      {/* JSX visible for authorised users only */}
 
       {authContext.isAutorised() && (
         <li>
@@ -36,14 +28,7 @@ export function MainMenu() {
           </NavLink>
         </li>
       )}
-      {/* {authContext.isAutorised() && <li>
-        <NavLink exact to="/websocket">Websocket Page</NavLink>
-      </li>} */}
 
-      {/* JSX visible for users, who have role == 'admin'. You can apply any other value here */}
-      {/* {authContext.hasRole('admin') && <li>
-        <NavLink exact to="/admin">Admin Page</NavLink>
-      </li>} */}
       <li className="rihgt-top">
         <LogInLogOutButton />
       </li>

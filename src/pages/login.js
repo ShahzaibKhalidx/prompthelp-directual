@@ -51,8 +51,8 @@ export default function LoginPage() {
 
   return (
     <div className="register" style={{ backgroundImage: `url(${Background})` }}>
-      <div className="login-form  shadow-xl  content max-w-lg m-auto ">
-      <div className="login-form-1">
+      <div className="login-form  shadow-md  content max-w-lg m-auto hover:shadow-2xl">
+      <div className="login-form-1 ">
         <form onSubmit={login}>
        
           <h1
@@ -92,7 +92,7 @@ export default function LoginPage() {
           {error && <div className="error">{error}</div>}
           {!loading ? (
             <button  style={{ backgroundColor: "#12BF80", color: "white" }}
-            className="button-login shadow-md "
+            className="button-login shadow-md hover:shadow-xl "
           >
               Log in
             </button>
@@ -104,7 +104,7 @@ export default function LoginPage() {
            
           >
           <button  style={{ backgroundColor: "white", color: "#7E7E7E" }}
-            className="button-login shadow-md "> Register</button>
+            className="button-login shadow-md hover:shadow-xl"> Register</button>
            
           </Link>
         </form>
