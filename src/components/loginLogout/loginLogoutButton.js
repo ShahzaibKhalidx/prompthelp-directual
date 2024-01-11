@@ -25,8 +25,8 @@ export function LogInLogOutButton() {
         <React.Fragment>
           {!loading ? (
             <button
-            style={{ backgroundColor: "#12BF80", color: "white" }}
-            className="button shadow-md  "
+              style={{ backgroundColor: "#12BF80", color: "white" }}
+              className="button shadow-md  "
               onClick={handleLogout}
             >
               Log out
@@ -37,10 +37,10 @@ export function LogInLogOutButton() {
           {/* <Note /> */}
         </React.Fragment>
       ) : (
-        <> 
+        <>
           <Link
             style={{ backgroundColor: "#12BF80", color: "white" }}
-            className="button shadow-md hover:shadow-2xl"
+            className="button shadow-md hover:shadow-2xl "
             to="/register"
           >
             Register
