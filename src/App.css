@@ -76,6 +76,7 @@ form input {
   font-family: Poppins;
   font-size: 20px;
   color: #7e7e7e;
+  
 }
 
 .promot {
@@ -116,5 +117,17 @@ style={{ backgroundColor: "#12BF80", color: "white" }}
     font-family: Poppins;
     border-radius: 7px;
     border: none;
+    @media screen and (max-width: 768px) {
+      width: 170px;
+    height: 52px;
+    font-size: 16px;
+      
+    }
+    @media screen and (max-width: 480px) {
+      width: 140px;
+    height: 42px;
+    font-size: 12px;
+      
+    }
 }
 

@@ -970,7 +970,7 @@ function Prompts() {
     >
       <div className=" min-h-screen flex items-center justify-center">
         <div className="w-full md:w-9/12 p-6 text-gray-800">
-          <h1 className="Midjourney uppercase text-center">
+          <h1 className="Midjourney uppercase text-center ">
             Midjourney Prompt Helper
           </h1>
           <p className="Save-your-prompt text-center p-4 mb-4">
@@ -995,7 +995,10 @@ function Prompts() {
 
             <div>
               {isMounted && (
-                <div className="promot w-full p-8 shadow-md hover:shadow-xl" ref={divRef}>
+                <div
+                  className="promot w-full p-8 shadow-md hover:shadow-xl"
+                  ref={divRef}
+                >
                   /imagine prompt: {prompt}::
                   {Object.keys(selectedModalValues).map(
                     (_) => `${_}:${selectedModalValues[_]} `
@@ -1017,7 +1020,7 @@ function Prompts() {
 
           <div className="m-4 gap-10 flex justify-center">
             <button
-            style={{ backgroundColor: "#12BF80", color: "white" }}
+              style={{ backgroundColor: "#12BF80", color: "white" }}
               className="button-copy shadow-md hover:shadow-xl "
               onClick={handleCopyClick}
             >
@@ -1026,7 +1029,7 @@ function Prompts() {
             </button>
 
             <button
-             style={{ backgroundColor: "white", color: "#7e7e7e" }}
+              style={{ backgroundColor: "white", color: "#7e7e7e" }}
               className="button-copy shadow-md hover:shadow-xl "
               onClick={handleSavePrompt}
             >
@@ -1035,10 +1038,13 @@ function Prompts() {
             </button>
           </div>
 
-          <div className="bg-white p-6 rounded-lg shadow-lg">
+          <div className="bg-white p-8 rounded-xl shadow-xl">
             <div className="md:flex md:flex-wrap">
               {Object.keys(filtersData).map((filterName) => (
-                <div className="mb-4 w-full md:w-1/6 md:pr-2" key={filterName}>
+                <div
+                  className="mb-4 text-center p-1 w-full md:w-1/4 md:pr-2"
+                  key={filterName}
+                >
                   <label
                     className="block text-gray-700 text-sm font-bold mb-2"
                     htmlFor={filterName}
@@ -1113,8 +1119,8 @@ function Prompts() {
                   <button
                     type="button"
                     onClick={openModal}
-                    style={{ width: "110px" }}
-                    className="flex items-center justify-center rounded-md bg-blue-100 py-2 text-sm font-medium text-blue hover:bg-opacity-30 focus:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-opacity-75"
+                    style={{ width: "120px", height: "50px" }}
+                    className="flex items-center shadow-md text- rounded-lg border-none text-white  bg-blue-500 text-md hover:bg-blue-700"
                   >
                     <FaRegLightbulb style={{ marginRight: "8px" }} />
                     Lighting
@@ -1127,7 +1133,8 @@ function Prompts() {
                   <button
                     type="button"
                     onClick={openStylesModal}
-                    className="flex items-center rounded-md bg-blue-100 px-4 py-2 text-sm font-medium text-blue hover:bg-opacity-30 focus:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-opacity-75"
+                    style={{ width: "120px", height: "50px" }}
+                    className="flex items-center shadow-md text- rounded-lg border-none text-white  bg-blue-500 text-md hover:bg-blue-700"
                   >
                     <FaPhotoVideo style={{ marginRight: "8px" }} /> Styles
                   </button>
@@ -1137,7 +1144,8 @@ function Prompts() {
                   <button
                     type="button"
                     onClick={openCameraModal}
-                    className="flex items-center rounded-md bg-blue-100 px-4 py-2 text-sm font-medium text-blue hover:bg-opacity-30 focus:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-opacity-75"
+                    style={{ width: "120px", height: "50px" }}
+                    className="flex items-center shadow-md text- rounded-lg border-none text-white  bg-blue-500 text-md hover:bg-blue-700"
                   >
                     <FaCamera style={{ marginRight: "8px" }} /> Camera
                   </button>
@@ -1147,7 +1155,8 @@ function Prompts() {
                   <button
                     type="button"
                     onClick={openArtistsModal}
-                    className="flex items-center rounded-md bg-blue-100 px-4 py-2 text-sm font-medium text-blue hover:bg-opacity-30 focus:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-opacity-75"
+                    style={{ width: "120px", height: "50px" }}
+                    className="flex items-center shadow-md text- rounded-lg border-none text-white  bg-blue-500 text-md hover:bg-blue-700"
                   >
                     <FaPaintBrush style={{ marginRight: "8px" }} />
                     Artists
@@ -1157,7 +1166,8 @@ function Prompts() {
                   <button
                     type="button"
                     onClick={openColorsModal}
-                    className="flex items-center rounded-md bg-blue-100 px-4 py-2 text-sm font-medium text-blue hover:bg-opacity-30 focus:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-opacity-75"
+                    style={{ width: "120px", height: "50px" }}
+                    className="flex items-center shadow-md text- rounded-lg border-none text-white  bg-blue-500 text-md hover:bg-blue-700"
                   >
                     <FaPalette style={{ marginRight: "8px" }} /> Colors
                   </button>
@@ -1166,7 +1176,8 @@ function Prompts() {
                   <button
                     type="button"
                     onClick={openMaterialsModal}
-                    className="flex items-center rounded-md bg-blue-100 px-4 py-2 text-sm font-medium text-blue hover:bg-opacity-30 focus:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-opacity-75"
+                    style={{ width: "140px", height: "50px" }}
+                    className="flex items-center shadow-md text- rounded-lg border-none text-white  bg-blue-500 text-md hover:bg-blue-700 "
                   >
                     <FaHome style={{ marginRight: "8px" }} /> Materials
                   </button>

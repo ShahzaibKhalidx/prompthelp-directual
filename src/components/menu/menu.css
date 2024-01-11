@@ -52,6 +52,18 @@
   display: flex;
   justify-content: center;
   align-items: center;
+  @media screen and (max-width: 768px) {
+    font-size: 20px;
+    width: 151px;
+    height: 51px;
+    
+  }
+  @media screen and (max-width: 480px) {
+    font-size: 20px;
+    width: 120px;
+    height: 40px;
+    
+  }
 }
 
 /* pages  */

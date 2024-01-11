@@ -12,7 +12,7 @@ export function MainMenu() {
     <ul className="main-menu bg-white p-4">
       <li>
         <NavLink exact to="/">
-          <img src={Logo} width={"198px"} height={"98px"} className="ml-10 " />
+          <img src={Logo} width={"198px"} height={"98px"} className="ml-10 sm:h-14 w-28" />
         </NavLink>
       </li>
 
