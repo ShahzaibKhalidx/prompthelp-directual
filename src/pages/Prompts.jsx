@@ -965,6 +965,9 @@ function Prompts() {
     <div
       style={{
         backgroundImage: `url(${Background})`,
+        backgroundSize: "cover", // Cover the entire area
+        backgroundRepeat: "no-repeat", // Don't repeat the image
+        backgroundPosition: "center", // Center the image
         backdropFilter: "blur(100%)",
       }}
     >
