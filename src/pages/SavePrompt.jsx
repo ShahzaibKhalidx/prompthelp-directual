@@ -35,6 +35,45 @@ export default function SavePrompt() {
   const [formPayload, setFormPayload] = useState({ user_id: auth.user }); // Data to send
   const [textpadVisible, setTextpadVisible] = useState(false); // Textpad visibility
 
+  // func
+  const [folders, setFolders] = useState([]);
+  const [prompts, setPrompts] = useState([{}]);
+
+  // Function to create a new folder
+  const createNewFolder = () => {
+    const folderName = prompt("Enter the folder name:");
+    if (folderName) {
+      const newFolder = {
+        name: folderName,
+        isOpen: false,
+      };
+      setFolders((prevFolders) => [...prevFolders, newFolder]);
+    }
+  };
+
+  // Function to create a new prompt
+  const createNewPrompt = () => {
+    const promptName = prompt("Enter the prompt name:");
+    if (promptName) {
+      const newPrompt = {
+        name: promptName,
+      };
+      setPrompts((prevPrompts) => [...prevPrompts, newPrompt]);
+    }
+  };
+
+  //
+  const toggleFolder = (index) => {
+    setFolders(
+      folders.map((folder, i) => {
+        if (i === index) {
+          return { ...folder, isOpen: !folder.isOpen };
+        }
+        return folder;
+      })
+    );
+  };
+
   // Reset the form
   const resetForm = () => {
     setResponse();
@@ -117,26 +156,56 @@ export default function SavePrompt() {
           }}
         >
           <div className="flex overflow-auto">
-            {/* Folder button */}
+            {/* button */}
             <div className="p-5 flex gap-5">
               <Button
                 style={{ backgroundColor: "#12BF80", color: "white" }}
                 className="border-none text-base font-bold w-36"
-                onClick={""}
+                onClick={createNewFolder}
               >
                 + New Folder
               </Button>
 
-              {/* New Document button */}
-
               <Button
                 style={{ backgroundColor: "#12BF80", color: "white" }}
                 className="border-none text-base font-bold w-36 "
-                onClick={""}
+                onClick={createNewPrompt}
               >
                 + New Prompt
               </Button>
             </div>
+          </div>
+
+          {/* Created a Folder  */}
+          <div className="p-5">
+            {folders.map((folder, index) => (
+              <div
+                key={index}
+                className="flex gap-3"
+                style={{ marginBottom: "10px" }}
+              >
+                <div
+                  style={{ backgroundColor: "#FAFAFA", color: "black" }}
+                  className="shadow-md border-2 flex p-2 border-green-500 rounded-lg overflow- w-80 h-9"
+                  onClick={() => toggleFolder(index)}
+                >
+                  {folder.name}
+                </div>
+                {folder.isOpen && (
+                  <div className="pt-12 justify-start">
+                    {prompts.map((prompt, document) => (
+                      <div
+                        key={document.id}
+                        style={{ backgroundColor: "#12BF80", color: "White" }}
+                        className="shadow-md text-base font-bold border-2 p-1  m-2 border-none  rounded-lg w-56 h-9"
+                      >
+                        {prompt.name}
+                      </div>
+                    ))}
+                  </div>
+                )}
+              </div>
+            ))}
           </div>
         </Sider>
 
@@ -153,8 +222,8 @@ export default function SavePrompt() {
                     className="form-control shadow-xl rounded-2xl h-44 w-22 border-none p-16 font-mono text-xl text-gray-900 bg-white"
                     style={{ height: "55vh", width: "95%" }}
                     rows={10}
-                    value={""}
-                    // onChange={(e) => setTextpadData(e.target.value)}
+                    value={textpadVisible}
+                    onChange={(e) => setTextpadVisible(e.target.value)}
                     placeholder="Write Prompt..."
                     size="large"
                   />
@@ -205,15 +274,7 @@ export default function SavePrompt() {
                 </div>
               )}
             </div>
-            {textpadVisible && (
-              <div className="textpad">
-                <textarea
-                  className="form-control"
-                  placeholder="Write something..."
-                  rows="10"
-                ></textarea>
-              </div>
-            )}
+           
           </Content>
         </Layout>
       </Layout>
