@@ -1,19 +1,18 @@
-import React, { useState } from "react";
+import React, { useMemo, useState } from "react";
 import Directual from "directual-api";
 import { useAuth } from "../auth";
 import { Loader } from "../components/loader/loader";
-import { Layout, Button, Input } from "antd";
-import {
-  FileTextTwoTone,
-  FolderAddTwoTone,
-  CopyTwoTone,
-  SaveTwoTone,
-} from "@ant-design/icons";
+import { Layout, Button, Input, notification, Space } from "antd";
+import { CopyTwoTone, SaveTwoTone, SmileOutlined } from "@ant-design/icons";
 import Background from "../components/img/bg.png";
 
 //api conncet
 const api = new Directual({
   apiHost: "/",
+});
+
+const Context = React.createContext({
+  name: "Default",
 });
 
 const { Content, Sider } = Layout;
@@ -38,6 +37,7 @@ export default function SavePrompt() {
   const [folders, setFolders] = useState([]);
   const [prompts, setPrompts] = useState([{}]);
   const [textpadVisible, setTextpadVisible] = useState(false); // Textpad visibility
+  const [api, contextHolder] = notification.useNotification();
 
   // Function to create a new folder
   const createNewFolder = () => {
@@ -74,20 +74,36 @@ export default function SavePrompt() {
     );
   };
 
-
   // copy
   const handleCopy = () => {
-    // Use navigator.clipboard.writeText to copy text
-    navigator.clipboard.writeText(textpadVisible)
+    navigator.clipboard
+      .writeText(textpadVisible)
       .then(() => {
-        // You can add any action you want to perform after the text is copied
-        alert("Text copied to clipboard!");
+        api.info({
+          message: "Copy Success",
+          description: "",
+          placement: "topRight",
+          icon: <SmileOutlined style={{ color: "#12BF80" }} />,
+          duration: 2,
+          style: {
+            width: 300,
+            backgroundColor: "white",
+            border: "1px solid #12BF80",
+            borderRadius: "7px",
+          },
+        });
       })
-      .catch(err => {
-        console.error('Failed to copy text: ', err);
+      .catch((err) => {
+        console.error("Failed to copy text: ", err);
       });
   };
 
+  const contextValue = useMemo(
+    () => ({
+      name: "Ant Design",
+    }),
+    []
+  );
 
   // Reset the form
   const resetForm = () => {
@@ -258,15 +274,23 @@ export default function SavePrompt() {
                       >
                         <SaveTwoTone /> Save
                       </Button>
-                      <Button
-                        style={{ backgroundColor: "#12BF80", color: "white" }}
-                        className="border-none text-base font-bold w-36"
-                         onClick={handleCopy} 
-                        size="large"
-                      >
-                        <CopyTwoTone />
-                        Copy
-                      </Button>
+
+                      <Context.Provider value={contextValue}>
+                        {contextHolder}
+                        <Space>{/* Other buttons */}</Space>
+
+                        <Button
+                          style={{ backgroundColor: "#12BF80", color: "white" }}
+                          className="border-none text-base font-bold w-36"
+                          onClick={handleCopy}
+                          size="large"
+                        >
+                          <CopyTwoTone />
+                          Copy
+                        </Button>
+
+                        {/* Rest of your code */}
+                      </Context.Provider>
                     </div>
                   </div>
                 </form>
