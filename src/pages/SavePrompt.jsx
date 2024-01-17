@@ -33,11 +33,11 @@ export default function SavePrompt() {
   const [loading, setLoading] = useState(false); // Loader
   const [showForm, setShowForm] = useState(true); // Show/hide the form
   const [formPayload, setFormPayload] = useState({ user_id: auth.user }); // Data to send
-  const [textpadVisible, setTextpadVisible] = useState(false); // Textpad visibility
 
   // func
   const [folders, setFolders] = useState([]);
   const [prompts, setPrompts] = useState([{}]);
+  const [textpadVisible, setTextpadVisible] = useState(false); // Textpad visibility
 
   // Function to create a new folder
   const createNewFolder = () => {
@@ -74,6 +74,21 @@ export default function SavePrompt() {
     );
   };
 
+
+  // copy
+  const handleCopy = () => {
+    // Use navigator.clipboard.writeText to copy text
+    navigator.clipboard.writeText(textpadVisible)
+      .then(() => {
+        // You can add any action you want to perform after the text is copied
+        alert("Text copied to clipboard!");
+      })
+      .catch(err => {
+        console.error('Failed to copy text: ', err);
+      });
+  };
+
+
   // Reset the form
   const resetForm = () => {
     setResponse();
@@ -83,7 +98,7 @@ export default function SavePrompt() {
     setFormPayload({ user_id: auth.user });
     setTextpadVisible(false);
   };
-
+  console.log(resetForm);
   // POST-request
   const SavePrompt = async (e) => {
     e.preventDefault();
@@ -217,7 +232,7 @@ export default function SavePrompt() {
             <div className="content">
               {loading && <Loader />}
               {showForm && (
-                <form>
+                <form onSubmit={SavePrompt}>
                   <Input.TextArea
                     className="form-control shadow-xl rounded-2xl h-44 w-22 border-none p-16 font-mono text-xl text-gray-900 bg-white"
                     style={{ height: "55vh", width: "95%" }}
@@ -236,8 +251,6 @@ export default function SavePrompt() {
                   >
                     <div className="flex gap-5 p-16">
                       <Button
-                        // type="primary"
-                        // className="ml-5 mb-5 mt-5 w-40 flex shadow-lg  items-center rounded-xl bg-indigo-200 text-blue-800 border-0 hover:bg-gray-300 hover:text-white"
                         style={{ backgroundColor: "#12BF80", color: "white" }}
                         className="border-none text-base font-bold w-36"
                         onClick={""}
@@ -246,11 +259,9 @@ export default function SavePrompt() {
                         <SaveTwoTone /> Save
                       </Button>
                       <Button
-                        // type="primary"
-                        // className="ml-5 mb-5 mt-5 w-40 shadow-lg flex items-center rounded-xl bg-indigo-200 text-blue-800 border-0 hover:bg-gray-300 hover:text-white"
                         style={{ backgroundColor: "#12BF80", color: "white" }}
                         className="border-none text-base font-bold w-36"
-                        onClick={""}
+                         onClick={handleCopy} 
                         size="large"
                       >
                         <CopyTwoTone />
@@ -274,7 +285,6 @@ export default function SavePrompt() {
                 </div>
               )}
             </div>
-           
           </Content>
         </Layout>
       </Layout>
