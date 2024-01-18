@@ -7,9 +7,9 @@ import { CopyTwoTone, SaveTwoTone, SmileOutlined } from "@ant-design/icons";
 import Background from "../components/img/bg.png";
 
 //api conncet
-const api = new Directual({
-  apiHost: "/",
-});
+// const api = new Directual({
+//   apiHost: "/",
+// });
 
 const Context = React.createContext({
   name: "Default",
@@ -83,13 +83,15 @@ export default function SavePrompt() {
           message: "Copy Success",
           description: "",
           placement: "topRight",
-          icon: <SmileOutlined style={{ color: "#12BF80" }} />,
+          icon: <SmileOutlined style={{ color: "#12BF80",  }} />,
           duration: 2,
           style: {
             width: 300,
             backgroundColor: "white",
             border: "1px solid #12BF80",
             borderRadius: "7px",
+            fontFamily: "Montserrat",
+            fontWeight: "bold",
           },
         });
       })
@@ -116,12 +118,19 @@ export default function SavePrompt() {
   };
   console.log(resetForm);
   // POST-request
+
+
+  
   const SavePrompt = async (e) => {
     e.preventDefault();
     setStatus("loading");
     setLoading(true);
     setShowForm(false);
 
+    const api = new Directual({
+      apiHost: "/",
+    });
+    
     try {
       const response = await api
         .structure(dataStructure)
