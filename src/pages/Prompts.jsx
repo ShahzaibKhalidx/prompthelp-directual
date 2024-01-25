@@ -333,7 +333,7 @@ function Prompts() {
 
   const filtersData = {
     Aspect: ["1:1", "5:4", "3:2", "7:4", "16:9", "2:1", "9:6", "1:2"],
-    Version: ["5.2", "5.1", "5", "4", "3", "2", "1", "niji"],
+    Version: ["6" ,"5.2", "5.1", "5", "4", "3", "2", "1", "niji"],
     Quality: [".25", ".5", "1"],
     Tile: ["no", "yes"],
     Exclude: "",
